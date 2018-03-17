@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace P3
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for newApptWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NewApptWindow : Window
     {
-        public MainWindow()
+        public NewApptWindow()
         {
             InitializeComponent();
-        }
-
-        private void newApptButton_Click(object sender, RoutedEventArgs e)
-        {
-            NewApptWindow newApptWindow = new NewApptWindow();
-            newApptWindow.Show();
         }
     }
 }
