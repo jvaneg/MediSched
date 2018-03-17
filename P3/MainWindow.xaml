@@ -1,13 +1,71 @@
-﻿<Window x:Class="P3.MainWindow"
+﻿<Window x:Name="mainScreen" x:Class="P3.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="990" Width="1760" ResizeMode="CanMinimize">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Height="173" Margin="109,78,0,0" TextWrapping="Wrap" Text="finally" VerticalAlignment="Top" Width="226"/>
-
+        Title="MediSched" ResizeMode="CanMinimize" Width="Auto" Height="Auto"
+        SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style x:Key="sbButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Normal" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.05" To="Pressed"/>
+                                        <VisualTransition From="Pressed" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.1" To="Normal"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF4D7E91"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF3C6382"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="newApptRect" Fill="#60a3bc"/>
+                            <ContentPresenter TextBlock.Foreground="White"
+                                              TextBlock.FontSize="25"
+                                              TextBlock.FontFamily="Arial"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="mainGrid" Height="961" Width="1754">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="265*"/>
+            <RowDefinition Height="696*"/>
+        </Grid.RowDefinitions>
+        <Rectangle x:Name="sbBackground" Fill="#0a3d62" HorizontalAlignment="Left" Height="961" VerticalAlignment="Top" Width="225" Grid.RowSpan="2"/>
+        <Button x:Name="newApptButton" Content="New Appointment" HorizontalAlignment="Left" Margin="0,13,0,21.667" Style="{DynamicResource sbButtonStyle}" Width="220" Click="newApptButton_Click"/>
+        <Button x:Name="patientsButton" Content="Patients" HorizontalAlignment="Left" Margin="0,248,0,483" Grid.RowSpan="2" Style="{DynamicResource sbButtonStyle}" Width="220"/>
+        <Button x:Name="calendarButton" Content="Calendar" HorizontalAlignment="Left" Margin="0,218.333,0,248" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
+        <Button x:Name="doctorsButton" Content="Doctors" HorizontalAlignment="Left" Margin="0,453.333,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
     </Grid>
 </Window>
