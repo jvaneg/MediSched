@@ -17,9 +17,9 @@ namespace P3
     /// <summary>
     /// Interaction logic for PatientInfo.xaml
     /// </summary>
-    public partial class PatientInfo : Window
+    public partial class PatientsWindow : Window
     {
-        public PatientInfo()
+        public PatientsWindow()
         {
             InitializeComponent();
         }

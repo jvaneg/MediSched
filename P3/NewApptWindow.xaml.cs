@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace P3
 {
     /// <summary>
-    /// Interaction logic for newApptWindow.xaml
+    /// Interaction logic for NewApptWindow.xaml
     /// </summary>
     public partial class NewApptWindow : Window
     {

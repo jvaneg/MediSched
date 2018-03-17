@@ -64,7 +64,7 @@
         </Grid.RowDefinitions>
         <Rectangle x:Name="sbBackground" Fill="#0a3d62" HorizontalAlignment="Left" Height="961" VerticalAlignment="Top" Width="225" Grid.RowSpan="2"/>
         <Button x:Name="newApptButton" Content="New Appointment" HorizontalAlignment="Left" Margin="0,13,0,21.667" Style="{DynamicResource sbButtonStyle}" Width="220" Click="newApptButton_Click"/>
-        <Button x:Name="patientsButton" Content="Patients" HorizontalAlignment="Left" Margin="0,248,0,483" Grid.RowSpan="2" Style="{DynamicResource sbButtonStyle}" Width="220"/>
+        <Button x:Name="patientsButton" Content="Patients" HorizontalAlignment="Left" Margin="0,248,0,483" Grid.RowSpan="2" Style="{DynamicResource sbButtonStyle}" Width="220" Click="patientsButton_Click"/>
         <Button x:Name="calendarButton" Content="Calendar" HorizontalAlignment="Left" Margin="0,218.333,0,248" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
         <Button x:Name="doctorsButton" Content="Doctors" HorizontalAlignment="Left" Margin="0,453.333,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
     </Grid>

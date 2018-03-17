@@ -30,5 +30,11 @@ namespace P3
             NewApptWindow newApptWindow = new NewApptWindow();
             newApptWindow.Show();
         }
+
+        private void patientsButton_Click(object sender, RoutedEventArgs e)
+        {
+            PatientsWindow patientsWindow = new PatientsWindow();
+            patientsWindow.Show();
+        }
     }
 }
