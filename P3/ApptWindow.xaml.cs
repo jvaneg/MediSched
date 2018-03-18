@@ -50,5 +50,10 @@ namespace P3
             }
         }
 
+        private void pnameButton_Click(object sender, RoutedEventArgs e)
+        {
+            PatientInfo patientInfoWindow = new PatientInfo();
+            patientInfoWindow.Show();
+        }
     }
 }
