@@ -23,5 +23,28 @@ namespace P3
         {
             InitializeComponent();
         }
+
+        private void txtNameToSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtNameToSearch_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void NewPatient_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            NewPatientsWindow patientWindow = new NewPatientsWindow();
+            patientWindow.Show();
+        }
+        private void PatientA_Selected(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            NewApptMonth apptmonthWindow = new NewApptMonth();
+            apptmonthWindow.Show();
+        }
     }
 }

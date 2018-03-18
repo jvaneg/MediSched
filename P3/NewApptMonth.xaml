@@ -1,0 +1,92 @@
+﻿<Window x:Name="newApptMonthWindow" x:Class="P3.NewApptMonth"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P3"
+        mc:Ignorable="d"
+        Title="Month" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <Style x:Key="MonthApptButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <ContentPresenter  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="90"/>
+        </Style>
+        <Style x:Key="dayButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="buttonGrid">
+                            <Rectangle x:Name="MonthBox" Fill="#FFF4F4F5" Stroke="Black"/>
+                            <ContentPresenter Content="" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <TextBlock x:Name="FreeSlotNum" HorizontalAlignment="Left" Height="67.88" Margin="65.333,10,0,0" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" Text="0" VerticalAlignment="Top" Width="92"/>
+                            <TextBlock x:Name="SlotsTxt"  HorizontalAlignment="Left" Height="96" Margin="-7.5,61.92,-10.786,-18.12" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" Text="Slots" VerticalAlignment="Top" Width="242"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10" Width="1726" Height="910">
+        <UniformGrid x:Name="uniformGrid1" Rows="5" Columns="7" Margin="10,101,10,10">
+            <!--<Button Content="0"  Margin="2" FontSize="26"/>-->
+            <Button x:Name="dayButton1" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton2" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton3" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton4" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton5" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton6" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton7" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton8" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton9" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton10" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton11" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton12" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton13" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton14" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton15" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton16" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton17" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton18" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton19" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton20" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton21" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton22" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton23" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton24" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton25" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton26" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton27" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton28" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton29" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton30" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+            <Button x:Name="dayButton31" Content="Button" HorizontalAlignment="Left" Margin="10" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top"/>
+
+            <!-- <Button Content="Rohit"  Margin="2" />-->
+        </UniformGrid>
+        <!-- <Button x:Name="dayButton" Content="Button" HorizontalAlignment="Left" Height="312" Margin="57,30.46,0,0" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top" Width="452" d:IsHidden="True"/>-->
+
+    </Grid>
+</Window>

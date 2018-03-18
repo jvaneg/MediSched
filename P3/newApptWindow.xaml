@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="NewApptWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="NewApptWindow" Height="512" Width="360">
+    <Window.Resources>
+        <Style x:Key="SearchPatientButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle Stroke="{x:Null}"/>
+                            <Ellipse HorizontalAlignment="Left" Height="9.25" Margin="7.25,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="9.917"/>
+                            <Path Data="M15.25,6.625 L21.125,11.625 19.15625,13.59375 13.468625,7.906329" HorizontalAlignment="Left" Height="7.969" Margin="13.469,6.625,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="8.656" Fill="Black"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Canvas>
+        <Button x:Name="NewPatientBttn" Content="New patient" Click="NewPatient_Click" Height="26" Canvas.Left="10" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="10" Width="86" Cursor="Hand"/>
+
+
+        <ListBox Height="298" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="273" Canvas.Left="39" Canvas.Top="153">
+            <!-- <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding PatientName}"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            -->
+
+            <ListBox x:Name="PatientList" Width="259" Background="White" BorderBrush="{x:Null}" Height="288">
+
+                <ListBoxItem x:Name="PatientA" Selected="PatientA_Selected" >
+                    ListBox Item #1
+                </ListBoxItem >
+                <ListBoxItem x:Name="PatientB" Selected="PatientA_Selected" >
+                    ListBox Item #2
+                </ListBoxItem>
+                <ListBoxItem x:Name="PatientC" Selected="PatientA_Selected" >
+                    ListBox Item #3
+                </ListBoxItem>
+            </ListBox>
+        </ListBox>
+
+        <TextBlock Height="16.5" HorizontalAlignment="Center" Name="SearchName" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="79" Canvas.Left="39" Canvas.Top="105" />
+        <TextBox Height="16.5" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" VerticalAlignment="Top" Width="189" Canvas.Left="123" Canvas.Top="105" />
+
+    </Canvas>
 </Window>
