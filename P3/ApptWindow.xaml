@@ -101,7 +101,7 @@
         <Button x:Name="addNotesButton" Content="View Notes" HorizontalAlignment="Left" Height="23.198" Margin="10,127.295,0,0"  VerticalAlignment="Top" Width="99.959"
             Style="{DynamicResource apptButtonStyle}" Click="addNotesButton_Click"/>
         <ScrollViewer x:Name="noteScroller" HorizontalAlignment="Left" Height="174.371" Margin="10,180.636,0,0" VerticalAlignment="Top" Width="345">
-            <TextBox x:Name="noteText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="328.876" MinHeight="174.371"/>
+            <TextBox x:Name="noteText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="327.444" MinHeight="174.371"/>
         </ScrollViewer>
     </Grid>
 </Window>

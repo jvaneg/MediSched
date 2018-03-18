@@ -98,7 +98,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TabControl x:Name="tabController" Margin="50 50 50 50">
+        <TabControl x:Name="tabController" Margin="50,49,50,51">
             <TabControl.Background>
                 <ImageBrush/>
             </TabControl.Background>
@@ -106,7 +106,7 @@
             <TabItem x:Name="personalTab" Header="Personal" >
                 <Grid x:Name="personalGrid">
 
-                    <Button Click="EditPersonalInfoButton_Click" Content="EditPersonalButtonStyle" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Margin="327,0,0,0" Style="{DynamicResource EditButtonStyle}"  Width="35"/>
+                    <Button x:Name="editPersButton" Click="EditPersonalInfoButton_Click" Content="EditPersonalButtonStyle" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Margin="327,0,0,0" Style="{DynamicResource EditButtonStyle}"  Width="35"/>
                     <TextBlock x:Name="infoTitles" HorizontalAlignment="Left" Height="517" Margin="10,34.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132.334" TextAlignment="Right"><Run FontSize="14" Text="Name:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Email:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Street Address:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="City:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Province:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Country:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Phone Number:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Age:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Blood Type:"/><LineBreak/><Run/></TextBlock>
                     <TextBlock x:Name="nameBlock" HorizontalAlignment="Left" Height="20" Margin="158,34.04,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
                     <TextBlock x:Name="emailBlock" HorizontalAlignment="Left" Height="20" Margin="158,71.54,0,0" TextWrapping="Wrap" Text="cooljoe@email.com" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
@@ -117,25 +117,64 @@
                     <TextBlock x:Name="phoneBlock" HorizontalAlignment="Left" Height="20" Margin="158,257.707,0,0" TextWrapping="Wrap" Text="403-867-5309" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
                     <TextBlock x:Name="ageBlock" HorizontalAlignment="Left" Height="20" Margin="158,294.873,0,0" TextWrapping="Wrap" Text="old" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
                     <TextBlock x:Name="bloodBlock" HorizontalAlignment="Left" Height="20" Margin="158,332.54,0,0" TextWrapping="Wrap" Text="A+" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBox x:Name="nameBox" HorizontalAlignment="Left" Height="20" Margin="157.333,34.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="emailBox" HorizontalAlignment="Left" Height="20" Margin="157.333,71.54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="streetBox" HorizontalAlignment="Left" Height="20" Margin="157.333,108.54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="cityBox" HorizontalAlignment="Left" Height="20" Margin="157.333,146.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="provBox" HorizontalAlignment="Left" Height="20" Margin="158,184.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="countryBox" HorizontalAlignment="Left" Height="20" Margin="157.333,221.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="phoneBox" HorizontalAlignment="Left" Height="20" Margin="158,257.707,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="20" Margin="157.333,294.873,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <TextBox x:Name="bloodBox" HorizontalAlignment="Left" Height="20" Margin="157.333,332.54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
+                    <Button x:Name="savePersButton" Click="savePersButton_Click" Content="Save" HorizontalAlignment="Left" Height="35" Margin="257,504.04,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
                 </Grid>
 
             </TabItem>
             <TabItem x:Name="billingTab" Header="Billing">
-                <Grid >
+                <Grid x:Name="billGrid">
 
-                    <Button Click="EditBillingInfoButton_Click"  Content="EditBillingButtonStyle" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Margin="327,0,0,0" Style="{DynamicResource EditButtonStyle}"  Width="35"/>
+                    <Button x:Name="editBillButton" Click="EditBillingInfoButton_Click" Content="EditPersonalButtonStyle" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Margin="327,0,0,0" Style="{DynamicResource EditButtonStyle}"  Width="35"/>
+                    <TextBlock x:Name="billStreetBlock" HorizontalAlignment="Left" Height="20" Margin="158,34.04,0,0" TextWrapping="Wrap" Text="2345 billing addresses are" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="billCityBlock" HorizontalAlignment="Left" Height="20" Margin="158,71.54,0,0" TextWrapping="Wrap" Text="OftenDifferent" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="billProvBlock" HorizontalAlignment="Left" Height="20" Margin="158,108.54,0,0" TextWrapping="Wrap" Text="FROM" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="billCountryBlock" HorizontalAlignment="Left" Height="20" Margin="158,146.04,0,0" TextWrapping="Wrap" Text="homeAddresses" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="billPhoneBlock" HorizontalAlignment="Left" Height="20" Margin="158,184.04,0,0" TextWrapping="Wrap" Text="444-444-4444" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="billPostalBlock" HorizontalAlignment="Left" Height="20" Margin="158,221.04,0,0" TextWrapping="Wrap" Text="FD2 0XX" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBox x:Name="billStreetBox" HorizontalAlignment="Left" Height="20" Margin="157.333,34.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
+                    <TextBox x:Name="billCityBox" HorizontalAlignment="Left" Height="20" Margin="157.333,71.54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
+                    <TextBox x:Name="billProvBox" HorizontalAlignment="Left" Height="20" Margin="157.333,108.54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
+                    <TextBox x:Name="billCountryBox" HorizontalAlignment="Left" Height="20" Margin="157.333,146.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
+                    <TextBox x:Name="billPhoneBox" HorizontalAlignment="Left" Height="20" Margin="158,184.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
+                    <TextBox x:Name="billPostalBox" HorizontalAlignment="Left" Height="20" Margin="157.333,221.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
+                    <Button x:Name="saveBillButton" Click="saveBillButton_Click" Content="Save" HorizontalAlignment="Left" Height="35" Margin="257,504.04,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
+                    <TextBlock x:Name="billInfoTitles" HorizontalAlignment="Left" Height="517" Margin="10,34.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132.334" TextAlignment="Right"><Run FontSize="14" Text="Billing Address:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="City:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Province:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Country:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Phone Number:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Postal Code:"/><LineBreak/></TextBlock>
                 </Grid>
             </TabItem>
             <TabItem x:Name="historyTab" Header="History">
-                <Label Content="History content goes here..." />
+                <ScrollViewer x:Name="historyScroll" Margin="-2,26.98,-1.958,-1.991">
+                    <ListBox x:Name="historyList" FontSize="14" Width="591.875" BorderBrush="{x:Null}">
+                        <ListBoxItem Content="10 Dec 2017 - Appointment Type 2" Selected="appt_Selected" />
+                        <ListBoxItem Content="5 Jan 2018 - Appointment Type 3" Selected="appt_Selected"/>
+                        <ListBoxItem Content="8 Feb 2018 - Appointment Type 1" Selected="appt_Selected"/>
+                        <ListBoxItem Content="26 Feb 2018 - Appointment Type 4" Selected="appt_Selected"/>
+                    </ListBox>
+                </ScrollViewer>
             </TabItem>
             <TabItem x:Name="futureTab" Header="Future">
-                <Label Content="Future content goes here..." />
+                <ScrollViewer x:Name="futureScroll" Margin="-2,26.98,-1.958,-1.991">
+                    <ListBox x:Name="futureList" FontSize="14" Width="591.875" BorderBrush="{x:Null}">
+                        <ListBoxItem Content="9 Apr 2019 - Appointment Type 2" Selected="appt_Selected" />
+                        <ListBoxItem Content="2 Jan 2020 - Appointment Type 3" Selected="appt_Selected"/>
+                        <ListBoxItem Content="7 Feb 2020 - Appointment Type 1" Selected="appt_Selected"/>
+                        <ListBoxItem Content="25 Feb 2021 - Appointment Type 4" Selected="appt_Selected"/>
+                        <ListBoxItem Content="17 Aug 2021 - Appointment Type 4" Selected="appt_Selected"/>
+                    </ListBox>
+                </ScrollViewer>
             </TabItem>
 
 
         </TabControl>
-        <Button Click="BackupButton_Click" Content="Backup" HorizontalAlignment="Left" Height="35" Margin="546,644,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105"/>
-        <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="612" TextAlignment="Center"/>
+        <Button x:Name="backupButton" Click="BackupButton_Click" Content="Backup" HorizontalAlignment="Left" Height="35" Margin="546,644,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
+        <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="612" TextAlignment="Center" FontSize="16"/>
     </Grid>
 </Window>
