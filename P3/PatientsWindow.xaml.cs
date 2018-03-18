@@ -75,5 +75,24 @@ namespace P3
             lstPatientData.ItemsSource = patientFiltered;
 
         }
+
+
+
+        private void PatientA_Selected(object sender, RoutedEventArgs e)
+        {
+            PatientInfo patientinfo = new PatientInfo();
+            patientinfo.Show();
+        }
+
+        private void GetIndex0(object sender, RoutedEventArgs e)
+        {
+            /*
+            ListBoxItem lbi = (ListBoxItem)
+                (lstPatientData.ItemContainerGenerator.ContainerFromIndex(0));
+            Item.Content = "The contents of the item at index 0 are: " + 
+                (lbi.Content.ToString()) + ".";
+            */
+            
+        }
     }
 }

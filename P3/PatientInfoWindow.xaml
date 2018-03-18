@@ -110,7 +110,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Billing">
+            <TabItem Header="Billing" >
                 <Grid >
 
                     <Button Click="EditBillingInfoButton_Click"  Content="EditBillingButtonStyle" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Margin="327,0,0,0" Style="{DynamicResource EditButtonStyle}"  Width="35"/>

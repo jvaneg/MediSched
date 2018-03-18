@@ -33,13 +33,15 @@ namespace P3
 
         private void patientsButton_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
                 PatientsWindow patientsWindow = new PatientsWindow();
                 patientsWindow.Show();
-            */
+            
 
-            PatientInfo patientinfo = new PatientInfo();
+           /* 
+            * PatientInfo patientinfo = new PatientInfo();
             patientinfo.Show();
+            */
         }
 
         private void sampleApptButton_Click(object sender, RoutedEventArgs e)

@@ -7,20 +7,34 @@
         mc:Ignorable="d"
         Title="Patient" Height="512" Width="360">
     <Canvas>
-        <Button Content="Backup" Height="26.5" Canvas.Left="214.5" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="10" Width="67.5"/>
-        <Button Content="New patient" Height="26.5" Canvas.Left="10" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="10" Width="67.5"/>
+        <Button x:Name="BackUp" Content="Backup" Height="26" Canvas.Left="274" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="10" Width="68" Cursor="Hand"/>
+        <Button x:Name="NewPatient" Content="New patient" Height="26" Canvas.Left="10" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="10" Width="86" Cursor="Hand"/>
 
 
 
-        <ListBox Height="298" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="252" Canvas.Left="60" Canvas.Top="153">
-            <ListBox.ItemTemplate>
+        <ListBox Height="298" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="273" Canvas.Left="39" Canvas.Top="153">
+            <!-- <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding PatientName}"></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            -->
+
+            <ListBox x:Name="PatientList" Width="259" Background="White" BorderBrush="{x:Null}" Height="288">
+
+                <ListBoxItem x:Name="PatientA" Selected="PatientA_Selected" >
+                    ListBox Item #1
+                </ListBoxItem >
+                <ListBoxItem x:Name="PatientB" Selected="PatientA_Selected" >
+                    ListBox Item #2
+                </ListBoxItem>
+                <ListBoxItem x:Name="PatientC" Selected="PatientA_Selected" >
+                    ListBox Item #3
+                </ListBoxItem>
+            </ListBox>
         </ListBox>
-        <TextBlock Height="27" HorizontalAlignment="Center" Name="textBlock1" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="108" Canvas.Left="10" Canvas.Top="81" />
-        <TextBox Height="27" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" VerticalAlignment="Top" Width="189" Canvas.Left="123" Canvas.Top="81" />
+        <TextBlock Height="16.5" HorizontalAlignment="Center" Name="SearchName" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="79" Canvas.Left="39" Canvas.Top="81" />
+        <TextBox Height="16.5" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" VerticalAlignment="Top" Width="189" Canvas.Left="123" Canvas.Top="81" />
 
     </Canvas>
 </Window>
