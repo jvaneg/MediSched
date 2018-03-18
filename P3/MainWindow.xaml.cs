@@ -33,8 +33,15 @@ namespace P3
 
         private void patientsButton_Click(object sender, RoutedEventArgs e)
         {
-            PatientsWindow patientsWindow = new PatientsWindow();
-            patientsWindow.Show();
+            /*
+                PatientsWindow patientsWindow = new PatientsWindow();
+                patientsWindow.Show();
+            */
+
+            PatientInfo patientinfo = new PatientInfo();
+            patientinfo.Show();
         }
+
+       
     }
 }

@@ -28,6 +28,7 @@ namespace P3
         ObservableCollection<Patient> lstPatient = new ObservableCollection<Patient>();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             lstPatient.Add(new Patient() { PatientNo = 1001, PatientName = "Mahesh" });
             lstPatient.Add(new Patient() { PatientNo = 1002, PatientName = "Amit" });
             lstPatient.Add(new Patient() { PatientNo = 1003, PatientName = "Vaibhav" });
@@ -39,21 +40,40 @@ namespace P3
             lstPatient.Add(new Patient() { PatientNo = 1009, PatientName = "Kaustubh" });
             lstPatient.Add(new Patient() { PatientNo = 1010, PatientName = "Mohan" });
 
+
             lstPatientData.ItemsSource = lstPatient;
 
         }
 
         private void txtNameToSearch_TextChanged(object sender,TextChangedEventArgs e)
         {
+            /*
+             *    string txtOrig = txtNameToSearch.Text;
+               string upper = txtOrig.ToUpper();
+               string lower = txtOrig.ToLower();
+
+               var patientFiltered = from Patient in lstPatient let ename = Patient.PatientName
+                                 where ename.StartsWith(lower) || ename.StartsWith(upper) || ename.Contains(txtOrig)
+                                 select Patient;
+
+               lstPatientData.ItemsSource = patientFiltered;
+
+           */
             string txtOrig = txtNameToSearch.Text;
             string upper = txtOrig.ToUpper();
             string lower = txtOrig.ToLower();
+            
 
-            var empFiltered = from Emp in lstPatient let ename = Emp.PatientName
-                              where ename.StartsWith(lower) || ename.StartsWith(upper) || ename.Contains(txtOrig)
-                              select Emp;
+            var patientFiltered = from Patient in lstPatient
+                                  let pname = Patient.PatientName
+                                  where
+                                  pname.StartsWith(lower)
+                                  || pname.StartsWith(upper)
+                                  || pname.Contains(txtOrig)
+                                  select Patient;
 
-            lstPatientData.ItemsSource = empFiltered;
+            lstPatientData.ItemsSource = patientFiltered;
+
         }
     }
 }

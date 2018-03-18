@@ -70,6 +70,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PatientInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +82,9 @@
   <ItemGroup>
     <Compile Include="NewApptWindow.xaml.cs">
       <DependentUpon>newApptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientInfo.xaml.cs">
+      <DependentUpon>PatientInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientsWindow.xaml.cs">
       <DependentUpon>PatientsWindow.xaml</DependentUpon>
