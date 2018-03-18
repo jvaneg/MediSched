@@ -42,6 +42,10 @@ namespace P3
             patientinfo.Show();
         }
 
-       
+        private void sampleApptButton_Click(object sender, RoutedEventArgs e)
+        {
+            ApptWindow apptWindow = new ApptWindow();
+            apptWindow.Show();
+        }
     }
 }
