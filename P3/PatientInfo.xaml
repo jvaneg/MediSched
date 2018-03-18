@@ -98,34 +98,44 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TabControl Margin="50 50 50 50">
+        <TabControl x:Name="tabController" Margin="50 50 50 50">
             <TabControl.Background>
                 <ImageBrush/>
             </TabControl.Background>
 
-            <TabItem Header="Personal" >
-                <Grid>
+            <TabItem x:Name="personalTab" Header="Personal" >
+                <Grid x:Name="personalGrid">
 
                     <Button Click="EditPersonalInfoButton_Click" Content="EditPersonalButtonStyle" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Margin="327,0,0,0" Style="{DynamicResource EditButtonStyle}"  Width="35"/>
+                    <TextBlock x:Name="infoTitles" HorizontalAlignment="Left" Height="517" Margin="10,34.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132.334" TextAlignment="Right"><Run FontSize="14" Text="Name:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Email:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Street Address:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="City:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Province:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Country:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Phone Number:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Age:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Blood Type:"/><LineBreak/><Run/></TextBlock>
+                    <TextBlock x:Name="nameBlock" HorizontalAlignment="Left" Height="20" Margin="158,34.04,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="emailBlock" HorizontalAlignment="Left" Height="20" Margin="158,71.54,0,0" TextWrapping="Wrap" Text="cooljoe@email.com" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="streetBlock" HorizontalAlignment="Left" Height="20" Margin="158,108.54,0,0" TextWrapping="Wrap" Text="22222 cool street SW" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="cityBlock" HorizontalAlignment="Left" Height="20" Margin="158,146.04,0,0" TextWrapping="Wrap" Text="cool" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="provBlock" HorizontalAlignment="Left" Height="20" Margin="158,184.04,0,0" TextWrapping="Wrap" Text="AB" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="countryBlock" HorizontalAlignment="Left" Height="20" Margin="158,221.04,0,0" TextWrapping="Wrap" Text="Canada" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="phoneBlock" HorizontalAlignment="Left" Height="20" Margin="158,257.707,0,0" TextWrapping="Wrap" Text="403-867-5309" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="ageBlock" HorizontalAlignment="Left" Height="20" Margin="158,294.873,0,0" TextWrapping="Wrap" Text="old" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
+                    <TextBlock x:Name="bloodBlock" HorizontalAlignment="Left" Height="20" Margin="158,332.54,0,0" TextWrapping="Wrap" Text="A+" VerticalAlignment="Top" Width="406.5" FontSize="14"/>
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Billing">
+            <TabItem x:Name="billingTab" Header="Billing">
                 <Grid >
 
                     <Button Click="EditBillingInfoButton_Click"  Content="EditBillingButtonStyle" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Margin="327,0,0,0" Style="{DynamicResource EditButtonStyle}"  Width="35"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="History">
+            <TabItem x:Name="historyTab" Header="History">
                 <Label Content="History content goes here..." />
             </TabItem>
-            <TabItem Header="Future">
+            <TabItem x:Name="futureTab" Header="Future">
                 <Label Content="Future content goes here..." />
             </TabItem>
 
 
         </TabControl>
         <Button Click="BackupButton_Click" Content="Backup" HorizontalAlignment="Left" Height="35" Margin="546,644,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105"/>
-        <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Height="35" Margin="267,10,0,0" TextWrapping="Wrap" Text="Arshdeep Parshdeep" VerticalAlignment="Top" Width="168"/>
+        <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="612" TextAlignment="Center"/>
     </Grid>
 </Window>
