@@ -39,10 +39,11 @@
                                     <VisualState x:Name="Disabled"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="newApptRect" Fill="#60a3bc"/>
+                            <Rectangle x:Name="newApptRect" Fill="#60a3bc" Cursor="Hand"/>
                             <ContentPresenter TextBlock.Foreground="White"
                                               TextBlock.FontSize="25"
                                               TextBlock.FontFamily="Arial"
+                                              Cursor="Hand"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Grid>
                         <ControlTemplate.Triggers>
@@ -67,5 +68,6 @@
         <Button x:Name="patientsButton" Content="Patients" HorizontalAlignment="Left" Margin="0,248,0,483" Grid.RowSpan="2" Style="{DynamicResource sbButtonStyle}" Width="220" Click="patientsButton_Click"/>
         <Button x:Name="calendarButton" Content="Calendar" HorizontalAlignment="Left" Margin="0,218.333,0,248" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
         <Button x:Name="doctorsButton" Content="Doctors" HorizontalAlignment="Left" Margin="0,453.333,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
+        <Button x:Name="sampleApptButton" Content="Sample Appointment" HorizontalAlignment="Left" Height="193.298" Margin="373.148,187.021,0,0" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" VerticalAlignment="Top" Width="269.05" Click="sampleApptButton_Click"/>
     </Grid>
 </Window>
