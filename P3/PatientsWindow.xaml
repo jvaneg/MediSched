@@ -1,40 +1,35 @@
-﻿<Window x:Class="P3.PatientsWindow"
+﻿<Window x:Name="patientsWindow" x:Class="P3.PatientsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="Patient" Height="512" Width="360">
-    <Canvas>
-        <Button x:Name="BackUp" Content="Backup" Height="26" Canvas.Left="274" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="10" Width="68" Cursor="Hand"/>
-        <Button x:Name="NewPatient" Content="New patient" Height="26" Canvas.Left="10" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="10" Width="86" Cursor="Hand"/>
+        Title="Patient" Height="383.5" Width="360">
+    <Canvas x:Name="patientsCanvas" Margin="0,0,0,1">
+        <Button x:Name="BackUp" Content="Backup" Height="26" Canvas.Left="244" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="18.03" Width="68" Cursor="Hand"/>
+        <Button x:Name="NewPatient" Content="New patient" Height="26" Canvas.Left="39" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="18.03" Width="86" Cursor="Hand"/>
 
 
 
-        <ListBox Height="298" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="273" Canvas.Left="39" Canvas.Top="153">
+        <ListBox Height="209.5" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="254.5" Canvas.Left="39" Canvas.Top="121.5">
             <!-- <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding PatientName}"></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             -->
-
-            <ListBox x:Name="PatientList" Width="259" Background="White" BorderBrush="{x:Null}" Height="288">
-
-                <ListBoxItem x:Name="PatientA" Selected="PatientA_Selected" >
-                    ListBox Item #1
-                </ListBoxItem >
-                <ListBoxItem x:Name="PatientB" Selected="PatientA_Selected" >
-                    ListBox Item #2
-                </ListBoxItem>
-                <ListBoxItem x:Name="PatientC" Selected="PatientA_Selected" >
-                    ListBox Item #3
-                </ListBoxItem>
-            </ListBox>
         </ListBox>
         <TextBlock Height="16.5" HorizontalAlignment="Center" Name="SearchName" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="79" Canvas.Left="39" Canvas.Top="81" />
         <TextBox Height="16.5" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" VerticalAlignment="Top" Width="189" Canvas.Left="123" Canvas.Top="81" />
+        <ScrollViewer x:Name="searchScroller" Height="209.5" Canvas.Left="39" Canvas.Top="121.5" Width="273">
+            <ListBox x:Name="PatientList" Width="256" Background="White" BorderBrush="#FFABADB3">
+
+                <ListBoxItem x:Name="PatientA" Selected="PatientA_Selected" Content="ListBox Item #1" />
+                <ListBoxItem x:Name="PatientB" Selected="PatientA_Selected" Content="ListBox Item #2" />
+                <ListBoxItem x:Name="PatientC" Selected="PatientA_Selected" Content="ListBox Item #3" />
+            </ListBox>
+        </ScrollViewer>
 
     </Canvas>
 </Window>

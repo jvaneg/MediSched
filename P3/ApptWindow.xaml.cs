@@ -19,11 +19,12 @@ namespace P3
     /// </summary>
     public partial class ApptWindow : Window
     {
-        private bool notesShown = false; 
+        private bool notesShown = false;
 
         public ApptWindow()
         {
             InitializeComponent();
+            this.apptGrid.Height = 170;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

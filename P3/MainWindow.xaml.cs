@@ -20,9 +20,13 @@ namespace P3
     /// </summary>
     public partial class MainWindow : Window
     {
+        DateTime time;
+
         public MainWindow()
         {
             InitializeComponent();
+            this.time = DateTime.Now;
+            this.dateText.Text = time.ToString("d MMM yyyy");
         }
 
         private void newApptButton_Click(object sender, RoutedEventArgs e)
