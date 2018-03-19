@@ -20,11 +20,20 @@ namespace P3
     public partial class ApptWindow : Window
     {
         private bool notesShown = false;
+        
 
         public ApptWindow()
         {
             InitializeComponent();
             this.apptGrid.Height = 170;
+
+            this.billingButton.Click += BillingButton_Click;
+        }
+
+        private void BillingButton_Click(object sender, RoutedEventArgs e)
+        {
+            billingWindow billingWindow = new billingWindow();
+            billingWindow.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -56,5 +65,6 @@ namespace P3
             PatientInfo patientInfoWindow = new PatientInfo();
             patientInfoWindow.Show();
         }
+ 
     }
 }
