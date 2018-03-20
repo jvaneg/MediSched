@@ -57,6 +57,10 @@
     <Compile Include="billingWindow.xaml.cs">
       <DependentUpon>billingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="MonthDayBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewApptMonth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,6 +80,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonthDayBoxControl.xaml.cs">
+      <DependentUpon>MonthDayBoxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewApptMonth.xaml.cs">
       <DependentUpon>NewApptMonth.xaml</DependentUpon>

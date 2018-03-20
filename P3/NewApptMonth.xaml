@@ -35,6 +35,7 @@
                             <ContentPresenter Content="" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <TextBlock x:Name="FreeSlotNum" HorizontalAlignment="Left" Height="67.88" Margin="65.333,10,0,0" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" Text="0" VerticalAlignment="Top" Width="92"/>
                             <TextBlock x:Name="SlotsTxt"  HorizontalAlignment="Left" Height="96" Margin="-7.5,61.92,-10.786,-18.12" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" Text="Slots" VerticalAlignment="Top" Width="242"/>
+                            <TextBlock x:Name="dayNumber"  HorizontalAlignment="Left" Height="30.547" Margin="-7.5,109.253,-10.786,0" TextWrapping="Wrap" FontSize="20" TextAlignment="Center" Text="1" VerticalAlignment="Top" Width="242"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True"/>
