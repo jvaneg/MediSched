@@ -95,5 +95,12 @@ namespace P3
             */
             
         }
+
+        private void NewPatient_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            NewPatientsWindow patientWindow = new NewPatientsWindow(false);
+            patientWindow.Show();
+        }
     }
 }
