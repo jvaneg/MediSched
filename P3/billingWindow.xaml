@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="Billing" Height="350" Width="400" WindowStartupLocation="CenterScreen">
-    <Canvas Name="billingCanvas">
+        Title="Billing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
+    <Canvas Name="billingCanvas" Width="392" Height="329">
         <TextBlock Name="clinicInformationLabel" HorizontalAlignment="Left" Height="26.087" Margin="24.146,17.936,0,0" TextWrapping="Wrap" Text="Clinic Information" VerticalAlignment="Top" Width="107.781"/>
         <TextBlock x:Name="patientInformationLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Patient Information" VerticalAlignment="Top" Width="107.781" Canvas.Left="210.187" Canvas.Top="17.936"/>
         <TextBlock Name="clinicInformationTextbox" Height="50.801" Canvas.Left="24.146" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>

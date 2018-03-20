@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="Patient Information" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+        Title="Patient Information" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize">
     <Window.Resources>
         <Style x:Key="EditButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
