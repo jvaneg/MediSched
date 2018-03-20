@@ -17,9 +17,9 @@ namespace P3
     /// <summary>
     /// Interaction logic for NewApptMonth.xaml
     /// </summary>
-    public partial class NewApptMonth : Window
+    public partial class CalendarMonthWindow : Window
     {
-        public NewApptMonth()
+        public CalendarMonthWindow()
         {
             InitializeComponent();
 
@@ -27,7 +27,7 @@ namespace P3
 
             for (int i = 0; i < 31; i++)
             {
-                MonthDayBoxControl dayBox = new MonthDayBoxControl(i+1, rnd.Next(0,11), "Slot");
+                MonthDayBoxControl dayBox = new MonthDayBoxControl(i+1, rnd.Next(0,11), "Appointment");
                 dayBox.MouseLeftButtonDown += DayBox_MouseLeftButtonDown;
                 this.uniformMonthGrid.Children.Add(dayBox);
             }

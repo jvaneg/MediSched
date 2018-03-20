@@ -24,5 +24,28 @@ namespace P3
         {
             InitializeComponent();
         }
+
+        public MonthDayBoxControl(int day, int slots, string boxText)
+        {
+            InitializeComponent();
+
+            this.dayNumber.Text = day.ToString();
+            this.FreeSlotNum.Text = slots.ToString();
+            this.SlotsTxt.Text = boxText;
+            if(slots != 1)
+            {
+                this.SlotsTxt.Text += "s";
+            }
+        }
+
+        private void OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseOver", true);
+        }
+
+        private void OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "Normal", true);
+        }
     }
 }

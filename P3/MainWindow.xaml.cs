@@ -53,5 +53,11 @@ namespace P3
             ApptWindow apptWindow = new ApptWindow();
             apptWindow.Show();
         }
+
+        private void calendarButton_Click(object sender, RoutedEventArgs e)
+        {
+            CalendarMonthWindow calMonth = new CalendarMonthWindow();
+            calMonth.Show();
+        }
     }
 }

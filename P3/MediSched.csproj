@@ -61,6 +61,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NewApptDay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CalendarMonthWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="NewApptMonth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +91,12 @@
     </Compile>
     <Compile Include="MonthDayBoxControl.xaml.cs">
       <DependentUpon>MonthDayBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewApptDay.xaml.cs">
+      <DependentUpon>NewApptDay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarMonthWindow.xaml.cs">
+      <DependentUpon>CalendarMonthWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewApptMonth.xaml.cs">
       <DependentUpon>NewApptMonth.xaml</DependentUpon>
