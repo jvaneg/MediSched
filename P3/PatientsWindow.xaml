@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="Patient" Height="383.5" Width="360">
-    <Canvas x:Name="patientsCanvas" Margin="0,0,0,1">
+        Title="Patient Search" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+    <Canvas x:Name="patientsCanvas" Margin="0,0,0,1" Width="352" Height="352">
         <Button x:Name="BackUp" Content="Backup" Height="26" Canvas.Left="244" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="18.03" Width="68" Cursor="Hand"/>
         <Button x:Name="NewPatient" Content="New patient" Height="26" Canvas.Left="39" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="18.03" Width="86" Cursor="Hand"/>
 

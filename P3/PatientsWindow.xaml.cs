@@ -24,7 +24,7 @@ namespace P3
             InitializeComponent();
         }
 
-
+        //stuff for the actual search that is currently nonfunctional lmao
         ObservableCollection<Patient> lstPatient = new ObservableCollection<Patient>();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -82,6 +82,7 @@ namespace P3
         {
             PatientInfo patientinfo = new PatientInfo();
             patientinfo.Show();
+            this.Close();
         }
 
         private void GetIndex0(object sender, RoutedEventArgs e)

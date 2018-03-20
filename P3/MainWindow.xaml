@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
         Title="MediSched" ResizeMode="CanMinimize" Width="Auto" Height="Auto"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="sbButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">

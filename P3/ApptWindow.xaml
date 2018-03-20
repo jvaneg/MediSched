@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="Appointment" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
+        Title="Appointment" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="apptButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
