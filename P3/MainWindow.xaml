@@ -67,7 +67,7 @@
         <Button x:Name="newApptButton" Content="New Appointment" HorizontalAlignment="Left" Margin="0,13,0,21.667" Style="{DynamicResource sbButtonStyle}" Width="220" Click="newApptButton_Click"/>
         <Button x:Name="patientsButton" Content="Patients" HorizontalAlignment="Left" Margin="0,248,0,483" Grid.RowSpan="2" Style="{DynamicResource sbButtonStyle}" Width="220" Click="patientsButton_Click"/>
         <Button x:Name="calendarButton" Content="Calendar" HorizontalAlignment="Left" Margin="0,218.333,0,248" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
-        <Button x:Name="doctorsButton" Content="Doctors" HorizontalAlignment="Left" Margin="0,453.333,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
+        <Button x:Name="doctorsButton" Content="Doctors" HorizontalAlignment="Left" Margin="0,453.333,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220" Click="doctorsButton_Click"/>
         <TextBlock x:Name="nameText" Height="86.953" Margin="694.418,0,696.222,147.047" TextWrapping="Wrap" Text="MediSched" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="72" FontWeight="Medium"/>
         <TextBlock x:Name="dateText" Margin="655,179.489,0,0" Text="21 JAN 2018" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Left" Width="436.367" TextAlignment="Center"/>
         <ScrollViewer x:Name="scheduleScroller" HorizontalScrollBarVisibility="Visible" Margin="225,0,0,0" Grid.Row="1">

@@ -65,6 +65,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DoctorsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewDoctorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewPatientsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,11 +89,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Doctor.cs" />
     <Compile Include="MonthDayBoxControl.xaml.cs">
       <DependentUpon>MonthDayBoxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewApptMonth.xaml.cs">
       <DependentUpon>NewApptMonth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsWindow.xaml.cs">
+      <DependentUpon>DoctorsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewDoctorWindow.xaml.cs">
+      <DependentUpon>NewDoctorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewPatientsWindow.xaml.cs">
       <DependentUpon>NewPatientsWindow.xaml</DependentUpon>

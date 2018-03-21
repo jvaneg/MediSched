@@ -37,9 +37,8 @@ namespace P3
 
         private void patientsButton_Click(object sender, RoutedEventArgs e)
         {
-            
-                PatientsWindow patientsWindow = new PatientsWindow();
-                patientsWindow.Show();
+            PatientsWindow patientsWindow = new PatientsWindow();
+            patientsWindow.Show();
             
 
            /* 
@@ -52,6 +51,11 @@ namespace P3
         {
             ApptWindow apptWindow = new ApptWindow();
             apptWindow.Show();
+        }
+        private void doctorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoctorsWindow docWindow = new DoctorsWindow();
+            docWindow.Show();
         }
     }
 }
