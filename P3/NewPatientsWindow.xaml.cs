@@ -19,15 +19,25 @@ namespace P3
     /// </summary>
     public partial class NewPatientsWindow : Window
     {
-        public NewPatientsWindow()
+        bool fromAppointment = false;
+        public NewPatientsWindow(bool fromAppointment)
         {
             InitializeComponent();
+            this.fromAppointment = fromAppointment;
         }
+
         private void OkButtonStyle(object sender, RoutedEventArgs e)
         {
+            if (fromAppointment)
+            {
+                NewApptMonth apptmonthWindow = new NewApptMonth();
+                apptmonthWindow.Show();
+            }
+            else
+            {
+                //something in the implementation phase
+            }
             this.Close();
-            NewApptMonth apptmonthWindow = new NewApptMonth();
-            apptmonthWindow.Show();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace P3
         private void NewPatient_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            NewPatientsWindow patientWindow = new NewPatientsWindow();
+            NewPatientsWindow patientWindow = new NewPatientsWindow(true);
             patientWindow.Show();
         }
         private void PatientA_Selected(object sender, RoutedEventArgs e)
