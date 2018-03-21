@@ -21,7 +21,8 @@ namespace P3
     /// </summary>
     public partial class billingWindow : Window
     {
-        decimal totalCost = 0;
+
+        
 
         public billingWindow()
         {
@@ -30,11 +31,14 @@ namespace P3
             this.addToTableButton.Click += AddToTableButton_Click;
             this.printButton.Click += PrintButton_Click;
             this.OKButton.Click += OKButton_Click;
-            this.addNewItemButton.Click += AddNewItemButton_Click;
+            this.resetTableButton.Click += ResetTableButton_Click;
 
+        }
 
-            
-
+        private void ResetTableButton_Click(object sender, RoutedEventArgs e)
+        {
+            descriptCostDataGrid.Items.Clear();
+            descriptCostDataGrid.Items.Refresh();
         }
 
         private void AddToTableButton_Click(object sender, RoutedEventArgs e)
@@ -43,61 +47,21 @@ namespace P3
             decimal d;
             if (decimal.TryParse(itemCostTextBox.Text, out d))
             {
-                this.itemDescriptionTextBox.Visibility = Visibility.Hidden;
-                this.itemCostTextBox.Visibility = Visibility.Hidden;
-                this.descriptionLabel.Visibility = Visibility.Hidden;
-                this.costLabel.Visibility = Visibility.Hidden;
-                this.addItemLabel.Visibility = Visibility.Hidden;
-                this.addCostLabel.Visibility = Visibility.Hidden;
+                this.itemDescriptionTextBox.Visibility = Visibility.Visible;
+                this.itemCostTextBox.Visibility = Visibility.Visible;
+                this.descriptionLabel.Visibility = Visibility.Visible;
+                this.costLabel.Visibility = Visibility.Visible;
+                this.addItemLabel.Visibility = Visibility.Visible;
+                this.addCostLabel.Visibility = Visibility.Visible;
 
-                totalCost += (Convert.ToDecimal(itemCostTextBox.Text));
-                this.totalLabel.Text = "Total: " + totalCost;
+                descriptCostDataGrid.Items.Add(new { Description = itemDescriptionTextBox.Text, Cost = itemCostTextBox.Text });
 
-
-                itemCostTextBox.Text = "0";
             }
             else
             {
                 MessageBox.Show("Inavlid Numbers entered for cost, please try again");
             }
         }
-
-        private void AddNewItemButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            fillingDataGridUsingDataTab1();
-
-
-            this.costLabel.Visibility = Visibility.Hidden;
-            this.addItemLabel.Visibility = Visibility.Hidden;
-            this.addCostLabel.Visibility = Visibility.Hidden;
-
-            this.addToTableButton.Visibility = Visibility.Visible;
-            this.OKButton.Visibility = Visibility.Visible;
-            this.printButton.Visibility = Visibility.Visible;
-
-            this.scrollViewerBilling.Visibility = Visibility.Visible;
-            this.descriptCostDataGrid.Visibility = Visibility.Visible;
-        }
-
-        void fillingDataGridUsingDataTab1() {
-
-            DataTable dt = new DataTable();
-            DataColumn description = new DataColumn("description", typeof(string));
-            DataColumn cost = new DataColumn("cost", typeof(decimal));
-
-            dt.Columns.Add(description);
-            dt.Columns.Add(cost);
-
-            DataRow addRow = dt.NewRow();
-            addRow["description"] = itemDescriptionTextBox.Text;
-            addRow["Cost"] = itemCostTextBox.Text;
-            dt.Rows.Add(addRow);
-
-            descriptCostDataGrid.ItemsSource = dt.DefaultView;
-                       
-        }
-
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
