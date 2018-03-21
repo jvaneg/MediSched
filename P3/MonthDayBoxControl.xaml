@@ -5,11 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3"
              mc:Ignorable="d" 
-             d:DesignHeight="157.92" d:DesignWidth="242" Width="223" Height="140">
+             d:DesignHeight="157.92" d:DesignWidth="242" Width="223" Height="140" Cursor="Hand" MouseEnter="OnMouseEnter" MouseLeave="OnMouseLeave">
+
     <Canvas x:Name="monthDayCanvas" HorizontalAlignment="Left" Height="137.958" Margin="1.042,1,0,0" VerticalAlignment="Top" Width="220.958">
-        <Rectangle x:Name="MonthBox" Fill="#FFF4F4F5" Stroke="Black" Width="223" Height="140"/>
-        <TextBlock x:Name="FreeSlotNum" HorizontalAlignment="Left" Height="67.88" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" Text="0" VerticalAlignment="Top" Width="92" Canvas.Left="63.5" Canvas.Top="10.531"/>
-        <TextBlock x:Name="SlotsTxt"  HorizontalAlignment="Left" Height="45" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" Text="Slots" VerticalAlignment="Top" Width="220.958" Canvas.Top="62.411"/>
-        <TextBlock x:Name="dayNumber"  HorizontalAlignment="Left" Height="30.547" TextWrapping="Wrap" FontSize="20" TextAlignment="Center" Text="1" VerticalAlignment="Top" Width="220.958" Canvas.Top="107.411"/>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition From="Normal" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                    <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.05" To="Pressed"/>
+                    <VisualTransition From="Pressed" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                    <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.1" To="Normal"/>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="MouseOver">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="MonthBox">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FF4D7E91"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="MonthBox">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FF3C6382"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled"/>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Rectangle x:Name="MonthBox" Fill="#FF60A3BC" Stroke="#FF0A3D62" Width="223" Height="140"/>
+        <TextBlock x:Name="FreeSlotNum" HorizontalAlignment="Left" Height="67.88" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" Text="0" VerticalAlignment="Top" Width="92" Canvas.Left="63.5" Canvas.Top="10.531" Foreground="White"/>
+        <TextBlock x:Name="SlotsTxt"  HorizontalAlignment="Left" Height="45" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" Text="Slots" VerticalAlignment="Top" Width="220.958" Canvas.Top="62.411" Foreground="White"/>
+        <TextBlock x:Name="dayNumber"  HorizontalAlignment="Left" Height="30.547" TextWrapping="Wrap" FontSize="20" TextAlignment="Center" Text="1" VerticalAlignment="Top" Width="220.958" Canvas.Top="107.411" Foreground="White"/>
     </Canvas>
+    
+    
 </UserControl>

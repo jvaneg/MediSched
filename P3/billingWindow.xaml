@@ -5,28 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="Billing" Height="350" Width="400" WindowStartupLocation="CenterScreen">
-    <Canvas Name="billingCanvas">
+        Title="Billing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
+    <Canvas Name="billingCanvas" Width="392" Height="329">
         <TextBlock Name="clinicInformationLabel" HorizontalAlignment="Left" Height="26.087" Margin="24.146,17.936,0,0" TextWrapping="Wrap" Text="Clinic Information" VerticalAlignment="Top" Width="107.781"/>
         <TextBlock x:Name="patientInformationLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Patient Information" VerticalAlignment="Top" Width="107.781" Canvas.Left="210.187" Canvas.Top="17.936"/>
         <TextBlock Name="clinicInformationTextbox" Height="50.801" Canvas.Left="24.146" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>
         <TextBlock x:Name="patientInformationTextbox" Height="50.801" Canvas.Left="210.187" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>
-        <TextBlock x:Name="descriptionLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="107.781" Canvas.Left="24.146" Canvas.Top="148.464"/>
-        <TextBlock x:Name="costLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Cost" VerticalAlignment="Top" Width="107.781" Canvas.Left="239.215" Canvas.Top="148.464"/>
+        <TextBlock x:Name="descriptionLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="107.781" Canvas.Left="24.146" Canvas.Top="107.792"/>
+        <TextBlock x:Name="costLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Cost" VerticalAlignment="Top" Width="107.781" Canvas.Left="244.215" Canvas.Top="107.792"/>
         <TextBlock x:Name="patientInformationTextbox_Copy" Height="50.801" Canvas.Left="210.187" TextWrapping="Wrap" Text="" Canvas.Top="187.501" Width="136.122"/>
-        <Rectangle Name="descriptionRectangleOutline" Fill="#FFF4F4F5" Height="90.618" Canvas.Left="20.027" Stroke="Black" Canvas.Top="185.441" Width="219.188"/>
-        <Rectangle x:Name="costRectangleOutline" Fill="#FFF4F4F5" Height="90.618" Canvas.Left="239.215" Stroke="Black" Canvas.Top="185.441" Width="107.094"/>
         <Button Name="OKButton" Content="OK" Height="21.968" Canvas.Left="238.528" Canvas.Top="291.848" Width="50.996"/>
         <Button x:Name="printButton" Content="Print" Height="21.968" Canvas.Left="308.162" Canvas.Top="291.848" Width="50.996"/>
         <TextBlock x:Name="totalLabel" Height="21.968" Canvas.Left="24.146" TextWrapping="Wrap" Text="Total: " Canvas.Top="291.848" Width="107.781"/>
-        <Button x:Name="saveCostButton" Content="Save Cost" Height="21.968" Canvas.Left="140.36" Canvas.Top="291.848" Width="70.904"/>
-        <TextBlock x:Name="itemOneLabel" Height="27.46" Canvas.Left="63.963" TextWrapping="Wrap" Text="Open Heart Surgery" Canvas.Top="185.441" Width="175.252" RenderTransformOrigin="0.36,0.475"/>
-        <TextBlock x:Name="itemTwoLabel" Height="27.46" Canvas.Left="63.963" TextWrapping="Wrap" Text="A Smile" Canvas.Top="210.842" Width="121.927"/>
-        <TextBlock x:Name="itemOtherLabel" Height="27.46" Canvas.Left="63.963" TextWrapping="Wrap" Text="Other" Canvas.Top="238.302" Width="121.927"/>
-        <TextBox Name="itemOneTextBox" Height="18.535" Canvas.Left="244.215" TextWrapping="Wrap" Text="" Canvas.Top="187.501" Width="93.17"/>
-        <TextBox x:Name="itemTwoTextBox" Height="20.401" Canvas.Left="244.215" TextWrapping="Wrap" Text="" Canvas.Top="211.036" Width="93.17"/>
-        <TextBox x:Name="itemOtherTextBox" Height="18.73" Canvas.Left="244.215" TextWrapping="Wrap" Text="" Canvas.Top="238.302" Width="93.17"/>
-        <Button Name="editCostButton" Content="Edit Cost" Height="31.116" Canvas.Left="283.838" Canvas.Top="149.325" Width="63.158"/>
+        <Button x:Name="addToTableButton" Content="Add" Height="18.535" Canvas.Left="351.309" Canvas.Top="160.533" Width="26.64"/>
+        <Button x:Name="addNewItemButton" Content="+" Height="22.908" Canvas.Left="351.309" Canvas.Top="253.151" Width="15.804"/>
+        <TextBox x:Name="itemDescriptionTextBox" Height="18.535" Canvas.Left="24.146" TextWrapping="Wrap" Text="" Canvas.Top="160.533" Width="210.069"/>
+        <TextBox x:Name="itemCostTextBox" Height="18.535" Canvas.Left="244.215" TextWrapping="Wrap" Text="" Canvas.Top="160.533" Width="93.17"/>
+        <TextBlock x:Name="addItemLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Add Item" VerticalAlignment="Top" Width="107.781" Canvas.Left="24.146" Canvas.Top="138.879"/>
+        <TextBlock x:Name="addCostLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Add Cost" VerticalAlignment="Top" Width="107.781" Canvas.Left="243.528" Canvas.Top="138.879"/>
+        <ScrollViewer Name="scrollViewerBilling" Canvas.Left="20.027" Canvas.Top="185.441" Width="326.282" Height="Auto">
+            <DataGrid x:Name="descriptCostDataGrid" ColumnWidth="163.141" Height="90.618" Width="326.282" IsReadOnly="True"/>
+        </ScrollViewer>
 
     </Canvas>
 </Window>
