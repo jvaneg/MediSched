@@ -24,6 +24,7 @@ namespace P3
         private bool addMode = false;
         private string patientName = "";
         private string apptType = "";
+        private bool enabled = false;
 
         private int initialHeight = 50;
 
@@ -40,6 +41,27 @@ namespace P3
             this.apptType = apptType;
             this.apptBlockText.Text = patientName + "\n" + apptType;
             this.Cursor = Cursors.Hand;
+            this.Visibility = Visibility.Visible;
+        }
+
+        public void setEnabled(int length, string patientName, string apptType)
+        {
+            this.enabled = true;
+            this.potentialLength = length;
+            this.patientName = patientName;
+            this.apptType = apptType;
+            this.apptBlockText.Text = patientName + "\n" + apptType;
+            this.Cursor = Cursors.Hand;
+            this.Visibility = Visibility.Visible;
+            this.Height = initialHeight * potentialLength;
+            this.apptBlockGrid.Height = initialHeight * potentialLength;
+            this.Opacity = 100;
+            this.addMode = false;
+        }
+
+        public bool isEnabled()
+        {
+            return this.enabled;
         }
 
         private void OnMouseEnter(object sender, MouseEventArgs e)
@@ -49,6 +71,10 @@ namespace P3
                 this.Height = initialHeight * potentialLength;
                 this.apptBlockGrid.Height = initialHeight * potentialLength;
                 this.Opacity = 100;
+            }
+            else if(enabled)
+            {
+                //transition thing or colour change
             }
         }
 
@@ -60,6 +86,16 @@ namespace P3
                 this.apptBlockGrid.Height = initialHeight;
                 this.Opacity = 0;
             }
+            else if (enabled)
+            {
+                //transition thing or colour change
+            }
+        }
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //do nothing
+
         }
     }
 }

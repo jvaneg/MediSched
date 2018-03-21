@@ -1,13 +1,53 @@
-﻿<Window x:Name="mainScreen" x:Class="P3.MainWindow"
+﻿<Window x:Name="newApptDay" x:Class="P3.CalendarDayWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="MediSched" ResizeMode="CanMinimize" Width="Auto" Height="Auto"
-        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+        Title="New Appointment" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <Style x:Key="MonthApptButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <ContentPresenter  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="90"/>
+        </Style>
+        <Style x:Key="dayButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="buttonGrid">
+                            <Rectangle x:Name="MonthBox" Fill="#FFF4F4F5" Stroke="Black"/>
+                            <ContentPresenter Content="" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <TextBlock x:Name="FreeSlotNum" HorizontalAlignment="Left" Height="67.88" Margin="65.333,10,0,0" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" Text="0" VerticalAlignment="Top" Width="92"/>
+                            <TextBlock x:Name="SlotsTxt"  HorizontalAlignment="Left" Height="96" Margin="-7.5,61.92,-10.786,-18.12" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" Text="Slots" VerticalAlignment="Top" Width="242"/>
+                            <TextBlock x:Name="dayNumber"  HorizontalAlignment="Left" Height="30.547" Margin="-7.5,109.253,-10.786,0" TextWrapping="Wrap" FontSize="20" TextAlignment="Center" Text="1" VerticalAlignment="Top" Width="242"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="sbButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -41,10 +81,10 @@
                             </VisualStateManager.VisualStateGroups>
                             <Rectangle x:Name="newApptRect" Fill="#60a3bc" Cursor="Hand"/>
                             <ContentPresenter TextBlock.Foreground="White"
-                                              TextBlock.FontSize="25"
-                                              TextBlock.FontFamily="Arial"
-                                              Cursor="Hand"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                TextBlock.FontSize="25"
+                                TextBlock.FontFamily="Arial"
+                                Cursor="Hand"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True"/>
@@ -63,14 +103,8 @@
             <RowDefinition Height="265*"/>
             <RowDefinition Height="696*"/>
         </Grid.RowDefinitions>
-        <Rectangle x:Name="sbBackground" Fill="#0a3d62" HorizontalAlignment="Left" Height="961" VerticalAlignment="Top" Width="225" Grid.RowSpan="2"/>
-        <Button x:Name="newApptButton" Content="New Appointment" HorizontalAlignment="Left" Margin="0,13,0,21.667" Style="{DynamicResource sbButtonStyle}" Width="220" Click="newApptButton_Click"/>
-        <Button x:Name="patientsButton" Content="Patients" HorizontalAlignment="Left" Margin="0,248,0,483" Grid.RowSpan="2" Style="{DynamicResource sbButtonStyle}" Width="220" Click="patientsButton_Click"/>
-        <Button x:Name="calendarButton" Content="Calendar" HorizontalAlignment="Left" Margin="0,218.333,0,248" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220" Click="calendarButton_Click"/>
-        <Button x:Name="doctorsButton"  Click="doctorsButton_Click" Content="Doctors" HorizontalAlignment="Left" Margin="0,453.333,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
-        <TextBlock x:Name="nameText" Height="86.953" Margin="694.418,0,696.222,147.047" TextWrapping="Wrap" Text="MediSched" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="72" FontWeight="Medium"/>
-        <TextBlock x:Name="dateText" Margin="655,179.489,0,0" Text="21 JAN 2018" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Left" Width="436.367" TextAlignment="Center"/>
-        <ScrollViewer x:Name="scheduleScroller" HorizontalScrollBarVisibility="Visible" Margin="225,0,0,0" Grid.Row="1">
+        <TextBlock x:Name="dateText" Margin="663,85.036,0,0" Text="21 JAN 2018" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Left" Width="436.367" TextAlignment="Center"/>
+        <ScrollViewer x:Name="scheduleScroller" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
             <UniformGrid x:Name="scheduleGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="2500" Rows="1"/>
         </ScrollViewer>
     </Grid>

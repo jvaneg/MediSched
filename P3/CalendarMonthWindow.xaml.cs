@@ -35,7 +35,7 @@ namespace P3
 
         private void DayBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            NewApptDay dayWindow = new NewApptDay();
+            CalendarDayWindow dayWindow = new CalendarDayWindow();
             dayWindow.Show();
             this.Close();
         }

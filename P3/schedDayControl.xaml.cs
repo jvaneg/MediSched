@@ -20,25 +20,49 @@ namespace P3
     /// </summary>
     public partial class SchedDayControl : UserControl
     {
-        private int potentialLength = 1;
-        private bool addMode = false;
-        private string patientName = "";
-        private string apptType = "";
-
         //for view mode
-        public SchedDayControl(string DoctorName)
+        public SchedDayControl(string doctorName)
         {
             InitializeComponent();
-            this.doctorNameBlock.Text = DoctorName;
+            this.doctorNameBlock.Text = doctorName;
         }
 
         //for add mode
-        public SchedDayControl(string DoctorName, int potentialLength, string patientName, string apptType)
+        public SchedDayControl(string doctorName, int potentialLength, string patientName, string apptType)
         {
             InitializeComponent();
-            this.doctorNameBlock.Text = DoctorName;
+            this.doctorNameBlock.Text = doctorName;
             setSchedDays(potentialLength, patientName, apptType);
 
+        }
+
+        public SchedDayControl(string doctorName, int[] dayScheduleArray)
+        {
+            InitializeComponent();
+            this.doctorNameBlock.Text = doctorName;
+            //will load array here, for now hardcode sets up some stuff
+            this.apptBlock5.setEnabled(4, "Cool Joey", "Appointment Type 4");
+            this.apptBlock5.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+
+            this.apptBlock12.setEnabled(3, "stinky arsh", "Appointment Type 8");
+            this.apptBlock12.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+
+        }
+
+        //something isnt working right here yet
+        private void ApptBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ApptBlockControl apptBlock = (ApptBlockControl)sender;
+            if (apptBlock.isEnabled())
+            {
+                ApptWindow apptWindow = new ApptWindow();
+                apptWindow.Show();
+            }
+            else
+            {
+                //save and close
+                MessageBox.Show("HELLO");
+            }
         }
 
         private void setSchedDays(int potentialLength, string patientName, string apptType)

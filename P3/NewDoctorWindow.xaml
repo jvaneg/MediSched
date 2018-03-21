@@ -1,0 +1,24 @@
+﻿<Window x:Name="newDocWindow" x:Class="P3.NewDoctorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P3"
+        mc:Ignorable="d"
+        Title="New Doctor"  SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="newDocGrid"  Width="365" Height="434.851">
+        <TextBlock x:Name="nameString"  HorizontalAlignment="Left" Height="25.951" Margin="21.879,22.684,0,0" TextWrapping="Wrap" TextAlignment="Center"  FontSize="14" Text="Name:" VerticalAlignment="Top" Width="55.609"/>
+        <TextBox x:Name="docNameToDisplay" HorizontalAlignment="Left" Height="34" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="226.098" Margin="111.22,14.635,0,0"/>
+        <TextBlock x:Name="hoursStr" FontSize="14" HorizontalAlignment="Left" TextAlignment="Center" Height="25.951" Margin="21.879,109.108,0,0" TextWrapping="Wrap" Text="Hours:" VerticalAlignment="Top" Width="55.609"/>
+        <TextBox x:Name="startT" HorizontalAlignment="Left" Height="33.496" Margin="111.22,101.563,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77.604"/>
+        <TextBox x:Name="endT" HorizontalAlignment="Left" Height="33.496" Margin="259.714,101.563,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77.604"/>
+        <TextBlock x:Name="toStr"  Text="to" HorizontalAlignment="Left" FontSize="14" TextAlignment="Center" Height="25.951" Margin="213.628,109.108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19.845"/>
+        <TextBlock x:Name="daysStr" Text="Days:" TextAlignment="Center" FontSize="14" Height="25.951" Width="55.609" Margin="21.879,181.298,287.512,227.601"/>
+        <CheckBox x:Name="mondayBox" Content="Monday" Height="14.96" Margin="111,195,163,224"/>
+        <CheckBox x:Name="tuesdayBox" Content="Tuesday" Height="14.96" Margin="111,195,163,150"/>
+        <CheckBox x:Name="wednesdayBox" Content="Wednesday" Height="14.96" Margin="111,195,163,76"/>
+        <CheckBox x:Name="thursdayBox" Content="Thursday" Height="14.96" Margin="111,195,163,2"/>
+        <CheckBox x:Name="fridayBox" Content="Friday" Height="14.96" Margin="111,195,163,-72"/>
+
+    </Grid>
+</Window>

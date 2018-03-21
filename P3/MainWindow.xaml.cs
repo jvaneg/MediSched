@@ -28,10 +28,15 @@ namespace P3
             this.time = DateTime.Now;
             this.dateText.Text = time.ToString("d MMM yyyy");
 
-            for(int i = 0; i < 3; i++)
+            //adding a dummy for the horz prototype
+            SchedDayControl schedDay = new SchedDayControl("Doctor A", null);
+            this.scheduleGrid.Children.Add(schedDay);
+
+            for (int i = 0; i < 2; i++)
             {
                 //SchedDayControl schedDay = new SchedDayControl("Doctor A", 3, "Cool Joey", "Appointment Type 2");
-                SchedDayControl schedDay = new SchedDayControl("Doctor A");
+                //SchedDayControl schedDay = new SchedDayControl("Doctor A");
+                schedDay = new SchedDayControl("Doctor A");
                 this.scheduleGrid.Children.Add(schedDay);
             }
         }
@@ -66,5 +71,12 @@ namespace P3
             CalendarMonthWindow calMonth = new CalendarMonthWindow();
             calMonth.Show();
         }
+
+        private void doctorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoctorsWindow docWindow = new DoctorsWindow();
+            docWindow.Show();
+        }
+
     }
 }
