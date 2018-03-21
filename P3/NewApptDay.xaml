@@ -48,16 +48,64 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="sbButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Normal" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.05" To="Pressed"/>
+                                        <VisualTransition From="Pressed" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.1" To="Normal"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF4D7E91"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF3C6382"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="newApptRect" Fill="#60a3bc" Cursor="Hand"/>
+                            <ContentPresenter TextBlock.Foreground="White"
+                                TextBlock.FontSize="25"
+                                TextBlock.FontFamily="Arial"
+                                Cursor="Hand"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-
-    <Grid x:Name="backGrid" Margin="10" Width="1726" Height="910">
-        <UniformGrid x:Name="uniformMonthGrid" Rows="5" Columns="7" Margin="10,101,10,10">
-
-            <!-- <Button Content="Rohit"  Margin="2" />-->
-            <!--<Button Content="0"  Margin="2" FontSize="26"/>-->
-
-        </UniformGrid>
-        <!-- <Button x:Name="dayButton" Content="Button" HorizontalAlignment="Left" Height="312" Margin="57,30.46,0,0" Style="{DynamicResource dayButtonStyle}" VerticalAlignment="Top" Width="452" d:IsHidden="True"/>-->
-
+    <Grid x:Name="mainGrid" Height="961" Width="1754">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="265*"/>
+            <RowDefinition Height="696*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="dateText" Margin="663,85.036,0,0" Text="21 JAN 2018" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Left" Width="436.367" TextAlignment="Center"/>
+        <ScrollViewer x:Name="scheduleScroller" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
+            <UniformGrid x:Name="scheduleGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="2500" Rows="1"/>
+        </ScrollViewer>
     </Grid>
 </Window>

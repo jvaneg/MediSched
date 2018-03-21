@@ -71,9 +71,7 @@
         <TextBlock x:Name="nameText" Height="86.953" Margin="694.418,0,696.222,147.047" TextWrapping="Wrap" Text="MediSched" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="72" FontWeight="Medium"/>
         <TextBlock x:Name="dateText" Margin="655,179.489,0,0" Text="21 JAN 2018" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Left" Width="436.367" TextAlignment="Center"/>
         <ScrollViewer x:Name="scheduleScroller" HorizontalScrollBarVisibility="Visible" Margin="225,0,0,0" Grid.Row="1">
-            <UniformGrid x:Name="scheduleGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="732" Width="1572">
-                <Button x:Name="sampleApptButton" Content="Sample Appointment" HorizontalAlignment="Left" Height="194" Style="{DynamicResource sbButtonStyle}" VerticalAlignment="Top" Width="269" Click="sampleApptButton_Click"/>
-            </UniformGrid>
+            <UniformGrid x:Name="scheduleGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="2500" Rows="1"/>
         </ScrollViewer>
     </Grid>
 </Window>

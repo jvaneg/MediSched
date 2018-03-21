@@ -54,9 +54,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SchedDayControl.xaml.cs">
+      <DependentUpon>SchedDayControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="billingWindow.xaml.cs">
       <DependentUpon>billingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="SchedDayControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ApptBlockControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MonthDayBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +99,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApptBlockControl.xaml.cs">
+      <DependentUpon>ApptBlockControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MonthDayBoxControl.xaml.cs">
       <DependentUpon>MonthDayBoxControl.xaml</DependentUpon>

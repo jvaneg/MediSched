@@ -22,6 +22,11 @@ namespace P3
         public NewApptDay()
         {
             InitializeComponent();
+            for (int i = 0; i < 3; i++)
+            {
+                SchedDayControl schedDay = new SchedDayControl("Doctor A", 3, "Cool Joey", "Appointment Type 2");
+                this.scheduleGrid.Children.Add(schedDay);
+            }
         }
     }
 }

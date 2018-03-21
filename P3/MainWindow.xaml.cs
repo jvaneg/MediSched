@@ -27,6 +27,13 @@ namespace P3
             InitializeComponent();
             this.time = DateTime.Now;
             this.dateText.Text = time.ToString("d MMM yyyy");
+
+            for(int i = 0; i < 3; i++)
+            {
+                //SchedDayControl schedDay = new SchedDayControl("Doctor A", 3, "Cool Joey", "Appointment Type 2");
+                SchedDayControl schedDay = new SchedDayControl("Doctor A");
+                this.scheduleGrid.Children.Add(schedDay);
+            }
         }
 
         private void newApptButton_Click(object sender, RoutedEventArgs e)
