@@ -71,5 +71,12 @@ namespace P3
             CalendarMonthWindow calMonth = new CalendarMonthWindow();
             calMonth.Show();
         }
+
+        private void doctorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoctorsWindow docWindow = new DoctorsWindow();
+            docWindow.Show();
+        }
+
     }
 }

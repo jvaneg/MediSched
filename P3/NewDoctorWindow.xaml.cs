@@ -51,9 +51,14 @@ namespace P3
         private void setupDocInfo()
         {
             docNameToDisplay.Text = this.docName;
-            startT.Text = this.docWorkingHours;
-            string[] ssize = this.docWorkingHours.Split(null);
+            
+            string[] docHours = this.docWorkingHours.Split(null);
             //MessageBox.Show("INFO GOT:" + "docName = " + this.docName + ", docWorkingDays = " + this.docWorkingDays);
+
+
+
+            startT.Text = docHours[0];
+            endT.Text = docHours[1];
 
             if (mondayBox.IsChecked == false & docWorkingDays.Contains("M"))
             {
