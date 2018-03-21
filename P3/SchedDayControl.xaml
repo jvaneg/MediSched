@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3"
              mc:Ignorable="d" 
-             d:DesignHeight="157.92" d:DesignWidth="242" Width="500" Height="2500" Cursor="Hand">
+             d:DesignHeight="157.92" d:DesignWidth="242" Width="500" Height="2500">
 
     <Grid x:Name="timeGrid" HorizontalAlignment="Left" Height="2500" Grid.Row="1" VerticalAlignment="Top" Width="500">
         <TextBlock x:Name="doctorNameBlock" HorizontalAlignment="Left" Height="63.085" Margin="100,10,0,0" TextWrapping="Wrap" Text="Doctor A" VerticalAlignment="Top" Width="390" FontSize="36" TextAlignment="Center"/>

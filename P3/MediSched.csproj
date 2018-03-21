@@ -54,12 +54,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CalendarDayWindow.xaml.cs">
+      <DependentUpon>CalendarDayWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SchedDayControl.xaml.cs">
       <DependentUpon>SchedDayControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="billingWindow.xaml.cs">
       <DependentUpon>billingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CalendarDayWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SchedDayControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
