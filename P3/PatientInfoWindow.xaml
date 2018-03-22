@@ -126,7 +126,7 @@
                     <TextBox x:Name="phoneBox" HorizontalAlignment="Left" Height="20" Margin="158,257.707,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
                     <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="20" Margin="157.333,294.873,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
                     <TextBox x:Name="bloodBox" HorizontalAlignment="Left" Height="20" Margin="157.333,332.54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14"/>
-                    <Button x:Name="savePersButton" Click="savePersButton_Click" Content="Save" HorizontalAlignment="Left" Height="35" Margin="257,504.04,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
+                    <Button x:Name="savePersButton" Click="savePersButton_Click" Content="Save" HorizontalAlignment="Left" Height="35" Margin="257,504.04,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
                 </Grid>
 
             </TabItem>
@@ -146,7 +146,7 @@
                     <TextBox x:Name="billCountryBox" HorizontalAlignment="Left" Height="20" Margin="157.333,146.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
                     <TextBox x:Name="billPhoneBox" HorizontalAlignment="Left" Height="20" Margin="158,184.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
                     <TextBox x:Name="billPostalBox" HorizontalAlignment="Left" Height="20" Margin="157.333,221.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="407.167" FontSize="14" d:IsHidden="True"/>
-                    <Button x:Name="saveBillButton" Click="saveBillButton_Click" Content="Save" HorizontalAlignment="Left" Height="35" Margin="257,504.04,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
+                    <Button x:Name="saveBillButton" Click="saveBillButton_Click" Content="Save" HorizontalAlignment="Left" Height="35" Margin="257,504.04,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
                     <TextBlock x:Name="billInfoTitles" HorizontalAlignment="Left" Height="517" Margin="10,34.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132.334" TextAlignment="Right"><Run FontSize="14" Text="Billing Address:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="City:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Province:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Country:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Phone Number:"/><LineBreak/><Run FontSize="14"/><LineBreak/><Run FontSize="14" Text="Postal Code:"/><LineBreak/></TextBlock>
                 </Grid>
             </TabItem>
@@ -174,7 +174,7 @@
 
 
         </TabControl>
-        <Button x:Name="backupButton" Click="BackupButton_Click" Content="Backup" HorizontalAlignment="Left" Height="35" Margin="546,644,0,0" Style="{DynamicResource BackupButtonPatientInfoStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
+        <Button x:Name="backupButton" Click="BackupButton_Click" Content="Backup" HorizontalAlignment="Left" Height="35" Margin="546,644,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
         <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="612" TextAlignment="Center" FontSize="16"/>
     </Grid>
 </Window>

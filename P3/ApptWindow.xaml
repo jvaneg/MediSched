@@ -97,9 +97,9 @@
         <Rectangle Fill="#FF60A3BC" HorizontalAlignment="Left" Height="14.96" Margin="256.869,115.573,0,0" VerticalAlignment="Top" Width="11.476"/>
         <Rectangle Fill="#FF4A69BD" HorizontalAlignment="Left" Height="14.96" Margin="256.869,135.533,0,0" VerticalAlignment="Top" Width="11.476"/>
         <Button x:Name="billingButton" Content="Billing" HorizontalAlignment="Left" Height="23.198" Margin="10,97.274,0,0"  VerticalAlignment="Top" Width="99.959"
-                Style="{DynamicResource apptButtonStyle}"/>
+                Style="{DynamicResource mediButtonStyle}"/>
         <Button x:Name="addNotesButton" Content="View Notes" HorizontalAlignment="Left" Height="23.198" Margin="10,127.295,0,0"  VerticalAlignment="Top" Width="99.959"
-            Style="{DynamicResource apptButtonStyle}" Click="addNotesButton_Click"/>
+            Style="{DynamicResource mediButtonStyle}" Click="addNotesButton_Click"/>
         <ScrollViewer x:Name="noteScroller" HorizontalAlignment="Left" Height="174.371" Margin="10,180.636,0,0" VerticalAlignment="Top" Width="345">
             <TextBox x:Name="noteText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="327.444" MinHeight="174.371"/>
         </ScrollViewer>
