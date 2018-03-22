@@ -25,12 +25,16 @@ namespace P3
         private string patientName = "";
         private string apptType = "";
         private bool enabled = false;
+        private Color baseColor = (Color)ColorConverter.ConvertFromString("#FFE55039");
+        private Color highlightColor = (Color)ColorConverter.ConvertFromString("#FFB71540");
 
         private int initialHeight = 50;
 
         public ApptBlockControl()
         {
             InitializeComponent();
+            this.apptBlockBack.Fill = new SolidColorBrush(baseColor);
+            this.apptBlockBack.Stroke = new SolidColorBrush(highlightColor);
         }
 
         public void setupAddMode(int potentialLength, string patientName, string apptType)
@@ -75,6 +79,7 @@ namespace P3
             else if(enabled)
             {
                 //transition thing or colour change
+                this.apptBlockBack.Fill = new SolidColorBrush(highlightColor);
             }
         }
 
@@ -89,6 +94,7 @@ namespace P3
             else if (enabled)
             {
                 //transition thing or colour change
+                this.apptBlockBack.Fill = new SolidColorBrush(baseColor);
             }
         }
     }

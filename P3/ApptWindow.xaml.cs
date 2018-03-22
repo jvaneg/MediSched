@@ -25,9 +25,12 @@ namespace P3
         public ApptWindow()
         {
             InitializeComponent();
-            this.apptGrid.Height = 170;
+            this.apptGrid.Height = 195;
+            this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
 
             this.billingButton.Click += BillingButton_Click;
+
+            this.notArrivedRadio.IsChecked = true; //default radio button selection
         }
 
         private void BillingButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +43,7 @@ namespace P3
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             notesShown = false;
-            this.apptGrid.Height = 170;
+            this.apptGrid.Height = 195;
             this.addNotesButton.Content = "View Notes";
         }
 
@@ -49,13 +52,15 @@ namespace P3
         {
             if (!notesShown)
             {
-                this.apptGrid.Height = 372;
+                this.apptGrid.Height = 408;
+                this.deleteButton.Margin = new Thickness(251.976, 375, 0, 0);
                 this.addNotesButton.Content = "Save Notes";
                 notesShown = true;
             }
             else
             {
-                this.apptGrid.Height = 170;
+                this.apptGrid.Height = 195;
+                this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
                 this.addNotesButton.Content = "View Notes";
                 notesShown = false;
             }
@@ -67,6 +72,12 @@ namespace P3
             patientInfoWindow.Owner = this;
             patientInfoWindow.Show();
         }
- 
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            //delete the appointment
+            this.Close();
+        }
+
     }
 }

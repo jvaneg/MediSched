@@ -19,7 +19,7 @@
         <CheckBox x:Name="wednesdayBox" Content="Wednesday" Height="14.96" Margin="111,195,163,76"/>
         <CheckBox x:Name="thursdayBox" Content="Thursday" Height="14.96" Margin="111,195,163,2"/>
         <CheckBox x:Name="fridayBox" Content="Friday" Height="14.96" Margin="111,195,163,-72"/>
-        <Button x:Name="okButton" Click="okButton_Click" Content="OK" Height="21.968" Canvas.Left="238.528" Canvas.Top="291.848" Width="50.996" Margin="151.004,402.883,163,10"/>
+        <Button x:Name="okButton" Click="okButton_Click" Content="OK" Height="21.968" Canvas.Left="238.528" Canvas.Top="291.848" Width="50.996" Margin="151.004,402.883,163,10" Style="{DynamicResource mediButtonStyle}"/>
 
     </Grid>
 </Window>
