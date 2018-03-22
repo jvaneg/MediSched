@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using System.Data;
+using System.Collections.ObjectModel;
+
 namespace P3
 {
     /// <summary>
@@ -21,73 +23,51 @@ namespace P3
     public partial class DoctorsWindow : Window
     {
         DataTable dt = new DataTable();
+
+        ObservableCollection<Doctor> dc = new ObservableCollection<Doctor>();
         public DoctorsWindow()
         {
             InitializeComponent();
-
-            //Binding the DataGrid to Doctor
-            //DataContext = Doctor.getDoctor();
-
-            docListGrid.ItemsSource = Doctor.getDoctor();
+            //docListGrid.ItemsSource = Doctor.getDoctor();
+            docListGrid.Items.Add(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00-20:30" });
+            docListGrid.Items.Add(new Doctor() { Name = "Philli P", Days = "W", Hours = "1:00-10:00" });
         }
-
-        /*
-        void fillingDataGridUsingDataTable()
-        {
-            
-
-            DataColumn docName = new DataColumn("Name",typeof(string));
-            DataColumn docWorkingDays = new DataColumn("Days", typeof(string));
-            DataColumn docWorkingHours = new DataColumn("Hours", typeof(string));
-
-            dt.Columns.Add(docName);
-            dt.Columns.Add(docWorkingDays);
-            dt.Columns.Add(docWorkingHours);
-
-            DataRow firstR = dt.NewRow();
-            firstR[0] = "Arsh";
-            firstR[1] = "MTRF";
-            firstR[2] = "12:00-20:00";
-
-            dt.Rows.Add(firstR);
-            docListGrid.ItemsSource = dt.DefaultView;
-               
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-           this.fillingDataGridUsingDataTable();
-        }
-        */
+                
 
         private void addDoctorButton_Click(object sender, RoutedEventArgs e)
         {
-            NewDoctorWindow newDocWindow = new NewDoctorWindow();
+            
+            NewDoctorWindow newDocWindow = new NewDoctorWindow(false);  //false-> clearing edit mode
+
+            //WHEN YOU CREATE A NEW WINDOW SET THE OWNERSHIP OF THE CHILD
+            newDocWindow.Owner = this;
             newDocWindow.Show();
         }
 
-        /*
-        private void doctorGrid_MouseEnter(object sender, MouseEventArgs e)
-        {
-            docListGrid.IsReadOnly = false;
-            docListGrid.BeginEdit();
-        }
-        */
-
-
+       
         private void editDoctorButton_Click(object sender, RoutedEventArgs e)
         {
-            Doctor doc = docListGrid.SelectedItem as Doctor;
-            string docName = doc.Name;
-            string docWorkingDays = doc.Days;
-            string docWorkingHours = doc.Hours;            
+            if (docListGrid.SelectedItem != null)
+            {
+                Doctor doc = (Doctor)docListGrid.SelectedItem;
+                /*
+                string docName = doc.Name;
+                string docWorkingDays = doc.Days;
+                string docWorkingHours = doc.Hours;
+                */
 
-           // MessageBox.Show("Should see: " + docName + " " + docWorkingDays + " " + docWorkingHours);
+                NewDoctorWindow newDocWindow = new NewDoctorWindow(doc.Name, doc.Days, doc.Hours, true); //true -> setting edit mode
+                newDocWindow.Owner = this;
+                newDocWindow.Show();
+            }
+        }
 
-            NewDoctorWindow newDocWindow = new NewDoctorWindow(docName,docWorkingDays,docWorkingHours);
-
-            //NewDoctorWindow newDocWindow = new NewDoctorWindow();
-            newDocWindow.Show();
+        private void deleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            if (docListGrid.SelectedItem != null)
+            {
+                docListGrid.Items.Remove((Doctor)docListGrid.SelectedItem);
+            }
         }
     }
 }

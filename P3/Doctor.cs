@@ -27,13 +27,14 @@ namespace P3
             set;
         }
 
-        public static ObservableCollection<Doctor> getDoctor()
+       /* public static ObservableCollection<Doctor> getDoctor()
         {
             var doctor = new ObservableCollection<Doctor>();
             doctor.Add(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00 20:30" });
             doctor.Add(new Doctor() { Name = "Philli P", Days = "W", Hours = "1:00 10:00" });
             return doctor;
         }
+        */
 
     }
 }

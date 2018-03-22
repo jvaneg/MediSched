@@ -19,46 +19,33 @@ namespace P3
     /// </summary>
     public partial class NewDoctorWindow : Window
     {
-        private string docName;
+        
         private string docWorkingDays;
-        private string docWorkingHours;
-        private enum Day {M, T, W, TH, F};
+        bool isEdit;
+        public NewDoctorWindow(bool editOrAdd)
+        {
+            InitializeComponent();
+            this.docWorkingDays = "";
+            docNameBlock.Text = "";
+            startTBlock.Text = "";
+            endTBlock.Text = "";
+            this.isEdit = editOrAdd;
+        }
 
         public NewDoctorWindow()
         {
             InitializeComponent();
-
-           
-           /* if (!(docName == null & docWorkingDays == null & docStartT == null))
-            {
-            
-            }
-            */
-            
         }
 
-
-        public NewDoctorWindow(string name, string days, string hours)
+        public NewDoctorWindow(string name, string days, string hours, bool editOrAdd)
         {
-              InitializeComponent();
-            this.docName = name;
+            InitializeComponent();
+            docNameBlock.Text = name;
             this.docWorkingDays = days;
-            this.docWorkingHours = hours;
-            setupDocInfo();
-        }
+            this.isEdit = editOrAdd;
 
-
-        private void setupDocInfo()
-        {
-            docNameToDisplay.Text = this.docName;
-            
-            string[] docHours = this.docWorkingHours.Split(null);
-            //MessageBox.Show("INFO GOT:" + "docName = " + this.docName + ", docWorkingDays = " + this.docWorkingDays);
-
-
-
-            startT.Text = docHours[0];
-            endT.Text = docHours[1];
+            startTBlock.Text = hours.Split('-')[0];
+            endTBlock.Text = hours.Split('-')[1];
 
             if (mondayBox.IsChecked == false & docWorkingDays.Contains("M"))
             {
@@ -80,10 +67,58 @@ namespace P3
             {
                 fridayBox.IsChecked = true;
             }
-
-            
-
         }
 
+
+        
+
+        private void okButton_Click(object sender, RoutedEventArgs e)
+        {
+            //DoctorsWindow parentDoc = (DoctorsWindow)Window.GetWindow(this);
+
+            DoctorsWindow parentDoc = (DoctorsWindow)this.Owner;
+            if (parentDoc != null )
+            {
+                Doctor rowToBeUpdated = (Doctor)parentDoc.docListGrid.SelectedItem;
+
+
+                if (mondayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("M"))
+                {
+                    this.docWorkingDays = "M";
+                }
+                if (tuesdayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("T"))
+                {
+                    this.docWorkingDays += "T";
+                }
+                if (wednesdayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("W"))
+                {
+                    this.docWorkingDays += "W";
+                }
+                if (thursdayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("R"))
+                {
+                    this.docWorkingDays += "R";
+                }
+                if (fridayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("F"))
+                {
+                    this.docWorkingDays += "F";
+                }
+
+                if (rowToBeUpdated != null && isEdit == true)
+                {
+                    rowToBeUpdated.Name = docNameBlock.Text;
+                    rowToBeUpdated.Hours = startTBlock.Text + "-" + endTBlock.Text;
+
+                    rowToBeUpdated.Days = this.docWorkingDays;
+                  
+                    parentDoc.docListGrid.Items.Refresh();
+                }
+                else if (isEdit == false)
+                {
+                    //MessageBox.Show("SETTING INFO:" + "docName = " + docNameBlock.Text +"\nDays = " + this.docWorkingDays +  "\nhours = " + startTBlock.Text + ", " + endTBlock.Text);
+                    parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.docWorkingDays, Hours = (startTBlock.Text + "-" + endTBlock.Text) });
+                }
+            }
+            this.Close();
+        }
     }
 }
