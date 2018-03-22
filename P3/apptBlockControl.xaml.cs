@@ -27,14 +27,14 @@ namespace P3
         private bool enabled = false;
         private Color baseColor = (Color)ColorConverter.ConvertFromString("#FFE55039");
         private Color highlightColor = (Color)ColorConverter.ConvertFromString("#FFB71540");
+        private string apptStatus = "Not Arrived";
 
         private int initialHeight = 50;
 
         public ApptBlockControl()
         {
             InitializeComponent();
-            this.apptBlockBack.Fill = new SolidColorBrush(baseColor);
-            this.apptBlockBack.Stroke = new SolidColorBrush(highlightColor);
+            setApptStatus(apptStatus);
         }
 
         public void setupAddMode(int potentialLength, string patientName, string apptType)
@@ -50,6 +50,29 @@ namespace P3
 
         public void setEnabled(int length, string patientName, string apptType, string apptStatus) //replace apptStatus string with enum probably
         {
+            setApptStatus(apptStatus);
+
+            this.enabled = true;
+            this.potentialLength = length;
+            this.patientName = patientName;
+            this.apptType = apptType;
+            this.apptBlockText.Text = patientName + "\n" + apptType;
+            this.Cursor = Cursors.Hand;
+            this.Visibility = Visibility.Visible;
+            this.Height = initialHeight * potentialLength;
+            this.apptBlockGrid.Height = initialHeight * potentialLength;
+            this.Opacity = 100;
+            this.addMode = false;
+        }
+
+        public bool isEnabled()
+        {
+            return this.enabled;
+        }
+
+        public void setApptStatus(string apptStatus)
+        {
+            this.apptStatus = apptStatus;
             switch (apptStatus)
             {
                 case "Not Arrived":
@@ -74,25 +97,13 @@ namespace P3
                     break;
             }
 
-
-            this.enabled = true;
-            this.potentialLength = length;
-            this.patientName = patientName;
-            this.apptType = apptType;
-            this.apptBlockText.Text = patientName + "\n" + apptType;
-            this.Cursor = Cursors.Hand;
-            this.Visibility = Visibility.Visible;
-            this.Height = initialHeight * potentialLength;
-            this.apptBlockGrid.Height = initialHeight * potentialLength;
-            this.Opacity = 100;
-            this.addMode = false;
             this.apptBlockBack.Fill = new SolidColorBrush(baseColor);
             this.apptBlockBack.Stroke = new SolidColorBrush(highlightColor);
         }
 
-        public bool isEnabled()
+        public string getApptStatus()
         {
-            return this.enabled;
+            return this.apptStatus;
         }
 
         private void OnMouseEnter(object sender, MouseEventArgs e)

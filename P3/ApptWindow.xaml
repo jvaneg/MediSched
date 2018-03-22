@@ -148,11 +148,11 @@
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="apptTime" HorizontalAlignment="Left" Height="18.535" Margin="10,46.99,0,0" TextWrapping="Wrap" Text="10:00 PM - 11:00 PM" VerticalAlignment="Top" Width="116.435"/>
         <TextBlock x:Name="apptType" HorizontalAlignment="Left" Height="18.535" Margin="10,65.525,0,0" TextWrapping="Wrap" Text="Appointment Type 2" VerticalAlignment="Top" Width="116.435"/>
-        <RadioButton x:Name="notArrivedRadio" Content="Not Arrived" HorizontalAlignment="Left" Margin="274.012,47.479,0,0" VerticalAlignment="Top" Height="14.96" Width="80.443"/>
-        <RadioButton x:Name="waitingRadio" Content="Waiting" HorizontalAlignment="Left" Margin="274.012,67.439,0,0" VerticalAlignment="Top" Height="14.96" Width="59.583"/>
-        <RadioButton x:Name="beingSeenRadio" Content="Being Seen" HorizontalAlignment="Left" Margin="274.012,87.399,0,0" VerticalAlignment="Top" Height="14.96" Width="77.923"/>
-        <RadioButton x:Name="seenRadio" Content="Seen" HorizontalAlignment="Left" Margin="274.012,107.359,0,0" VerticalAlignment="Top" Height="14.96" Width="44.717"/>
-        <RadioButton x:Name="billedRadio" Content="Billed" HorizontalAlignment="Left" Margin="274.012,127.319,0,0" VerticalAlignment="Top" Height="14.96" Width="47.943"/>
+        <RadioButton x:Name="notArrivedRadio" Content="Not Arrived" HorizontalAlignment="Left" Margin="274.012,47.479,0,0" VerticalAlignment="Top" Height="14.96" Width="80.443" Click="radio_Click"/>
+        <RadioButton x:Name="waitingRadio" Content="Waiting" HorizontalAlignment="Left" Margin="274.012,67.439,0,0" VerticalAlignment="Top" Height="14.96" Width="59.583" Click="radio_Click"/>
+        <RadioButton x:Name="beingSeenRadio" Content="Being Seen" HorizontalAlignment="Left" Margin="274.012,87.399,0,0" VerticalAlignment="Top" Height="14.96" Width="77.923" Click="radio_Click"/>
+        <RadioButton x:Name="seenRadio" Content="Seen" HorizontalAlignment="Left" Margin="274.012,107.359,0,0" VerticalAlignment="Top" Height="14.96" Width="44.717" Click="radio_Click"/>
+        <RadioButton x:Name="billedRadio" Content="Billed" HorizontalAlignment="Left" Margin="274.012,127.319,0,0" VerticalAlignment="Top" Height="14.96" Width="47.943" Click="radio_Click"/>
         <Button x:Name="pnameButton" Content="Cool Joey" HorizontalAlignment="Left" Height="19.95" Margin="10,10,0,0" Style="{DynamicResource pnameStyle}" VerticalAlignment="Top" Cursor="Hand" MaxWidth="254" Width="63.853" Click="pnameButton_Click" />
         <TextBlock x:Name="statusBlock" HorizontalAlignment="Left" Height="17.282" Margin="273.345,13.283,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Top" Width="89.245" FontSize="14" FontFamily="Arial"/>
         <Rectangle Fill="#FFE55039" HorizontalAlignment="Left" Height="14.96" Margin="257.536,47.479,0,0" VerticalAlignment="Top" Width="11.476"/>
@@ -164,7 +164,7 @@
                 Style="{DynamicResource mediButtonStyle}"/>
         <Button x:Name="addNotesButton" Content="View Notes" HorizontalAlignment="Left" Height="23.198" Margin="10,119.081,0,0"  VerticalAlignment="Top" Width="99.959"
             Style="{DynamicResource mediButtonStyle}" Click="addNotesButton_Click"/>
-        <ScrollViewer x:Name="noteScroller" HorizontalAlignment="Right" Height="174.371" Margin="0,193.303,10,0" VerticalAlignment="Top" Width="345">
+        <ScrollViewer x:Name="noteScroller" HorizontalAlignment="Right" Height="171.038" Margin="0,196.636,10,0" VerticalAlignment="Top" Width="345">
             <TextBox x:Name="noteText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="327.444" MinHeight="174.371"/>
         </ScrollViewer>
         <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Height="23.198" Margin="251.976,375,0,0"  VerticalAlignment="Top" Width="99.959"
