@@ -121,11 +121,61 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="deleteDocButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="deleteButtonGrid">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Normal" GeneratedDuration="0" To="MouseOver">
+                                            <Storyboard/>
+                                        </VisualTransition>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.2" To="Pressed">
+                                            <Storyboard/>
+                                        </VisualTransition>
+                                        <VisualTransition From="Pressed" GeneratedDuration="0:0:0.2" To="Normal">
+                                            <Storyboard/>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFEB2F06"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFB71540"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Ellipse x:Name="ellipse" Fill="#FFE55039" Stroke="{x:Null}" Cursor="Hand" Height="30" Width="29"/>
+                            <Path Data="M3.3333333,14.833333 C29.5,14.833333 29.500333,14.833333 29.500333,14.833333" Fill="#FFE55039" HorizontalAlignment="Center" Height="1.333" Margin="2.637,14.5,2.804,0" Stretch="Fill" VerticalAlignment="Top" Width="24.334" Stroke="White" StrokeEndLineCap="Round" StrokeStartLineCap="Round"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid  x:Name="docGrid" Width="1024" Height="576">
         <TextBlock x:Name="DoctorsTxt" HorizontalAlignment="Center" Height="75.228" TextAlignment="Center" TextWrapping="Wrap" Text="Doctors" VerticalAlignment="Top" Width="1024" Margin="0,10,0,0" FontSize="48" />
         <!--<DataGrid x:Name="doctorGrid" ColumnWidth="286" IsReadOnly="True" HorizontalAlignment="Center" Height="409.116" VerticalAlignment="Center" Width="756.424" Margin="66.46,90.228,201.116,76.656"/>-->
-        <DataGrid x:Name="docListGrid" AutoGenerateColumns="False" ColumnWidth="*" IsReadOnly="True" HorizontalAlignment="Center" Height="409.116" VerticalAlignment="Center" Width="602.829" Margin="177.846,90.228,243.325,76.656">
+        <DataGrid x:Name="docListGrid" AutoGenerateColumns="False" ColumnWidth="*" IsReadOnly="True" HorizontalAlignment="Center" Height="409.116" VerticalAlignment="Center" Width="602.829" Margin="216.846,90.228,204.325,76.656">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="NameHeader" Header="Name" Binding="{Binding Name}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
@@ -180,8 +230,9 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="addDocButton"  Cursor="Hand" Content="Button" Click="addDoctorButton_Click" HorizontalAlignment="Left" Height="30.484" Margin="867.667,468.86,0,0" Style="{DynamicResource addNewDoctorButtonStyle}" VerticalAlignment="Top" Width="29.775"/>
-        <Button Content="Delete Row" Click="deleteRow_Click" HorizontalAlignment="Left" Height="51.495" Margin="853.5,148,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="94.5"/>
+        <Button x:Name="addDocButton" Cursor="Hand" Content="Button" Click="addDoctorButton_Click" HorizontalAlignment="Left" Height="30.484" Margin="848.667,468.86,0,0" Style="{DynamicResource addNewDoctorButtonStyle}" VerticalAlignment="Top" Width="29.775"/>
+        <Button x:Name="deleteDocButton" Click="deleteRow_Click"  Content="Button" HorizontalAlignment="Left" Margin="920.667,469.344,0,0" Style="{DynamicResource deleteDocButtonStyle}" VerticalAlignment="Top" />
+        <!-- <Button Content="Delete Row" Click="deleteRow_Click" HorizontalAlignment="Left" Height="51.495" Margin="853.5,148,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="94.5"/>-->
         <!--<Button x:Name="editDoctorButton" HorizontalAlignment="Left" Click="editDoctorButton_Click" Height="26.36" Margin="867.667,90.228,0,0" Style="{DynamicResource editDoctorInfoButton}" VerticalAlignment="Top" Width="34.659" Cursor="Hand" />-->
 
     </Grid>
