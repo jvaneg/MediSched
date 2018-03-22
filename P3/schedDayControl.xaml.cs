@@ -85,17 +85,24 @@ namespace P3
 
         }
 
+        //currently just adds some dummy stuff
         public SchedDayControl(string doctorName, int[] dayScheduleArray)
         {
             InitializeComponent();
             this.doctorNameBlock.Text = doctorName;
             //will load array here, for now hardcode sets up some stuff
-            this.apptBlock5.setEnabled(4, "Cool Joey", "Appointment Type 4");
+            this.apptBlock5.setEnabled(4, "Cool Joey", "Appointment Type 4", "Seen");
             this.apptBlock5.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
 
-            this.apptBlock12.setEnabled(3, "stinky arsh", "Appointment Type 8");
+            this.apptBlock12.setEnabled(3, "stinky arsh", "Appointment Type 8", "Being Seen");
             this.apptBlock12.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
 
+            this.apptBlock20.setEnabled(1, "even more stinky arsh", "Appointment Type 420", "Waiting");
+            this.apptBlock20.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+
+            this.apptBlock30.setEnabled(4, "superb sam", "Appointment Type 8", "Not Arrived");
+            this.apptBlock30.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            
         }
 
         //something isnt working right here yet

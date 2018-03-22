@@ -48,8 +48,33 @@ namespace P3
             this.Visibility = Visibility.Visible;
         }
 
-        public void setEnabled(int length, string patientName, string apptType)
+        public void setEnabled(int length, string patientName, string apptType, string apptStatus) //replace apptStatus string with enum probably
         {
+            switch (apptStatus)
+            {
+                case "Not Arrived":
+                    this.baseColor = (Color)ColorConverter.ConvertFromString("#FFE55039");
+                    this.highlightColor = (Color)ColorConverter.ConvertFromString("#FFB71540");
+                    break;
+                case "Waiting":
+                    this.baseColor = (Color)ColorConverter.ConvertFromString("#FFF6B93B");
+                    this.highlightColor = (Color)ColorConverter.ConvertFromString("#FFe58e26");
+                    break;
+                case "Being Seen":
+                    this.baseColor = (Color)ColorConverter.ConvertFromString("#FF78E08F");
+                    this.highlightColor = (Color)ColorConverter.ConvertFromString("#FF079992");
+                    break;
+                case "Seen":
+                    this.baseColor = (Color)ColorConverter.ConvertFromString("#FF60A3BC");
+                    this.highlightColor = (Color)ColorConverter.ConvertFromString("#FF0a3d62");
+                    break;
+                case "Billed":
+                    this.baseColor = (Color)ColorConverter.ConvertFromString("#FF4A69BD");
+                    this.highlightColor = (Color)ColorConverter.ConvertFromString("#FF0c2461");
+                    break;
+            }
+
+
             this.enabled = true;
             this.potentialLength = length;
             this.patientName = patientName;
@@ -61,6 +86,8 @@ namespace P3
             this.apptBlockGrid.Height = initialHeight * potentialLength;
             this.Opacity = 100;
             this.addMode = false;
+            this.apptBlockBack.Fill = new SolidColorBrush(baseColor);
+            this.apptBlockBack.Stroke = new SolidColorBrush(highlightColor);
         }
 
         public bool isEnabled()
