@@ -48,11 +48,35 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="pnameStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle/>
+                            <ContentPresenter TextBlock.Foreground="#1e3799" HorizontalAlignment="Left" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                TextBlock.FontSize="15"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid x:Name="backGrid" Margin="10" Width="1726" Height="910">
         <UniformGrid x:Name="uniformMonthGrid" Rows="5" Columns="7" Margin="10,101,10,10">
         </UniformGrid>
+        <TextBlock x:Name="monthText" HorizontalAlignment="Left" Height="32.667" Margin="786.5,58,0,0" TextWrapping="Wrap" Text="September" VerticalAlignment="Top" Width="147" FontSize="22" TextAlignment="Center"/>
+        <Button x:Name="leftMonthButton" Content="&lt;" HorizontalAlignment="Left" Height="25.763" Margin="772.647,60.907,0,0" Style="{DynamicResource pnameStyle}" VerticalAlignment="Top" Cursor="Hand" MaxWidth="254" Width="13.853" Click="leftMonthButton_Click" FontSize="20" FontWeight="Bold" />
+        <Button x:Name="rightMonthButton" Content="&gt;" HorizontalAlignment="Left" Height="25.763" Margin="933.5,60.907,0,0" Style="{DynamicResource pnameStyle}" VerticalAlignment="Top" Cursor="Hand" MaxWidth="254" Width="13.853" Click="rightMonthButton_Click" FontSize="20" FontWeight="Bold" />
+        <TextBlock x:Name="yearText" HorizontalAlignment="Left" Height="32.667" Margin="786.5,18.26,0,0" TextWrapping="Wrap" Text="2018" VerticalAlignment="Top" Width="147" FontSize="22" TextAlignment="Center"/>
 
 
     </Grid>

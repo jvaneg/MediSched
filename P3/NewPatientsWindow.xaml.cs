@@ -31,6 +31,7 @@ namespace P3
             if (fromAppointment)
             {
                 NewApptMonth apptmonthWindow = new NewApptMonth();
+                apptmonthWindow.Owner = this.Owner;
                 apptmonthWindow.Show();
             }
             else

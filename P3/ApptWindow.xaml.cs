@@ -33,6 +33,7 @@ namespace P3
         private void BillingButton_Click(object sender, RoutedEventArgs e)
         {
             billingWindow billingWindow = new billingWindow();
+            billingWindow.Owner = this;
             billingWindow.Show();
         }
 
@@ -63,6 +64,7 @@ namespace P3
         private void pnameButton_Click(object sender, RoutedEventArgs e)
         {
             PatientInfo patientInfoWindow = new PatientInfo();
+            patientInfoWindow.Owner = this;
             patientInfoWindow.Show();
         }
  

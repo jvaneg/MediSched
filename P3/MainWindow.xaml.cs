@@ -44,6 +44,7 @@ namespace P3
         private void newApptButton_Click(object sender, RoutedEventArgs e)
         {
             NewApptWindow newApptWindow = new NewApptWindow();
+            newApptWindow.Owner = this;
             newApptWindow.Show();
         }
 
@@ -51,6 +52,7 @@ namespace P3
         {
             
                 PatientsWindow patientsWindow = new PatientsWindow();
+                patientsWindow.Owner = this;
                 patientsWindow.Show();
             
 
@@ -63,18 +65,21 @@ namespace P3
         private void sampleApptButton_Click(object sender, RoutedEventArgs e)
         {
             ApptWindow apptWindow = new ApptWindow();
+            apptWindow.Owner = this;
             apptWindow.Show();
         }
 
         private void calendarButton_Click(object sender, RoutedEventArgs e)
         {
             CalendarMonthWindow calMonth = new CalendarMonthWindow();
+            calMonth.Owner = this;
             calMonth.Show();
         }
 
         private void doctorsButton_Click(object sender, RoutedEventArgs e)
         {
             DoctorsWindow docWindow = new DoctorsWindow();
+            docWindow.Owner = this;
             docWindow.Show();
         }
 

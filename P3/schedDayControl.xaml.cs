@@ -34,6 +34,55 @@ namespace P3
             this.doctorNameBlock.Text = doctorName;
             setSchedDays(potentialLength, patientName, apptType);
 
+            this.apptBlock1.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock2.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock3.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock4.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock5.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock6.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock7.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock8.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock9.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock10.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock11.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock12.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock13.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock14.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock15.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock16.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock17.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock18.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock19.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock20.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock21.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock22.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock23.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock24.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock25.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock26.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock27.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock28.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock29.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock30.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock31.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock32.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock33.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock34.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock35.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock36.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock37.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock38.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock39.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock40.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock41.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock42.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock43.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock44.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock45.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock46.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock47.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            this.apptBlock48.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+
         }
 
         public SchedDayControl(string doctorName, int[] dayScheduleArray)
@@ -56,12 +105,14 @@ namespace P3
             if (apptBlock.isEnabled())
             {
                 ApptWindow apptWindow = new ApptWindow();
+                apptWindow.Owner = Window.GetWindow(this);
                 apptWindow.Show();
             }
             else
             {
                 //save and close
-                MessageBox.Show("HELLO");
+                MessageBox.Show("SAVED");
+                Window.GetWindow(this).Close();
             }
         }
 

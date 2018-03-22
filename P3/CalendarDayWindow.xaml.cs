@@ -19,14 +19,39 @@ namespace P3
     /// </summary>
     public partial class CalendarDayWindow : Window
     {
-        public CalendarDayWindow()
+        private bool backButtoned = false;
+        private DateTime time;
+
+        public CalendarDayWindow(int day, int month, int year)
         {
             InitializeComponent();
+
+            this.time = new DateTime(year, month, day);
+            this.dateText.Text = time.ToString("d MMM yyyy");
+
             for (int i = 0; i < 3; i++)
             {
                 SchedDayControl schedDay = new SchedDayControl("Doctor A");
                 this.scheduleGrid.Children.Add(schedDay);
             }
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            //do my stuff before closing
+            if (!this.backButtoned)
+                this.Owner.Close();
+            else
+                this.Owner.Show();
+
+            base.OnClosing(e);
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.backButtoned = true;
+
+            this.Close();
         }
     }
 }
