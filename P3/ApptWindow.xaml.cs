@@ -20,6 +20,8 @@ namespace P3
     public partial class ApptWindow : Window
     {
         private bool notesShown = false;
+        private ApptBlockControl sourceApptBlock = null;
+        private string apptStatus = null;
         
 
         public ApptWindow()
@@ -31,6 +33,38 @@ namespace P3
             this.billingButton.Click += BillingButton_Click;
 
             this.notArrivedRadio.IsChecked = true; //default radio button selection
+            apptStatus = "Not Arrived";
+        }
+
+        public ApptWindow(ApptBlockControl sourceApptBlock)
+        {
+            InitializeComponent();
+            this.sourceApptBlock = sourceApptBlock;
+            this.apptGrid.Height = 195;
+            this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
+
+            this.billingButton.Click += BillingButton_Click;
+
+            this.apptStatus = sourceApptBlock.getApptStatus();
+            this.notArrivedRadio.IsChecked = true; //default radio button selection
+            switch (this.apptStatus)
+            {
+                case "Not Arrived":
+                    this.notArrivedRadio.IsChecked = true;
+                    break;
+                case "Waiting":
+                    this.waitingRadio.IsChecked = true;
+                    break;
+                case "Being Seen":
+                    this.beingSeenRadio.IsChecked = true;
+                    break;
+                case "Seen":
+                    this.seenRadio.IsChecked = true;
+                    break;
+                case "Billed":
+                    this.billedRadio.IsChecked = true;
+                    break;
+            }
         }
 
         private void BillingButton_Click(object sender, RoutedEventArgs e)
@@ -79,5 +113,48 @@ namespace P3
             this.Close();
         }
 
+        private void radio_Click(object sender, RoutedEventArgs e)
+        {
+            if(notArrivedRadio.IsChecked == true)
+            {
+                this.apptStatus = "Not Arrived";
+                if (sourceApptBlock != null)
+                {
+                    sourceApptBlock.setApptStatus(this.apptStatus);
+                }
+            }
+            else if(waitingRadio.IsChecked == true)
+            {
+                this.apptStatus = "Waiting";
+                if (sourceApptBlock != null)
+                {
+                    sourceApptBlock.setApptStatus(this.apptStatus);
+                }
+            }
+            if (beingSeenRadio.IsChecked == true)
+            {
+                this.apptStatus = "Being Seen";
+                if (sourceApptBlock != null)
+                {
+                    sourceApptBlock.setApptStatus(this.apptStatus);
+                }
+            }
+            else if (seenRadio.IsChecked == true)
+            {
+                this.apptStatus = "Seen";
+                if (sourceApptBlock != null)
+                {
+                    sourceApptBlock.setApptStatus(this.apptStatus);
+                }
+            }
+            if (billedRadio.IsChecked == true)
+            {
+                this.apptStatus = "Billed";
+                if (sourceApptBlock != null)
+                {
+                    sourceApptBlock.setApptStatus(this.apptStatus);
+                }
+            }
+        }
     }
 }

@@ -111,7 +111,7 @@ namespace P3
             ApptBlockControl apptBlock = (ApptBlockControl)sender;
             if (apptBlock.isEnabled())
             {
-                ApptWindow apptWindow = new ApptWindow();
+                ApptWindow apptWindow = new ApptWindow(apptBlock);
                 apptWindow.Owner = Window.GetWindow(this);
                 apptWindow.Show();
             }
