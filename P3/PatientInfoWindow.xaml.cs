@@ -223,6 +223,7 @@ namespace P3
         private void appt_Selected(object sender, RoutedEventArgs e)
         {
             ApptWindow apptWindow = new ApptWindow();
+            apptWindow.Owner = this;
             apptWindow.Show();
         }
     }

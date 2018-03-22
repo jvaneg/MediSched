@@ -20,6 +20,8 @@ namespace P3
     /// </summary>
     public partial class MonthDayBoxControl : UserControl
     {
+        private int day = 1;
+
         public MonthDayBoxControl()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace P3
         public MonthDayBoxControl(int day, int slots, string boxText)
         {
             InitializeComponent();
+            this.day = day;
 
             this.dayNumber.Text = day.ToString();
             this.FreeSlotNum.Text = slots.ToString();
@@ -46,6 +49,11 @@ namespace P3
         private void OnMouseLeave(object sender, MouseEventArgs e)
         {
             VisualStateManager.GoToState(this, "Normal", true);
+        }
+
+        public int getDay()
+        {
+            return this.day;
         }
     }
 }

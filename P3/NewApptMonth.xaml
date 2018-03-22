@@ -48,11 +48,60 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="pnameStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle/>
+                            <ContentPresenter TextBlock.Foreground="#1e3799" HorizontalAlignment="Left" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                TextBlock.FontSize="15"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid x:Name="backGrid" Margin="10" Width="1726" Height="910">
         <UniformGrid x:Name="uniformMonthGrid" Rows="5" Columns="7" Margin="10,101,10,10">
         </UniformGrid>
+        <TextBlock HorizontalAlignment="Left" Height="18" Margin="62,24,0,0" TextWrapping="Wrap" Text="Type:" VerticalAlignment="Top" Width="40" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Height="18" Margin="40,58,0,0" TextWrapping="Wrap" Text="Duration:" VerticalAlignment="Top" Width="62" FontSize="14"/>
+        <ComboBox x:Name="typeComboBox" SelectedValuePath="Content" HorizontalAlignment="Left" Height="22" Margin="107,24,0,0" VerticalAlignment="Top" Width="158" BorderBrush="White" SelectionChanged="cmbType_SelectionChanged">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ComboBoxItem IsSelected="True">Appointment Type 1</ComboBoxItem>
+            <ComboBoxItem>Appointment Type 2</ComboBoxItem>
+            <ComboBoxItem>Appointment Type 3</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="durationComboBox" SelectedValuePath="Content" HorizontalAlignment="Left" Height="22" Margin="107,58,0,0" VerticalAlignment="Top" Width="158" SelectionChanged="cmbDuration_SelectionChanged">
+            <ComboBoxItem IsSelected="True">0:30</ComboBoxItem>
+            <ComboBoxItem>1:00</ComboBoxItem>
+            <ComboBoxItem>1:30</ComboBoxItem>
+            <ComboBoxItem>2:00</ComboBoxItem>
+            <ComboBoxItem>2:30</ComboBoxItem>
+            <ComboBoxItem>3:00</ComboBoxItem>
+            <ComboBoxItem>3:30</ComboBoxItem>
+            <ComboBoxItem>4:00</ComboBoxItem>
+            <ComboBoxItem>4:30</ComboBoxItem>
+            <ComboBoxItem>5:00</ComboBoxItem>
+        </ComboBox>
+        <TextBlock x:Name="monthText" HorizontalAlignment="Left" Height="32.667" Margin="786.5,58,0,0" TextWrapping="Wrap" Text="September" VerticalAlignment="Top" Width="147" FontSize="22" TextAlignment="Center"/>
+        <Button x:Name="leftMonthButton" Content="&lt;" HorizontalAlignment="Left" Height="25.763" Margin="772.647,60.907,0,0" Style="{DynamicResource pnameStyle}" VerticalAlignment="Top" Cursor="Hand" MaxWidth="254" Width="13.853" Click="leftMonthButton_Click" FontSize="20" FontWeight="Bold" />
+        <Button x:Name="rightMonthButton" Content="&gt;" HorizontalAlignment="Left" Height="25.763" Margin="933.5,60.907,0,0" Style="{DynamicResource pnameStyle}" VerticalAlignment="Top" Cursor="Hand" MaxWidth="254" Width="13.853" Click="rightMonthButton_Click" FontSize="20" FontWeight="Bold" />
+        <TextBlock x:Name="yearText" HorizontalAlignment="Left" Height="32.667" Margin="786.5,18.26,0,0" TextWrapping="Wrap" Text="2018" VerticalAlignment="Top" Width="147" FontSize="22" TextAlignment="Center"/>
 
 
     </Grid>

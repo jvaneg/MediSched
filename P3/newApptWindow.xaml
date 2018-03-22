@@ -29,7 +29,7 @@
         </Style>
     </Window.Resources>
     <Canvas x:Name="newApptCanvas" Height="364" Width="354">
-        <Button x:Name="NewPatientBttn" Content="New patient" Click="NewPatient_Click" Height="26" Canvas.Left="39" Style="{DynamicResource BackupButtonStyle}" Canvas.Top="22" Width="86" Cursor="Hand"/>
+        <Button x:Name="NewPatientBttn" Content="New patient" Click="NewPatient_Click" Height="26" Canvas.Left="39" Style="{DynamicResource mediButtonStyle}" Canvas.Top="22" Width="86" Cursor="Hand"/>
 
 
         <ListBox Height="204.5" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="255" Canvas.Left="39" Canvas.Top="126.5">

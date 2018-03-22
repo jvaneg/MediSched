@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3"
              mc:Ignorable="d" 
-             d:DesignHeight="157.92" d:DesignWidth="242" Width="400" Height="50" MouseEnter="OnMouseEnter" MouseLeave="OnMouseLeave" Opacity="0" Cursor="Arrow" Visibility="Hidden" MouseLeftButtonDown="OnMouseDown">
+             d:DesignHeight="157.92" d:DesignWidth="242" Width="400" Height="50" MouseEnter="OnMouseEnter" MouseLeave="OnMouseLeave" Opacity="0" Cursor="Arrow" Visibility="Hidden">
 
     <Grid x:Name="apptBlockGrid" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="400" >
         <Rectangle x:Name="apptBlockBack" Fill="#FFE55039" Stroke="#FFB71540" StrokeThickness="2" Margin="0"/>

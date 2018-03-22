@@ -81,8 +81,9 @@ namespace P3
         private void PatientA_Selected(object sender, RoutedEventArgs e)
         {
             PatientInfo patientinfo = new PatientInfo();
-            patientinfo.Show();
+            patientinfo.Owner = this.Owner;
             this.Close();
+            patientinfo.Show();
         }
 
         private void GetIndex0(object sender, RoutedEventArgs e)
@@ -98,8 +99,9 @@ namespace P3
 
         private void NewPatient_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             NewPatientsWindow patientWindow = new NewPatientsWindow(false);
+            patientWindow.Owner = this.Owner;
+            this.Close();
             patientWindow.Show();
         }
     }

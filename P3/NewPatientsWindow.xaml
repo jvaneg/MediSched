@@ -133,6 +133,6 @@
 
         </TabControl>
         <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="New Patient" VerticalAlignment="Top" Width="612" TextAlignment="Center" FontSize="16"/>
-        <Button x:Name="okButton" Click="OkButtonStyle" Content="OK" HorizontalAlignment="Center" Height="35" Margin="308.88,644,298.12,0"  VerticalAlignment="Top" Width="105"/>
+        <Button x:Name="okButton" Click="OkButtonStyle" Content="OK" HorizontalAlignment="Center" Height="35" Margin="308.88,644,298.12,0"  VerticalAlignment="Top" Width="105" Style="{DynamicResource mediButtonStyle}"/>
     </Grid>
 </Window>

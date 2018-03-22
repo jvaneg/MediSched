@@ -91,11 +91,5 @@ namespace P3
                 //transition thing or colour change
             }
         }
-
-        private void OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //do nothing
-
-        }
     }
 }

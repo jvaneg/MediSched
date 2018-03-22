@@ -36,14 +36,16 @@ namespace P3
 
         private void NewPatient_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             NewPatientsWindow patientWindow = new NewPatientsWindow(true);
+            patientWindow.Owner = this.Owner;
+            this.Close();
             patientWindow.Show();
         }
         private void PatientA_Selected(object sender, RoutedEventArgs e)
         {
-            this.Close();
             NewApptMonth apptmonthWindow = new NewApptMonth();
+            apptmonthWindow.Owner = this.Owner;
+            this.Close();
             apptmonthWindow.Show();
         }
     }
