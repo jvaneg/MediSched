@@ -22,26 +22,27 @@ namespace P3
         public PatientsWindow()
         {
             InitializeComponent();
+            this.Loaded += Window_Loaded;
         }
 
         //stuff for the actual search that is currently nonfunctional lmao
-        ObservableCollection<Patient> lstPatient = new ObservableCollection<Patient>();
+        ObservableCollection<Patient> patientList = new ObservableCollection<Patient>();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            lstPatient.Add(new Patient() { PatientNo = 1001, PatientName = "Mahesh" });
-            lstPatient.Add(new Patient() { PatientNo = 1002, PatientName = "Amit" });
-            lstPatient.Add(new Patient() { PatientNo = 1003, PatientName = "Vaibhav" });
-            lstPatient.Add(new Patient() { PatientNo = 1004, PatientName = "Ashwin" });
-            lstPatient.Add(new Patient() { PatientNo = 1005, PatientName = "Prashant" });
-            lstPatient.Add(new Patient() { PatientNo = 1006, PatientName = "Vinit" });
-            lstPatient.Add(new Patient() { PatientNo = 1007, PatientName = "Abhijit" });
-            lstPatient.Add(new Patient() { PatientNo = 1008, PatientName = "Pankaj" });
-            lstPatient.Add(new Patient() { PatientNo = 1009, PatientName = "Kaustubh" });
-            lstPatient.Add(new Patient() { PatientNo = 1010, PatientName = "Mohan" });
+            patientList.Add(new Patient() { PatientNo = 1001, PatientName = "Mahesh" });
+            patientList.Add(new Patient() { PatientNo = 1002, PatientName = "Amit" });
+            patientList.Add(new Patient() { PatientNo = 1003, PatientName = "Vaibhav" });
+            patientList.Add(new Patient() { PatientNo = 1004, PatientName = "Ashwin" });
+            patientList.Add(new Patient() { PatientNo = 1005, PatientName = "Prashant" });
+            patientList.Add(new Patient() { PatientNo = 1006, PatientName = "Vinit" });
+            patientList.Add(new Patient() { PatientNo = 1007, PatientName = "Abhijit" });
+            patientList.Add(new Patient() { PatientNo = 1008, PatientName = "Pankaj" });
+            patientList.Add(new Patient() { PatientNo = 1009, PatientName = "Kaustubh" });
+            patientList.Add(new Patient() { PatientNo = 1010, PatientName = "Mohan" });
 
 
-            lstPatientData.ItemsSource = lstPatient;
+            lstPatientData.ItemsSource = patientList;
 
         }
 
@@ -52,7 +53,7 @@ namespace P3
                string upper = txtOrig.ToUpper();
                string lower = txtOrig.ToLower();
 
-               var patientFiltered = from Patient in lstPatient let ename = Patient.PatientName
+               var patientFiltered = from Patient in patientList let ename = Patient.PatientName
                                  where ename.StartsWith(lower) || ename.StartsWith(upper) || ename.Contains(txtOrig)
                                  select Patient;
 
@@ -62,9 +63,13 @@ namespace P3
             string txtOrig = txtNameToSearch.Text;
             string upper = txtOrig.ToUpper();
             string lower = txtOrig.ToLower();
-            
 
-            var patientFiltered = from Patient in lstPatient
+
+            List<Patient> filteredPatients = this.patientList.Where(p => p.PatientName.Contains(txtOrig)).ToList();
+
+            Console.WriteLine(filteredPatients);
+
+            var patientFiltered = from Patient in patientList
                                   let pname = Patient.PatientName
                                   where
                                   pname.StartsWith(lower)
