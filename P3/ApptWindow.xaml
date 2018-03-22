@@ -165,7 +165,7 @@
         <Button x:Name="addNotesButton" Content="View Notes" HorizontalAlignment="Left" Height="23.198" Margin="10,119.081,0,0"  VerticalAlignment="Top" Width="99.959"
             Style="{DynamicResource mediButtonStyle}" Click="addNotesButton_Click"/>
         <ScrollViewer x:Name="noteScroller" HorizontalAlignment="Right" Height="171.038" Margin="0,196.636,10,0" VerticalAlignment="Top" Width="345">
-            <TextBox x:Name="noteText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="327.444" MinHeight="174.371"/>
+            <TextBox x:Name="noteText" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="327.444" MinHeight="171.038"/>
         </ScrollViewer>
         <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Height="23.198" Margin="251.976,375,0,0"  VerticalAlignment="Top" Width="99.959"
             Style="{DynamicResource deleteButtonStyle}" Click="deleteButton_Click"/>
