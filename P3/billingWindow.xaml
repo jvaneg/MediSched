@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
         Title="Billing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
-    <Canvas Name="billingCanvas" Width="392" Height="329">
+    <Canvas Name="billingCanvas" Width="395.5" Height="329">
         <TextBlock Name="clinicInformationLabel" HorizontalAlignment="Left" Height="26.087" Margin="24.146,17.936,0,0" TextWrapping="Wrap" Text="Clinic Information" VerticalAlignment="Top" Width="107.781"/>
         <TextBlock x:Name="patientInformationLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Patient Information" VerticalAlignment="Top" Width="107.781" Canvas.Left="210.187" Canvas.Top="17.936"/>
         <TextBlock Name="clinicInformationTextbox" Height="50.801" Canvas.Left="24.146" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>
@@ -14,10 +14,10 @@
         <TextBlock x:Name="descriptionLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="107.781" Canvas.Left="20.027" Canvas.Top="112.792"/>
         <TextBlock x:Name="costLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Cost" VerticalAlignment="Top" Width="107.781" Canvas.Left="244.215" Canvas.Top="112.792"/>
         <TextBlock x:Name="patientInformationTextbox_Copy" Height="50.801" Canvas.Left="210.187" TextWrapping="Wrap" Text="" Canvas.Top="187.501" Width="136.122"/>
-        <Button Name="OKButton" Content="OK" Height="21.968" Canvas.Left="238.528" Canvas.Top="291.848" Width="50.996"/>
-        <Button x:Name="printButton" Content="Print" Height="21.968" Canvas.Left="308.162" Canvas.Top="291.848" Width="50.996"/>
-        <Button x:Name="addToTableButton" Content="Add" Height="18.535" Canvas.Left="351.309" Canvas.Top="160.533" Width="30.691"/>
-        <Button x:Name="resetTableButton" Content="Reset Table" Height="22.908" Canvas.Left="94.464" Canvas.Top="290.908" Width="65.804"/>
+        <Button Name="OKButton" Content="OK" Height="21.968" Canvas.Left="238.528" Canvas.Top="291.848" Width="50.996" Style="{DynamicResource mediButtonStyle}"/>
+        <Button x:Name="printButton" Content="Print" Height="21.968" Canvas.Left="308.162" Canvas.Top="291.848" Width="50.996" Style="{DynamicResource mediButtonStyle}"/>
+        <Button x:Name="addToTableButton" Content="Add" Height="18.535" Canvas.Left="351.309" Canvas.Top="160.533" Width="34.191" Style="{DynamicResource mediButtonStyle}"/>
+        <Button x:Name="resetTableButton" Content="Reset Table" Height="21.968" Canvas.Left="95.456" Canvas.Top="291.848" Width="83.654" Style="{DynamicResource mediButtonStyle}"/>
         <TextBox x:Name="itemDescriptionTextBox" Height="18.535" Canvas.Left="20.027" TextWrapping="Wrap" Text="" Canvas.Top="160.533" Width="210.069"/>
         <TextBox x:Name="itemCostTextBox" Height="18.535" Canvas.Left="244.215" TextWrapping="Wrap" Text="" Canvas.Top="160.533" Width="93.17"/>
         <TextBlock x:Name="addItemLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Add Item" VerticalAlignment="Top" Width="107.781" Canvas.Left="20.027" Canvas.Top="138.879"/>
