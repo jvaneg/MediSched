@@ -9,6 +9,11 @@ namespace P3
     {
         private string workingDays;
         bool isEdit;
+        bool isM = false;
+        bool isT = false;
+        bool isW = false;
+        bool isR = false;
+        bool isF = false;
 
         public NewDoctorWindow(bool editOrAdd)
         {
@@ -32,8 +37,11 @@ namespace P3
             this.workingDays = days;
             this.isEdit = editOrAdd;
 
-            startTBlock.Text = hours.Split('-')[0];
-            endTBlock.Text = hours.Split('-')[1];
+            if (hours.Length != 0)
+            {
+                startTBlock.Text = hours.Split('-')[0];
+                endTBlock.Text = hours.Split('-')[1];
+            }
 
             if (mondayBox.IsChecked == false & workingDays.Contains("M"))
                 mondayBox.IsChecked = true;
@@ -49,6 +57,7 @@ namespace P3
 
             if (fridayBox.IsChecked == false & workingDays.Contains("F"))
                 fridayBox.IsChecked = true;
+
         }
 
 
@@ -61,46 +70,69 @@ namespace P3
             DoctorsWindow parentDoc = (DoctorsWindow)this.Owner;
             if (parentDoc != null )
             {
+
                 Doctor rowToBeUpdated = (Doctor)parentDoc.docListGrid.SelectedItem;
 
-                if (mondayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("M"))
-                    this.workingDays = "M";
+                string dash = "-";
+                if (startTBlock.Text.Length == 0 && startTBlock.Text.Length == 0)
+                    dash = "";
+
+
+                if (mondayBox.IsChecked == true)
+                    isM = true;
                 else if (mondayBox.IsChecked == false)
-                    this.workingDays = this.workingDays.Replace("M", "");
+                    isM = false;
 
-                if (tuesdayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("T"))
-                    this.workingDays += "T";
+                if (tuesdayBox.IsChecked == true)
+                    isT = true;
                 else if (tuesdayBox.IsChecked == false)
-                    this.workingDays = this.workingDays.Replace("T", "");
+                    isT = false;
 
-                if (wednesdayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("W"))
-                    this.workingDays += "W";
+                if (wednesdayBox.IsChecked == true)
+                    isW = true;
                 else if (wednesdayBox.IsChecked == false)
-                    this.workingDays = this.workingDays.Replace("W", "");
+                    isW = false;
 
-                if (thursdayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("R"))
-                    this.workingDays += "R";
+                if (thursdayBox.IsChecked == true)
+                    isR = true;
                 else if (thursdayBox.IsChecked == false)
-                    this.workingDays = this.workingDays.Replace("R", "");
+                    isR = false;
 
-                if (fridayBox.IsChecked == true && !rowToBeUpdated.Days.Contains("F"))
-                    this.workingDays += "F";
+                if (fridayBox.IsChecked == true)
+                   isF = true;
                 else if (fridayBox.IsChecked == false)
-                    this.workingDays = this.workingDays.Replace("F", "");
+                    isF = false;
 
+                this.workingDays = "";
+
+                if (isM)
+                    this.workingDays = "M";
+
+                if (isT)
+                    this.workingDays += "T";
+
+                if (isW)
+                    this.workingDays += "W";
+
+                if (isR)
+                    this.workingDays += "R";
+
+                if (isF)
+                {
+                    this.workingDays += "F";
+                }
                 //if row is selected and edit button is clicked
                 if (rowToBeUpdated != null && isEdit == true)
                 {
                     rowToBeUpdated.Name = docNameBlock.Text;
-                    rowToBeUpdated.Hours = startTBlock.Text + "-" + endTBlock.Text;
+                    rowToBeUpdated.Hours = startTBlock.Text + dash + endTBlock.Text;
                     rowToBeUpdated.Days = this.workingDays;
                   
                     parentDoc.docListGrid.Items.Refresh();
                 }
                 else if (isEdit == false)   //otherwise they clicked the add new doctor button
                 {
-                    //MessageBox.Show("SETTING INFO:" + "docName = " + docNameBlock.Text +"\nDays = " + this.docWorkingDays +  "\nhours = " + startTBlock.Text + ", " + endTBlock.Text);
-                    parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock.Text + "-" + endTBlock.Text) });
+                    parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock.Text + dash + endTBlock.Text) });
                 }
             }
             this.Close();
