@@ -111,6 +111,70 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="mediDeleteButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Normal" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.05" To="Pressed"/>
+                                        <VisualTransition From="Pressed" GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.1" To="Normal"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFE55039"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFB71540"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFEB2F06"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFB71540"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFB71540"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="newApptRect">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFB71540"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="newApptRect" Fill="#38ada9" Cursor="Hand" Stroke="#0a3d62"/>
+                            <ContentPresenter TextBlock.Foreground="White"
+                                TextBlock.FontSize="14"
+                                TextBlock.FontFamily="Arial"
+                                Cursor="Hand"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Application.Resources>
 </Application>

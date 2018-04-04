@@ -74,7 +74,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="editBttn" Click="deleteBillingButton_Click" Content="Edit" Style="{DynamicResource mediButtonStyle}"/>
+                                <Button x:Name="editBttn" Click="deleteBillingButton_Click" Content="Delete" Style="{DynamicResource mediDeleteButtonStyle}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
