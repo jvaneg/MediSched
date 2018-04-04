@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3"
-             mc:Ignorable="d" 
-             d:DesignHeight="157.92" d:DesignWidth="242" Width="223" Height="140" Cursor="Hand" MouseEnter="OnMouseEnter" MouseLeave="OnMouseLeave">
+             mc:Ignorable="d" d:DesignWidth="242" Width="223" Height="158.825" Cursor="Hand" MouseEnter="OnMouseEnter" MouseLeave="OnMouseLeave">
 
     <Canvas x:Name="monthDayCanvas" HorizontalAlignment="Left" Height="137.958" Margin="1.042,1,0,0" VerticalAlignment="Top" Width="220.958">
         <VisualStateManager.VisualStateGroups>
@@ -39,6 +38,6 @@
         <TextBlock x:Name="SlotsTxt"  HorizontalAlignment="Left" Height="45" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" Text="Slots" VerticalAlignment="Top" Width="220.958" Canvas.Top="62.411" Foreground="White"/>
         <TextBlock x:Name="dayNumber"  HorizontalAlignment="Left" Height="30.547" TextWrapping="Wrap" FontSize="20" TextAlignment="Center" Text="1" VerticalAlignment="Top" Width="220.958" Canvas.Top="107.411" Foreground="White"/>
     </Canvas>
-    
-    
+
+
 </UserControl>

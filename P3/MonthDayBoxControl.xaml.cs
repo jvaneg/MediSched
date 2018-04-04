@@ -25,7 +25,9 @@ namespace P3
         public MonthDayBoxControl()
         {
             InitializeComponent();
+            this.Visibility = Visibility.Hidden;
         }
+
 
         public MonthDayBoxControl(int day, int slots, string boxText)
         {

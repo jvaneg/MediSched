@@ -47,9 +47,17 @@ namespace P3
 
             Random rnd = new Random();
 
+            //offset for day of the week
+            for (int i = 0; i < getDayOfWeekOffset(new DateTime(currentYear,currentMonth,1)); i++)
+            {
+                MonthDayBoxControl hiddenBox = new MonthDayBoxControl();
+                this.uniformMonthGrid.Children.Add(hiddenBox);
+            }
+
+            //load days
             for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++) //currently using 2018 as placeholder
             {
-                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, rnd.Next(0, 11), "Slot");
+                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, rnd.Next(0, 11), "Appointment");
                 dayBox.MouseLeftButtonDown += DayBox_MouseLeftButtonDown;
                 this.uniformMonthGrid.Children.Add(dayBox);
             }
@@ -77,6 +85,13 @@ namespace P3
             }
 
             loadMonthCal(currentMonth, currentYear);
+        }
+
+        private int getDayOfWeekOffset(DateTime day)
+        {
+            DayOfWeek dayOfWeek = day.DayOfWeek;
+
+            return (int)dayOfWeek;
         }
     }
 }
