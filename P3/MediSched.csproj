@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Billing.cs" />
     <Compile Include="CalendarDayWindow.xaml.cs">
       <DependentUpon>CalendarDayWindow.xaml</DependentUpon>
     </Compile>

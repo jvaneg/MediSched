@@ -1,4 +1,4 @@
-﻿<Window x:Name="billWindow" x:Class="P3.billingWindow"
+﻿<Window x:Name="billWindow" x:Class="P3.BillingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,26 +8,77 @@
         Title="Billing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
     <Canvas Name="billingCanvas" Width="395.5" Height="329">
         <TextBlock Name="clinicInformationLabel" HorizontalAlignment="Left" Height="26.087" Margin="24.146,17.936,0,0" TextWrapping="Wrap" Text="Clinic Information" VerticalAlignment="Top" Width="107.781"/>
-        <TextBlock x:Name="patientInformationLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Patient Information" VerticalAlignment="Top" Width="107.781" Canvas.Left="210.187" Canvas.Top="17.936"/>
-        <TextBlock Name="clinicInformationTextbox" Height="50.801" Canvas.Left="24.146" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>
-        <TextBlock x:Name="patientInformationTextbox" Height="50.801" Canvas.Left="210.187" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>
-        <TextBlock x:Name="descriptionLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="107.781" Canvas.Left="20.027" Canvas.Top="112.792"/>
-        <TextBlock x:Name="costLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Cost" VerticalAlignment="Top" Width="107.781" Canvas.Left="244.215" Canvas.Top="112.792"/>
-        <TextBlock x:Name="patientInformationTextbox_Copy" Height="50.801" Canvas.Left="210.187" TextWrapping="Wrap" Text="" Canvas.Top="187.501" Width="136.122"/>
-        <Button Name="OKButton" Content="OK" Height="21.968" Canvas.Left="238.528" Canvas.Top="291.848" Width="50.996" Style="{DynamicResource mediButtonStyle}"/>
-        <Button x:Name="printButton" Content="Print" Height="21.968" Canvas.Left="308.162" Canvas.Top="291.848" Width="50.996" Style="{DynamicResource mediButtonStyle}"/>
-        <Button x:Name="addToTableButton" Content="Add" Height="18.535" Canvas.Left="351.309" Canvas.Top="160.533" Width="34.191" Style="{DynamicResource mediButtonStyle}"/>
-        <Button x:Name="resetTableButton" Content="Reset Table" Height="21.968" Canvas.Left="95.456" Canvas.Top="291.848" Width="83.654" Style="{DynamicResource mediButtonStyle}"/>
-        <TextBox x:Name="itemDescriptionTextBox" Height="18.535" Canvas.Left="20.027" TextWrapping="Wrap" Text="" Canvas.Top="160.533" Width="210.069"/>
-        <TextBox x:Name="itemCostTextBox" Height="18.535" Canvas.Left="244.215" TextWrapping="Wrap" Text="" Canvas.Top="160.533" Width="93.17"/>
-        <TextBlock x:Name="addItemLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Add Item" VerticalAlignment="Top" Width="107.781" Canvas.Left="20.027" Canvas.Top="138.879"/>
-        <TextBlock x:Name="addCostLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Add Cost" VerticalAlignment="Top" Width="107.781" Canvas.Left="243.528" Canvas.Top="138.879"/>
-        <ScrollViewer Name="scrollViewerBilling" Canvas.Left="20.027" Canvas.Top="185.441" Height="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            <DataGrid x:Name="descriptCostDataGrid" ColumnWidth="163" Height="90.618" Width="326.282" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden"
-                      ItemsSource="{Binding DataTable.DefaultView}" IsReadOnly="True">
+        <TextBlock x:Name="patientInformationLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Patient Information" VerticalAlignment="Top" Width="107.781" Canvas.Left="238.528" Canvas.Top="17.936"/>
+        <TextBlock Name="clinicInformationTextbox" Height="50.801" Canvas.Left="24.146" TextWrapping="Wrap" Text="Super Awesome Clinic Address: 123 Awesome Street Postal Code: T8Z9S4 " Canvas.Top="44.023" Width="159.787"/>
+        <TextBlock x:Name="patientInformationTextbox" Height="50.801" Canvas.Left="238.528" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>
+        <TextBlock x:Name="patientInformationTextbox_Copy" Height="50.801" Canvas.Left="210.187" TextWrapping="Wrap" Text="" Canvas.Top="141.416" Width="136.122"/>
+        <Button Name="OKButton" Content="Save" Height="24.666" Canvas.Left="283.86" Canvas.Top="286.293" Width="41.664" Style="{DynamicResource mediButtonStyle}"/>
+        <Button x:Name="printButton" Content="Print" Height="24.666" Canvas.Left="335.424" Canvas.Top="286.293" Width="41.664" Style="{DynamicResource mediButtonStyle}"/>
+        <Button x:Name="addToTableButton" Content="+" Height="24.666" Canvas.Left="335.424" Canvas.Top="256.627" Width="41.664" Style="{DynamicResource mediButtonStyle}"/>
+        <TextBox x:Name="itemDescriptionTextBox" Height="24.666" Canvas.Left="20.026" TextWrapping="Wrap" Text="" Canvas.Top="256.627" Width="175.117"/>
+        <TextBox x:Name="itemCostTextBox" Height="24.666" Canvas.Left="210.874" TextWrapping="Wrap" Text="" Canvas.Top="256.627" Width="107.094"/>
+        <TextBlock x:Name="addItemLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Add Item" VerticalAlignment="Top" Width="107.781" Canvas.Left="20.026" Canvas.Top="234.973"/>
+        <TextBlock x:Name="addCostLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Add Cost" VerticalAlignment="Top" Width="107.781" Canvas.Left="210.187" Canvas.Top="234.973"/>
+        <ScrollViewer Name="scrollViewerBilling" Canvas.Left="20.026" Canvas.Top="139.355" Height="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <DataGrid x:Name="descriptCostDataGrid" ColumnWidth="163" Height="90.618" Width="361.157" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden"
+                      ItemsSource="{Binding DataTable.DefaultView}" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
-                    <DataGridTextColumn Header="Cost" Binding="{Binding Cost}"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="1*">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTemplateColumn x:Name="editBillingButton" Header="Edit" Width="50">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="editBttn" Click="editBillingButton_Click" Content="Edit" Style="{DynamicResource mediButtonStyle}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn x:Name="deleteBillingButton" Header="Delete" Width="50">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="editBttn" Click="deleteBillingButton_Click" Content="Edit" Style="{DynamicResource mediButtonStyle}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

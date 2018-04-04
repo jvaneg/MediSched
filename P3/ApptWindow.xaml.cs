@@ -69,7 +69,7 @@ namespace P3
 
         private void BillingButton_Click(object sender, RoutedEventArgs e)
         {
-            billingWindow billingWindow = new billingWindow();
+            BillingWindow billingWindow = new BillingWindow();
             billingWindow.Owner = this;
             billingWindow.Show();
         }
