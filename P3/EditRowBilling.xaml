@@ -1,0 +1,17 @@
+﻿<Window x:Class="P3.EditRowBilling"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P3"
+        mc:Ignorable="d"
+        Title="Edit Row" Height="140" Width="450" ResizeMode="CanMinimize">
+    <Grid>
+        <TextBlock Name="editDescriptionLabel" HorizontalAlignment="Left" Height="46.38" Margin="28.952,10,0,0" TextWrapping="Wrap" Text="Edit Description" VerticalAlignment="Top" Width="182.265" FontSize="24"/>
+        <TextBlock Name="editCostLabel" HorizontalAlignment="Left" Height="46.38" Margin="231.812,10,0,0" TextWrapping="Wrap" Text="Edit Cost" VerticalAlignment="Top" Width="202.86" FontSize="24"/>
+        <TextBox Name="editDescriptionTextbox" HorizontalAlignment="Left" Height="33.62" Margin="23.952,56.38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187.265"/>
+        <TextBox x:Name="editCostTextbox" HorizontalAlignment="Left" Height="33.62" Margin="231.812,56.38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100.265"/>
+        <Button Name="editButton" Content="Edit" HorizontalAlignment="Left" Height="33.62" Margin="357.672,56.38,0,0" VerticalAlignment="Top" Width="67.328" Style="{DynamicResource mediButtonStyle}"/>
+
+    </Grid>
+</Window>

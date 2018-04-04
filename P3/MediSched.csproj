@@ -65,6 +65,9 @@
     <Compile Include="billingWindow.xaml.cs">
       <DependentUpon>billingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditRowBilling.xaml.cs">
+      <DependentUpon>EditRowBilling.xaml</DependentUpon>
+    </Compile>
     <Page Include="CalendarDayWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -161,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="billingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditRowBilling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

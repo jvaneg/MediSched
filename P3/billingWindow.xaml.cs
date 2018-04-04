@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Data;
 
+using System.Collections.ObjectModel;
+
 namespace P3
 {
     /// <summary>
@@ -40,13 +42,7 @@ namespace P3
             decimal d;
             if (decimal.TryParse(itemCostTextBox.Text, out d))
             {
-                this.itemDescriptionTextBox.Visibility = Visibility.Visible;
-                this.itemCostTextBox.Visibility = Visibility.Visible;
-                this.addItemLabel.Visibility = Visibility.Visible;
-                this.addCostLabel.Visibility = Visibility.Visible;
-
                 descriptCostDataGrid.Items.Add(new Billing(){ Description = itemDescriptionTextBox.Text, Cost = itemCostTextBox.Text });
-
             }
             else
             {
@@ -56,26 +52,14 @@ namespace P3
 
         private void editBillingButton_Click(object sender, RoutedEventArgs e)
         {
+
             if (descriptCostDataGrid.SelectedItem != null)
             {
-                decimal d;
-                Billing rowToBeUpdated = (Billing)descriptCostDataGrid.SelectedItem;
-                if (decimal.TryParse(itemCostTextBox.Text, out d))
-                {
-                    this.itemDescriptionTextBox.Visibility = Visibility.Visible;
-                    this.itemCostTextBox.Visibility = Visibility.Visible;
-                    this.addItemLabel.Visibility = Visibility.Visible;
-                    this.addCostLabel.Visibility = Visibility.Visible;
+                Billing editBilling = (Billing)descriptCostDataGrid.SelectedItem;
 
-                    rowToBeUpdated.Description = itemDescriptionTextBox.Text;
-                    rowToBeUpdated.Cost = itemCostTextBox.Text;
-                    descriptCostDataGrid.Items.Refresh();
-
-                }
-                else
-                {
-                    MessageBox.Show("Inavlid Numbers entered for cost, please try again");
-                }
+                EditRowBilling editBillingWindow = new EditRowBilling(editBilling.Description, editBilling.Cost);
+                editBillingWindow.Owner = this;
+                editBillingWindow.Show();
             }
         }
 
