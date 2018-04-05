@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Media;
 
 namespace P3
 {
@@ -9,11 +11,13 @@ namespace P3
     {
         private string workingDays;
         bool isEdit;
+        bool canAdd = true;
         bool isM = false;
         bool isT = false;
         bool isW = false;
         bool isR = false;
         bool isF = false;
+        
 
         public NewDoctorWindow(bool editOrAdd)
         {
@@ -121,21 +125,62 @@ namespace P3
                 {
                     this.workingDays += "F";
                 }
-                //if row is selected and edit button is clicked
-                if (rowToBeUpdated != null && isEdit == true)
+
+                
+                if (string.IsNullOrEmpty(docNameBlock.Text.Trim()))
                 {
-                    rowToBeUpdated.Name = docNameBlock.Text;
-                    rowToBeUpdated.Hours = startTBlock.Text + dash + endTBlock.Text;
-                    rowToBeUpdated.Days = this.workingDays;
-                  
-                    parentDoc.docListGrid.Items.Refresh();
+                    canAdd = false;
+                    docNameBlock.BorderBrush = new SolidColorBrush(Colors.Red);
                 }
-                else if (isEdit == false)   //otherwise they clicked the add new doctor button
+                else
                 {
-                    parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock.Text + dash + endTBlock.Text) });
+                    docNameBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
+                }
+
+                if (string.IsNullOrEmpty(startTBlock.Text.Trim()) || !Regex.IsMatch(startTBlock.Text, @"^[0-9:]*$"))
+                {
+                    canAdd = false;
+                    startTBlock.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+                else
+                {
+                    docNameBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
+                }
+
+                if (string.IsNullOrEmpty(endTBlock.Text.Trim()) || !Regex.IsMatch(endTBlock.Text, @"^[0-9:]*$"))
+                {
+                    canAdd = false;
+                    endTBlock.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+                else
+                {
+                    endTBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
+                }
+
+
+                if (canAdd)
+                {
+                    canAdd = true;
+
+                    //if row is selected and edit button is clicked
+                    if (rowToBeUpdated != null && isEdit == true)
+                    {
+                        rowToBeUpdated.Name = docNameBlock.Text;
+                        rowToBeUpdated.Hours = startTBlock.Text + dash + endTBlock.Text;
+                        rowToBeUpdated.Days = this.workingDays;
+
+                        parentDoc.docListGrid.Items.Refresh();
+                    }
+                    else if (isEdit == false)   //otherwise they clicked the add new doctor button
+                    {
+                        parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock.Text + dash + endTBlock.Text) });
+                    }
                 }
             }
-            this.Close();
+            if(canAdd)
+            {
+                this.Close();
+            }
         }
     }
 }

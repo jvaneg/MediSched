@@ -8,7 +8,7 @@
         Title="New Doctor"  SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid x:Name="newDocGrid"  Width="300" Height="305">
         <TextBlock x:Name="nameString"  HorizontalAlignment="Left" Height="25.951" Margin="5.534,20.351,0,0" TextWrapping="Wrap" TextAlignment="Center"  FontSize="14" Text="Name:" VerticalAlignment="Top" Width="55.609"/>
-        <TextBox x:Name="docNameBlock" HorizontalAlignment="Left" Height="25.951" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="158.5" Margin="62.155,20.351,0,0" FontSize="14"/>
+        <TextBox x:Name="docNameBlock" HorizontalAlignment="Left" Height="25.951" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="158.5" Margin="62.155,20.351,0,0" FontSize="14" Background="White"/>
         <TextBlock x:Name="hoursStr" FontSize="14" HorizontalAlignment="Left" TextAlignment="Center" Height="25.951" Margin="5.534,81.275,0,0" TextWrapping="Wrap" Text="Hours:" VerticalAlignment="Top" Width="55.609"/>
         <TextBox x:Name="startTBlock" HorizontalAlignment="Left" Height="25.951" Margin="62.155,81.275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46.667" FontSize="14"/>
         <TextBox x:Name="endTBlock" HorizontalAlignment="Left" Height="25.951" Margin="138.667,81.275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46.667" FontSize="14"/>

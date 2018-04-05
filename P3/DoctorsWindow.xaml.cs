@@ -37,7 +37,7 @@ namespace P3
         private void addDoctorButton_Click(object sender, RoutedEventArgs e)
         {
             
-            NewDoctorWindow newDocWindow = new NewDoctorWindow(false);  //false-> clearing edit mode
+            NewDoctorWindow newDocWindow = new NewDoctorWindow(false);  //false-> clear edit mode
 
             //WHEN YOU CREATE A NEW WINDOW SET THE OWNERSHIP OF THE CHILD
             newDocWindow.Owner = this;
@@ -56,13 +56,13 @@ namespace P3
                 string docWorkingHours = doc.Hours;
                 */
 
-                NewDoctorWindow newDocWindow = new NewDoctorWindow(doc.Name, doc.Days, doc.Hours, true); //true -> setting edit mode
+                NewDoctorWindow newDocWindow = new NewDoctorWindow(doc.Name, doc.Days, doc.Hours, true); //true -> set edit mode
                 newDocWindow.Owner = this;
                 newDocWindow.Show();
             }
         }
 
-        private void deleteRow_Click(object sender, RoutedEventArgs e)
+        private void deleteDoctorButton_Click(object sender, RoutedEventArgs e)
         {
             if (docListGrid.SelectedItem != null)
             {

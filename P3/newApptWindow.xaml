@@ -28,11 +28,11 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Canvas x:Name="newApptCanvas" Height="364" Width="354">
-        <Button x:Name="NewPatientBttn" Content="New patient" Click="NewPatient_Click" Height="26" Canvas.Left="39" Style="{DynamicResource mediButtonStyle}" Canvas.Top="22" Width="86" Cursor="Hand"/>
+    <Canvas x:Name="newApptCanvas" Height="350" Width="354">
+        <Button x:Name="NewPatientBttn" Content="New patient" Click="NewPatient_Click" Height="26" Canvas.Left="258" Style="{DynamicResource mediButtonStyle}" Canvas.Top="314" Width="86" Cursor="Hand"/>
 
 
-        <ListBox Height="204.5" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="255" Canvas.Left="39" Canvas.Top="126.5">
+        <ListBox Height="204" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="255" Canvas.Left="49" Canvas.Top="67">
             <!-- <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding PatientName}"></TextBlock>
@@ -41,9 +41,9 @@
             -->
         </ListBox>
 
-        <TextBlock Height="16.5" HorizontalAlignment="Center" Name="SearchName" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="79" Canvas.Left="39" Canvas.Top="84" />
-        <TextBox Height="16.5" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" VerticalAlignment="Top" Width="189" Canvas.Left="123" Canvas.Top="84" />
-        <ScrollViewer x:Name="searchScroller" Height="209.5" Canvas.Left="39" Canvas.Top="121.5" Width="273">
+        <TextBlock Height="17" HorizontalAlignment="Center" Name="SearchName" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="79" Canvas.Left="49" Canvas.Top="25" />
+        <TextBox Height="17" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" VerticalAlignment="Top" Width="189" Canvas.Left="133" Canvas.Top="25" />
+        <ScrollViewer x:Name="searchScroller" Height="210" Canvas.Left="49" Canvas.Top="67" Width="273">
             <ListBox x:Name="PatientList" Width="256" Background="White" BorderBrush="#FFABADB3">
 
                 <ListBoxItem x:Name="PatientA" Selected="PatientA_Selected" Content="ListBox Item #1" />
