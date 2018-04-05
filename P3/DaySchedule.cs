@@ -59,7 +59,7 @@ namespace P3
             int counter = 0;
 
             int openBlockSizeCounter = 0;
-            for(int i = startBlock; i < appointments.Length && i < endBlock; i++)
+            for(int i = startBlock; i < appointments.Length && i <= endBlock; i++)
             {
                 if(appointments[i] == null)
                 {
@@ -73,7 +73,7 @@ namespace P3
                 else
                 {
                     openBlockSizeCounter = 0;
-                    i += appointments[i].getApptBlockLength();
+                    i += appointments[i].getApptBlockLength() - 1;
                 }
             }
 
