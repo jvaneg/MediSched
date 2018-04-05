@@ -228,12 +228,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="deleteDocBttn" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="deleteBttn" Click="deleteDoctorButton_Click" Content="Delete" Style="{DynamicResource mediDeleteButtonStyle}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="addDocButton" Cursor="Hand" Content="Button" Click="addDoctorButton_Click" HorizontalAlignment="Left" Height="30.484" Margin="848.667,468.86,0,0" Style="{DynamicResource addNewDoctorButtonStyle}" VerticalAlignment="Top" Width="29.775"/>
-        <Button x:Name="deleteDocButton" Click="deleteRow_Click"  Content="Button" HorizontalAlignment="Left" Margin="920.667,469.344,0,0" Style="{DynamicResource deleteDocButtonStyle}" VerticalAlignment="Top" />
-        <!-- <Button Content="Delete Row" Click="deleteRow_Click" HorizontalAlignment="Left" Height="51.495" Margin="853.5,148,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="94.5"/>-->
-        <!--<Button x:Name="editDoctorButton" HorizontalAlignment="Left" Click="editDoctorButton_Click" Height="26.36" Margin="867.667,90.228,0,0" Style="{DynamicResource editDoctorInfoButton}" VerticalAlignment="Top" Width="34.659" Cursor="Hand" />-->
+        <!--<Button x:Name="deleteDocButton" Click="deleteRow_Click"  Content="Button" HorizontalAlignment="Left" Margin="920.667,469.344,0,0" Style="{DynamicResource deleteDocButtonStyle}" VerticalAlignment="Top" />-->
 
     </Grid>
 </Window>
