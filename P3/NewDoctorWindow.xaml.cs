@@ -18,6 +18,7 @@ namespace P3
         bool isR = false;
         bool isF = false;
         
+       
 
         public NewDoctorWindow(bool editOrAdd)
         {
@@ -29,10 +30,6 @@ namespace P3
             this.isEdit = editOrAdd;
         }
 
-        public NewDoctorWindow()
-        {
-            InitializeComponent();
-        }
 
         public NewDoctorWindow(string name, string days, string hours, bool editOrAdd)
         {
@@ -40,7 +37,6 @@ namespace P3
             docNameBlock.Text = name;
             this.workingDays = days;
             this.isEdit = editOrAdd;
-
             if (hours.Length != 0)
             {
                 startTBlock.Text = hours.Split('-')[0];
@@ -64,13 +60,10 @@ namespace P3
 
         }
 
-
         
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            //DoctorsWindow parentDoc = (DoctorsWindow)Window.GetWindow(this);
-
             DoctorsWindow parentDoc = (DoctorsWindow)this.Owner;
             if (parentDoc != null )
             {
@@ -175,6 +168,7 @@ namespace P3
                     {
                         parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock.Text + dash + endTBlock.Text) });
                     }
+                    MediSchedData.addDocToList(docNameBlock.Text, this.workingDays, (startTBlock.Text + dash + endTBlock.Text));
                 }
             }
             if(canAdd)

@@ -22,29 +22,49 @@ namespace P3
     /// </summary>
     public partial class DoctorsWindow : Window
     {
-        DataTable dt = new DataTable();
+       
+        //DataTable dt = new DataTable();
 
-        ObservableCollection<Doctor> dc = new ObservableCollection<Doctor>();
+        //ObservableCollection<Doctor> dc = new ObservableCollection<Doctor>();
+
         public DoctorsWindow()
         {
             InitializeComponent();
-            //docListGrid.ItemsSource = Doctor.getDoctor();
-            docListGrid.Items.Add(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00-20:30" });
-            docListGrid.Items.Add(new Doctor() { Name = "Philli P", Days = "W", Hours = "1:00-10:00" });
-        }
-                
 
-        private void addDoctorButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            NewDoctorWindow newDocWindow = new NewDoctorWindow(false);  //false-> clear edit mode
+            //load data
+            List<Doctor> ls;
+            if((ls = MediSchedData.getDocList()).Count > 0)
+            {
 
-            //WHEN YOU CREATE A NEW WINDOW SET THE OWNERSHIP OF THE CHILD
-            newDocWindow.Owner = this;
-            newDocWindow.Show();
+                for (int i = 0; i < ls.Count; i++)
+                {
+                    docListGrid.Items.Add(new Doctor() { Name = ls[i].Name, Days = ls[i].Days, Hours = ls[i].Hours });
+                }
+            }
+
+            //docListGrid.Items.Add(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00-20:30" });
+            //docListGrid.Items.Add(new Doctor() { Name = "Philli P", Days = "W", Hours = "1:00-10:00" });
         }
 
        
+
+        private void addDoctorButton_Click(object sender, RoutedEventArgs e)
+         {
+
+             NewDoctorWindow newDocWindow = new NewDoctorWindow(false);  //false-> clear edit mode
+
+             //WHEN YOU CREATE A NEW WINDOW SET THE OWNERSHIP OF THE CHILD
+             newDocWindow.Owner = this;
+             newDocWindow.Show();
+         }
+
+         /*
+         private void addDoc(string docName, string workingdays, string workingTime)
+         {
+             MessageBox.Show("docName = "+ docName + "\nworkingdays = " + workingdays + "\nworkingTime = " + workingTime);
+         }
+         */
+
         private void editDoctorButton_Click(object sender, RoutedEventArgs e)
         {
             if (docListGrid.SelectedItem != null)
