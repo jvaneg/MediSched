@@ -39,7 +39,7 @@ namespace P3
         private void DayBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MonthDayBoxControl dayClicked = (MonthDayBoxControl)sender;
-            NewApptDay dayWindow = new NewApptDay(dayClicked.getDay(), this.currentMonth, this.currentYear, potentialLength);
+            NewApptDay dayWindow = new NewApptDay(dayClicked.getDay(), this.currentMonth, this.currentYear, potentialLength, apptType);
             dayWindow.Owner = this;
             dayWindow.Show();
             this.Hide();

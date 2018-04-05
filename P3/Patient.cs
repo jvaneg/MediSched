@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace P3
 {
-    class Patient
+    public class Patient
     {
         public int PatientNo
         {

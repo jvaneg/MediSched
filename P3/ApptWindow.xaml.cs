@@ -19,11 +19,14 @@ namespace P3
     /// </summary>
     public partial class ApptWindow : Window
     {
-        private bool notesShown = false;
-        private ApptBlockControl sourceApptBlock = null;
-        private string apptStatus = null;
-        
+        private bool notesShown = false; //are the notes currently being shown
+        private ApptBlockControl sourceApptBlock = null; //appointment block that was clicked to open this window
+        private string apptStatus = null; //the status as a string (should be an enum but aint got time for that shit)
 
+        private Appointment apptRepresenting = null; //the appointment this app window is showing
+        
+        //old constructor that is now depricated
+        //i think history/future currently uses this but that should be changed
         public ApptWindow()
         {
             InitializeComponent();
@@ -36,17 +39,43 @@ namespace P3
             apptStatus = "Not Arrived";
         }
 
-        public ApptWindow(ApptBlockControl sourceApptBlock)
+        //initializes given a block that was clicked, and the appointment object that block contained
+        //use this constructor if one of the coloured blocks was clicked to open this
+        public ApptWindow(ApptBlockControl sourceApptBlock, Appointment sourceAppt)
         {
             InitializeComponent();
             this.sourceApptBlock = sourceApptBlock;
+
+            loadAppointment(sourceAppt);
+
             this.apptGrid.Height = 195;
             this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
 
             this.billingButton.Click += BillingButton_Click;
+        }
 
-            this.apptStatus = sourceApptBlock.getApptStatus();
-            this.notArrivedRadio.IsChecked = true; //default radio button selection
+        //initializes given only the appointment object that block contained
+        //use this constructor if one of the history/future blocks was used to open this
+        public ApptWindow(Appointment sourceAppt)
+        {
+            InitializeComponent();
+
+            loadAppointment(sourceAppt);
+
+            this.apptGrid.Height = 195;
+            this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
+
+            this.billingButton.Click += BillingButton_Click;
+        }
+
+        //loads an appointment object's data to the window
+        //only partially complete, just does the stuff Joel's stuff needs it to
+        private void loadAppointment(Appointment sourceAppt)
+        {
+            this.apptRepresenting = sourceAppt;
+            this.apptType.Text = this.apptRepresenting.getApptType();
+            this.pnameButton.Content = this.apptRepresenting.getPatientName();
+            this.apptStatus = this.apptRepresenting.getApptStatus();
             switch (this.apptStatus)
             {
                 case "Not Arrived":
@@ -74,6 +103,7 @@ namespace P3
             billingWindow.Show();
         }
 
+        //on window load event, not sure why this stuff isnt in the constructor, was still learning wpf
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             notesShown = false;
@@ -100,6 +130,7 @@ namespace P3
             }
         }
 
+        //event for when you click on the patient's name
         private void pnameButton_Click(object sender, RoutedEventArgs e)
         {
             PatientInfo patientInfoWindow = new PatientInfo();
@@ -107,53 +138,44 @@ namespace P3
             patientInfoWindow.Show();
         }
 
+        //event for clicking the delete button (currently does nothing)
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             //delete the appointment
             this.Close();
         }
 
+        //event for changing the status of the appointment
         private void radio_Click(object sender, RoutedEventArgs e)
         {
             if(notArrivedRadio.IsChecked == true)
             {
                 this.apptStatus = "Not Arrived";
-                if (sourceApptBlock != null)
-                {
-                    sourceApptBlock.setApptStatus(this.apptStatus);
-                }
             }
             else if(waitingRadio.IsChecked == true)
             {
                 this.apptStatus = "Waiting";
-                if (sourceApptBlock != null)
-                {
-                    sourceApptBlock.setApptStatus(this.apptStatus);
-                }
             }
             if (beingSeenRadio.IsChecked == true)
             {
                 this.apptStatus = "Being Seen";
-                if (sourceApptBlock != null)
-                {
-                    sourceApptBlock.setApptStatus(this.apptStatus);
-                }
             }
             else if (seenRadio.IsChecked == true)
             {
                 this.apptStatus = "Seen";
-                if (sourceApptBlock != null)
-                {
-                    sourceApptBlock.setApptStatus(this.apptStatus);
-                }
             }
             if (billedRadio.IsChecked == true)
             {
                 this.apptStatus = "Billed";
-                if (sourceApptBlock != null)
-                {
-                    sourceApptBlock.setApptStatus(this.apptStatus);
-                }
+            }
+
+            if (sourceApptBlock != null)
+            {
+                sourceApptBlock.setApptStatus(this.apptStatus);
+            }
+            if (apptRepresenting != null)
+            {
+                apptRepresenting.setApptStatus(this.apptStatus);
             }
         }
     }

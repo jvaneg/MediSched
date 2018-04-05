@@ -20,6 +20,14 @@ namespace P3
     /// </summary>
     public partial class SchedDayControl : UserControl
     {
+        private ApptBlockControl[] apptBlocks = null;
+        private DaySchedule daySched = null;
+        private Patient patient = null; //for add mode
+        private string apptType = ""; //for add mode
+        private int potentialLength = 1;
+        private int startBlock = 0;
+
+
         //for view mode
         public SchedDayControl(string doctorName)
         {
@@ -32,63 +40,31 @@ namespace P3
         {
             InitializeComponent();
             this.doctorNameBlock.Text = doctorName;
+
+            this.apptBlocks = new ApptBlockControl[] {this.apptBlock1, this.apptBlock2, this.apptBlock3, this.apptBlock4, this.apptBlock5, this.apptBlock6,
+                                                        this.apptBlock7, this.apptBlock8, this.apptBlock9, this.apptBlock10, this.apptBlock11, this.apptBlock12,
+                                                        this.apptBlock13, this.apptBlock14, this.apptBlock15, this.apptBlock16, this.apptBlock17, this.apptBlock18,
+                                                        this.apptBlock19, this.apptBlock20, this.apptBlock21, this.apptBlock22, this.apptBlock23, this.apptBlock24,
+                                                        this.apptBlock25, this.apptBlock26, this.apptBlock27, this.apptBlock28, this.apptBlock29, this.apptBlock30,
+                                                        this.apptBlock31, this.apptBlock32, this.apptBlock33, this.apptBlock34, this.apptBlock35, this.apptBlock36,
+                                                        this.apptBlock37, this.apptBlock38, this.apptBlock39, this.apptBlock40, this.apptBlock41, this.apptBlock42,
+                                                        this.apptBlock43, this.apptBlock44, this.apptBlock45, this.apptBlock46, this.apptBlock47, this.apptBlock48};
+
             setSchedDays(potentialLength, patientName, apptType);
 
-            this.apptBlock1.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock2.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock3.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock4.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock5.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock6.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock7.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock8.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock9.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock10.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock11.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock12.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock13.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock14.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock15.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock16.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock17.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock18.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock19.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock20.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock21.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock22.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock23.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock24.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock25.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock26.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock27.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock28.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock29.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock30.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock31.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock32.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock33.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock34.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock35.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock36.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock37.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock38.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock39.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock40.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock41.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock42.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock43.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock44.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock45.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock46.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock47.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            this.apptBlock48.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            foreach (ApptBlockControl apptBlock in this.apptBlocks)
+            {
+                apptBlock.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            }
 
         }
 
-        //currently just adds some dummy stuff
+        //currently just adds some dummy stuff (depricated)
+        //DEPRICATED
         public SchedDayControl(string doctorName, int[] dayScheduleArray)
         {
             InitializeComponent();
+
             this.doctorNameBlock.Text = doctorName;
             //will load array here, for now hardcode sets up some stuff
             this.apptBlock5.setEnabled(4, "Cool Joey", "Appointment Type 4", "Seen");
@@ -105,74 +81,158 @@ namespace P3
             
         }
 
-        //something isnt working right here yet
+        //loading a day schedule for add mode
+        public SchedDayControl(Doctor doctor, DaySchedule daySchedule, int potentialLength, string apptType, Patient patient)
+        {
+            InitializeComponent();
+            Appointment appt = null;
+            this.daySched = daySchedule;
+            this.doctorNameBlock.Text = doctor.Name;
+            int startBlock = doctor.getStartBlock();
+            int endBlock = doctor.getEndBlock();
+
+            this.apptBlocks = new ApptBlockControl[] {this.apptBlock1, this.apptBlock2, this.apptBlock3, this.apptBlock4, this.apptBlock5, this.apptBlock6,
+                                                        this.apptBlock7, this.apptBlock8, this.apptBlock9, this.apptBlock10, this.apptBlock11, this.apptBlock12,
+                                                        this.apptBlock13, this.apptBlock14, this.apptBlock15, this.apptBlock16, this.apptBlock17, this.apptBlock18,
+                                                        this.apptBlock19, this.apptBlock20, this.apptBlock21, this.apptBlock22, this.apptBlock23, this.apptBlock24,
+                                                        this.apptBlock25, this.apptBlock26, this.apptBlock27, this.apptBlock28, this.apptBlock29, this.apptBlock30,
+                                                        this.apptBlock31, this.apptBlock32, this.apptBlock33, this.apptBlock34, this.apptBlock35, this.apptBlock36,
+                                                        this.apptBlock37, this.apptBlock38, this.apptBlock39, this.apptBlock40, this.apptBlock41, this.apptBlock42,
+                                                        this.apptBlock43, this.apptBlock44, this.apptBlock45, this.apptBlock46, this.apptBlock47, this.apptBlock48};
+
+            setSchedDays(potentialLength, patient.PatientName, apptType);
+            foreach (ApptBlockControl apptBlock in this.apptBlocks)
+            {
+                apptBlock.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+            }
+
+            //disable times doctor doesnt work
+            //start of day
+            for(int i = 0; i < startBlock; i++)
+            {
+                apptBlocks[i].disableAddMode();
+                apptBlocks[i].greyOut();
+                apptBlocks[i].MouseLeftButtonDown += ApptBlock_DisableMouseDown;
+            }
+
+            //end of day
+            for(int i = endBlock + 1; i < apptBlocks.Length; i++)
+            {
+                apptBlocks[i].disableAddMode();
+                apptBlocks[i].greyOut();
+                apptBlocks[i].MouseLeftButtonDown += ApptBlock_DisableMouseDown;
+            }
+
+            //disable putting too close to end of day
+            int n = endBlock;
+            for(int j = potentialLength - 1; (j > 0) && (n > 0); j--)
+            {
+                apptBlocks[n].disableAddMode();
+                //apptBlocks[n].greyOut();
+                //apptBlocks[n].MouseLeftButtonDown += ApptBlock_DisableMouseDown;
+                n--;
+            }
+
+            //disable adding to times that appointments are already in
+            for (int i = 0; i < apptBlocks.Length; i++)
+            {
+                appt = daySchedule.getAppointmentAtTime(i);
+                if (appt != null)
+                {
+                    apptBlocks[i].loadAppointment(appt);
+
+                    //disable blocks before appointment so that overlapping appointments cant be placed
+                    int k = i - 1;
+                    for(int j = potentialLength - 1; (j > 0) && (k > 0); j--)
+                    {
+                        if(apptBlocks[k].isInAddMode())
+                        {
+                            apptBlocks[k].disableAddMode();
+                            //apptBlocks[k].greyOut();
+                            //apptBlocks[k].MouseLeftButtonDown += ApptBlock_DisableMouseDown;
+                        }
+                        k--;
+                    }
+
+                    //disable next [size of appointment in blocks - 1] blocks
+                    i++;
+                    for(int j = 1; (j < appt.getApptBlockLength()) && (i < apptBlocks.Length); j++)
+                    {
+                        apptBlocks[i].disableAddMode();
+                        i++;
+                    }
+                }
+            }
+        }
+
+
+        //loading a day schedule for view mode or main menu
+        public SchedDayControl(Doctor doctor, DaySchedule daySchedule)
+        {
+            InitializeComponent();
+            Appointment appt = null;
+            this.daySched = daySchedule;
+            this.doctorNameBlock.Text = doctor.Name;
+
+            this.apptBlocks = new ApptBlockControl[] {this.apptBlock1, this.apptBlock2, this.apptBlock3, this.apptBlock4, this.apptBlock5, this.apptBlock6,
+                                                        this.apptBlock7, this.apptBlock8, this.apptBlock9, this.apptBlock10, this.apptBlock11, this.apptBlock12,
+                                                        this.apptBlock13, this.apptBlock14, this.apptBlock15, this.apptBlock16, this.apptBlock17, this.apptBlock18,
+                                                        this.apptBlock19, this.apptBlock20, this.apptBlock21, this.apptBlock22, this.apptBlock23, this.apptBlock24,
+                                                        this.apptBlock25, this.apptBlock26, this.apptBlock27, this.apptBlock28, this.apptBlock29, this.apptBlock30,
+                                                        this.apptBlock31, this.apptBlock32, this.apptBlock33, this.apptBlock34, this.apptBlock35, this.apptBlock36,
+                                                        this.apptBlock37, this.apptBlock38, this.apptBlock39, this.apptBlock40, this.apptBlock41, this.apptBlock42,
+                                                        this.apptBlock43, this.apptBlock44, this.apptBlock45, this.apptBlock46, this.apptBlock47, this.apptBlock48};
+
+            for(int i = 0; i < apptBlocks.Length; i++)
+            {
+                appt = daySchedule.getAppointmentAtTime(i);
+                if(appt != null)
+                {
+                    apptBlocks[i].loadAppointment(appt);
+                    apptBlocks[i].MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
+                }
+            }
+        }
+
+
+        //event for clicking the appointment block
         private void ApptBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ApptBlockControl apptBlock = (ApptBlockControl)sender;
             if (apptBlock.isEnabled())
             {
-                ApptWindow apptWindow = new ApptWindow(apptBlock);
+                ApptWindow apptWindow = new ApptWindow(apptBlock, apptBlock.getApptRepresenting());
                 apptWindow.Owner = Window.GetWindow(this);
                 apptWindow.Show();
             }
             else
             {
                 //save and close
+                string apptStatus = "Not Arrived";
+                apptBlock.setApptRepresenting(new Appointment(patient, apptType, apptStatus, potentialLength, this.startBlock)); //saves the appointment to the block (probably dont need this)
+                daySched.setAppointmentAtTime(apptBlock.getApptRepresenting(), Array.IndexOf(apptBlocks, apptBlock)); //save the appointment to the schedule
+
+                //TODO: add the appointment to the patient as well
+
                 MessageBox.Show("SAVED");
                 Window.GetWindow(this).Close();
             }
         }
 
+        //disables clicking on a block
+        private void ApptBlock_DisableMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //deliberately do nothing
+        }
+
+        //Activates the schedule blocks
         private void setSchedDays(int potentialLength, string patientName, string apptType)
         {
-            this.apptBlock1.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock2.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock3.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock4.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock5.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock6.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock7.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock8.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock9.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock10.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock11.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock12.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock13.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock14.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock15.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock16.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock17.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock18.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock19.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock20.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock21.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock22.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock23.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock24.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock25.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock26.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock27.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock28.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock29.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock30.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock31.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock32.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock33.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock34.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock35.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock36.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock37.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock38.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock39.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock40.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock41.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock42.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock43.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock44.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock45.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock46.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock47.setupAddMode(potentialLength, patientName, apptType);
-            this.apptBlock48.setupAddMode(potentialLength, patientName, apptType);
+
+            foreach (ApptBlockControl apptBlock in this.apptBlocks)
+            {
+                apptBlock.setupAddMode(potentialLength, patientName, apptType);
+            }
         }
 
     }

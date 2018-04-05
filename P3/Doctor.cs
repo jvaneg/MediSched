@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace P3
 {
-    class Doctor
+    public class Doctor
     {
         public string Name
         {
@@ -25,6 +25,19 @@ namespace P3
         {
             get;
             set;
+        }
+
+        private int startBlock = 5; //placeholders, every block in 30 mins, starting at block zero
+        private int endBlock = 40; //placeholders
+
+        public int getStartBlock()
+        {
+            return this.startBlock;
+        }
+
+        public int getEndBlock()
+        {
+            return this.endBlock;
         }
 
        /* public static ObservableCollection<Doctor> getDoctor()

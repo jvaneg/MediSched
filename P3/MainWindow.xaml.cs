@@ -29,7 +29,8 @@ namespace P3
             this.dateText.Text = time.ToString("d MMM yyyy");
 
             //adding a dummy for the horz prototype
-            SchedDayControl schedDay = new SchedDayControl("Doctor A", null);
+            //SchedDayControl schedDay = new SchedDayControl("Doctor A", null);
+            SchedDayControl schedDay = new SchedDayControl(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00 20:30" }, new DaySchedule());
             this.scheduleGrid.Children.Add(schedDay);
 
             for (int i = 0; i < 2; i++)

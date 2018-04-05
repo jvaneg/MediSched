@@ -32,7 +32,8 @@ namespace P3
             }
         }
 
-        public NewApptDay(int day, int month, int year, int potentialLength)
+        //placeholder stuff in here still
+        public NewApptDay(int day, int month, int year, int potentialLength, string apptType)
         {
             InitializeComponent();
 
@@ -41,7 +42,8 @@ namespace P3
 
             for (int i = 0; i < 3; i++) //hardcoded 3 doctors
             {
-                SchedDayControl schedDay = new SchedDayControl("Doctor A", potentialLength, "Cool Joey", "Appointment Type 2");
+                //SchedDayControl schedDay = new SchedDayControl("Doctor A", potentialLength, "Cool Joey", "Appointment Type 2");
+                SchedDayControl schedDay = new SchedDayControl(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00 20:30" }, new DaySchedule(), potentialLength, apptType, new Patient() { PatientName = "Arsho", PatientNo = 2 }); //placeholder
                 this.scheduleGrid.Children.Add(schedDay);
             }
         }
