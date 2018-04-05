@@ -22,10 +22,7 @@ namespace P3
     /// </summary>
     public partial class DoctorsWindow : Window
     {
-       
         //DataTable dt = new DataTable();
-
-        //ObservableCollection<Doctor> dc = new ObservableCollection<Doctor>();
 
         public DoctorsWindow()
         {
@@ -52,30 +49,15 @@ namespace P3
          {
 
              NewDoctorWindow newDocWindow = new NewDoctorWindow(false);  //false-> clear edit mode
-
-             //WHEN YOU CREATE A NEW WINDOW SET THE OWNERSHIP OF THE CHILD
              newDocWindow.Owner = this;
              newDocWindow.Show();
          }
-
-         /*
-         private void addDoc(string docName, string workingdays, string workingTime)
-         {
-             MessageBox.Show("docName = "+ docName + "\nworkingdays = " + workingdays + "\nworkingTime = " + workingTime);
-         }
-         */
 
         private void editDoctorButton_Click(object sender, RoutedEventArgs e)
         {
             if (docListGrid.SelectedItem != null)
             {
                 Doctor doc = (Doctor)docListGrid.SelectedItem;
-                /*
-                string docName = doc.Name;
-                string docWorkingDays = doc.Days;
-                string docWorkingHours = doc.Hours;
-                */
-
                 NewDoctorWindow newDocWindow = new NewDoctorWindow(doc.Name, doc.Days, doc.Hours, true); //true -> set edit mode
                 newDocWindow.Owner = this;
                 newDocWindow.Show();
@@ -86,6 +68,8 @@ namespace P3
         {
             if (docListGrid.SelectedItem != null)
             {
+                //TODO delete from DB 
+                
                 docListGrid.Items.Remove((Doctor)docListGrid.SelectedItem);
             }
         }

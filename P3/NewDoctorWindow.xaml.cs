@@ -25,8 +25,10 @@ namespace P3
             InitializeComponent();
             this.workingDays = "";
             docNameBlock.Text = "";
-            startTBlock.Text = "";
-            endTBlock.Text = "";
+            startTBlock1.Text = "";
+            startTBlock2.Text = "";
+            endTBlock1.Text = "";
+            endTBlock2.Text = "";
             this.isEdit = editOrAdd;
         }
 
@@ -39,9 +41,13 @@ namespace P3
             this.isEdit = editOrAdd;
             if (hours.Length != 0)
             {
-                startTBlock.Text = hours.Split('-')[0];
-                endTBlock.Text = hours.Split('-')[1];
+                startTBlock1.Text = hours.Split('-')[0].Split(':')[0];
+                startTBlock2.Text = hours.Split('-')[0].Split(':')[1];
+
+                endTBlock1.Text = hours.Split('-')[1].Split(':')[0];
+                endTBlock2.Text = hours.Split('-')[1].Split(':')[1];
             }
+            
 
             if (mondayBox.IsChecked == false & workingDays.Contains("M"))
                 mondayBox.IsChecked = true;
@@ -71,8 +77,10 @@ namespace P3
                 Doctor rowToBeUpdated = (Doctor)parentDoc.docListGrid.SelectedItem;
 
                 string dash = "-";
-                if (startTBlock.Text.Length == 0 && startTBlock.Text.Length == 0)
+                if (startTBlock1.Text.Length == 0 && startTBlock2.Text.Length == 0 && endTBlock1.Text.Length == 0 && endTBlock2.Text.Length == 0)
+                {
                     dash = "";
+                }
 
 
                 if (mondayBox.IsChecked == true)
@@ -130,24 +138,30 @@ namespace P3
                     docNameBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
-                if (string.IsNullOrEmpty(startTBlock.Text.Trim()) || !Regex.IsMatch(startTBlock.Text, @"^[0-9:]*$"))
+                if (string.IsNullOrEmpty(startTBlock1.Text.Trim()) || string.IsNullOrEmpty(startTBlock2.Text.Trim()) ||
+                    !Regex.IsMatch(startTBlock1.Text, @"^[0-9]*$") || !Regex.IsMatch(startTBlock2.Text, @"^[0-9]*$"))
                 {
                     canAdd = false;
-                    startTBlock.BorderBrush = new SolidColorBrush(Colors.Red);
+                    startTBlock1.BorderBrush = new SolidColorBrush(Colors.Red);
+                    startTBlock2.BorderBrush = new SolidColorBrush(Colors.Red);
                 }
                 else
                 {
-                    docNameBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    startTBlock1.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    startTBlock2.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
-                if (string.IsNullOrEmpty(endTBlock.Text.Trim()) || !Regex.IsMatch(endTBlock.Text, @"^[0-9:]*$"))
+                if (string.IsNullOrEmpty(endTBlock1.Text.Trim()) || string.IsNullOrEmpty(endTBlock2.Text.Trim()) ||
+                    !Regex.IsMatch(endTBlock1.Text, @"^[0-9:]*$") || !Regex.IsMatch(endTBlock2.Text, @"^[0-9:]*$"))
                 {
                     canAdd = false;
-                    endTBlock.BorderBrush = new SolidColorBrush(Colors.Red);
+                    endTBlock1.BorderBrush = new SolidColorBrush(Colors.Red);
+                    endTBlock2.BorderBrush = new SolidColorBrush(Colors.Red);
                 }
                 else
                 {
-                    endTBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    endTBlock1.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    endTBlock2.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
 
@@ -159,16 +173,16 @@ namespace P3
                     if (rowToBeUpdated != null && isEdit == true)
                     {
                         rowToBeUpdated.Name = docNameBlock.Text;
-                        rowToBeUpdated.Hours = startTBlock.Text + dash + endTBlock.Text;
+                        rowToBeUpdated.Hours = startTBlock1.Text + ':' + startTBlock2.Text  + dash + endTBlock1.Text + ':' + endTBlock2.Text;
                         rowToBeUpdated.Days = this.workingDays;
 
                         parentDoc.docListGrid.Items.Refresh();
                     }
                     else if (isEdit == false)   //otherwise they clicked the add new doctor button
                     {
-                        parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock.Text + dash + endTBlock.Text) });
+                        parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text) });
                     }
-                    MediSchedData.addDocToList(docNameBlock.Text, this.workingDays, (startTBlock.Text + dash + endTBlock.Text));
+                    MediSchedData.addDocToList(docNameBlock.Text, this.workingDays, (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text));
                 }
             }
             if(canAdd)
