@@ -21,7 +21,12 @@ namespace P3
     {
         private bool backButtoned = false;
         private DateTime time;
+        private Patient patient = null;
+        private int potentialLength = 0;
+        private string apptType = "";
 
+
+        //deprecated dont use
         public NewApptDay()
         {
             InitializeComponent();
@@ -32,19 +37,44 @@ namespace P3
             }
         }
 
-        //placeholder stuff in here still
+        //placeholder patient still in here
         public NewApptDay(int day, int month, int year, int potentialLength, string apptType)
         {
             InitializeComponent();
 
+            this.potentialLength = potentialLength;
+            this.apptType = apptType;
+            this.patient = new Patient() { PatientName = "Arsho", PatientNo = 2 }; //placeholder
+
             this.time = new DateTime(year, month, day);
             this.dateText.Text = time.ToString("d MMM yyyy");
 
-            for (int i = 0; i < 3; i++) //hardcoded 3 doctors
+            MediSchedData.dbChanged += handleDbChange;
+
+            loadDaySchedules();
+        }
+
+        //reloads the page when the db changes
+        private void handleDbChange(object sender, EventArgs e)
+        {
+            loadDaySchedules();
+        }
+
+        //loads the day schedules
+        private void loadDaySchedules()
+        {
+            SchedDayControl schedDay = null;
+            List<Doctor> allDoctors = MediSchedData.getDocList();
+
+            this.scheduleGrid.Children.Clear();
+
+            foreach (Doctor doc in allDoctors)
             {
-                //SchedDayControl schedDay = new SchedDayControl("Doctor A", potentialLength, "Cool Joey", "Appointment Type 2");
-                SchedDayControl schedDay = new SchedDayControl(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00 20:30" }, new DaySchedule(), potentialLength, apptType, new Patient() { PatientName = "Arsho", PatientNo = 2 }); //placeholder
-                this.scheduleGrid.Children.Add(schedDay);
+                if (doc.worksOn((int)time.DayOfWeek))
+                {
+                    schedDay = new SchedDayControl(doc, MediSchedData.getDaySchedule(doc, time.Year, time.Month, time.Day), this.potentialLength, this.apptType, this.patient);
+                    this.scheduleGrid.Children.Add(schedDay);
+                }
             }
         }
 

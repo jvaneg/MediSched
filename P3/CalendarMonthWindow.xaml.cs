@@ -30,6 +30,7 @@ namespace P3
             loadMonthCal(currentMonth, currentYear);
         }
 
+        //clicking on a day in the calendar
         private void DayBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MonthDayBoxControl dayClicked = (MonthDayBoxControl)sender;
@@ -39,6 +40,7 @@ namespace P3
             this.Hide();
         }
 
+        //loading the month to the calendar
         private void loadMonthCal(int currentMonth, int currentYear)
         {
             monthText.Text = months[currentMonth - 1];
@@ -57,12 +59,14 @@ namespace P3
             //load days
             for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++) //currently using 2018 as placeholder
             {
-                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, rnd.Next(0, 11), "Appointment");
+                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, getNumApptsForAllDoctorsByDay(currentYear, currentMonth, i+1), "Appointment");
                 dayBox.MouseLeftButtonDown += DayBox_MouseLeftButtonDown;
                 this.uniformMonthGrid.Children.Add(dayBox);
             }
         }
 
+
+        //decrement month button
         private void leftMonthButton_Click(object sender, RoutedEventArgs e)
         {
             this.currentMonth--;
@@ -75,6 +79,8 @@ namespace P3
             loadMonthCal(currentMonth, currentYear);
         }
 
+
+        //increment month button
         private void rightMonthButton_Click(object sender, RoutedEventArgs e)
         {
             this.currentMonth++;
@@ -87,11 +93,29 @@ namespace P3
             loadMonthCal(currentMonth, currentYear);
         }
 
+        //get the offset for the day of week for the calendar
         private int getDayOfWeekOffset(DateTime day)
         {
             DayOfWeek dayOfWeek = day.DayOfWeek;
 
             return (int)dayOfWeek;
+        }
+
+        //gets the number of open appointments for all doctors
+        private int getNumApptsForAllDoctorsByDay(int year, int month, int day)
+        {
+            int numAppts = 0;
+            List<Doctor> allDoctors = MediSchedData.getDocList();
+
+            foreach( Doctor doc in allDoctors)
+            {
+                if (doc.worksOn((int)new DateTime(year, month, day).DayOfWeek))
+                {
+                    numAppts += MediSchedData.getDaySchedule(doc, year, month, day).getNumAppointments();
+                }
+            }
+
+            return numAppts;
         }
     }
 }

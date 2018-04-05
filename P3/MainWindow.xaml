@@ -59,18 +59,22 @@
         </Style>
     </Window.Resources>
     <Grid x:Name="mainGrid" Height="961" Width="1754">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="315*"/>
+            <ColumnDefinition Width="1439*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="265*"/>
             <RowDefinition Height="696*"/>
         </Grid.RowDefinitions>
         <Rectangle x:Name="sbBackground" Fill="#0a3d62" HorizontalAlignment="Left" Height="961" VerticalAlignment="Top" Width="225" Grid.RowSpan="2"/>
-        <Button x:Name="newApptButton" Content="New Appointment" HorizontalAlignment="Left" Margin="0,13,0,21.667" Style="{DynamicResource sbButtonStyle}" Width="220" Click="newApptButton_Click"/>
+        <Button x:Name="newApptButton" Content="New Appointment" HorizontalAlignment="Left" Margin="0,13,0,22" Style="{DynamicResource sbButtonStyle}" Width="220" Click="newApptButton_Click"/>
         <Button x:Name="patientsButton" Content="Patients" HorizontalAlignment="Left" Margin="0,248,0,483" Grid.RowSpan="2" Style="{DynamicResource sbButtonStyle}" Width="220" Click="patientsButton_Click"/>
-        <Button x:Name="calendarButton" Content="Calendar" HorizontalAlignment="Left" Margin="0,218.333,0,248" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220" Click="calendarButton_Click"/>
-        <Button x:Name="doctorsButton"  Click="doctorsButton_Click" Content="Doctors" HorizontalAlignment="Left" Margin="0,453.333,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
-        <TextBlock x:Name="nameText" Height="86.953" Margin="694.418,0,696.222,147.047" TextWrapping="Wrap" Text="MediSched" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="72" FontWeight="Medium"/>
-        <TextBlock x:Name="dateText" Margin="655,179.489,0,0" Text="21 JAN 2018" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Left" Width="436.367" TextAlignment="Center"/>
-        <ScrollViewer x:Name="scheduleScroller" HorizontalScrollBarVisibility="Visible" Margin="225,0,0,0" Grid.Row="1">
+        <Button x:Name="calendarButton" Content="Calendar" HorizontalAlignment="Left" Margin="0,218,0,248" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220" Click="calendarButton_Click"/>
+        <Button x:Name="doctorsButton"  Click="doctorsButton_Click" Content="Doctors" HorizontalAlignment="Left" Margin="0,453,0,13" Grid.Row="1" Style="{DynamicResource sbButtonStyle}" Width="220"/>
+        <TextBlock x:Name="nameText" Height="87" Margin="379,0,696,147" TextWrapping="Wrap" Text="MediSched" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="72" FontWeight="Medium" Grid.Column="1"/>
+        <TextBlock x:Name="dateText" Margin="340,179,0,0" Text="21 JAN 2018" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Left" Width="437" TextAlignment="Center" Grid.Column="1"/>
+        <ScrollViewer x:Name="scheduleScroller" HorizontalScrollBarVisibility="Visible" Margin="225,0,0,0" Grid.Row="1" Grid.ColumnSpan="2">
             <UniformGrid x:Name="scheduleGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="2500" Rows="1"/>
         </ScrollViewer>
     </Grid>

@@ -33,5 +33,51 @@ namespace P3
         {
             this.appointments[timeBlock] = appt;
         }
+
+
+        //gets the number of open appointments for this day
+        public int getNumAppointments()
+        {
+            int counter = 0;
+            if(appointments != null)
+            {
+                foreach( Appointment appt in appointments)
+                {
+                    if(appt != null)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        //gets the number of open slots of a specified size
+        public int getNumSlots(int slotSize, int startBlock, int endBlock)
+        {
+            int counter = 0;
+
+            int openBlockSizeCounter = 0;
+            for(int i = startBlock; i < appointments.Length && i < endBlock; i++)
+            {
+                if(appointments[i] == null)
+                {
+                    openBlockSizeCounter++;
+                    if(openBlockSizeCounter >= slotSize)
+                    {
+                        counter++;
+                        openBlockSizeCounter = 0;
+                    }
+                }
+                else
+                {
+                    openBlockSizeCounter = 0;
+                    i += appointments[i].getApptBlockLength();
+                }
+            }
+
+            return counter;
+        }
     }
 }

@@ -27,17 +27,34 @@ namespace P3
             set;
         }
 
-        private int startBlock = 5; //placeholders, every block in 30 mins, starting at block zero
+        private int startBlock = 25; //placeholders, every block in 30 mins, starting at block zero
         private int endBlock = 40; //placeholders
 
+
+        //gets the first block the doctor works in on a day
         public int getStartBlock()
         {
             return this.startBlock;
         }
 
+        //gets the last block the doctor works in on a day
         public int getEndBlock()
         {
             return this.endBlock;
+        }
+
+        //returns whether on not the doctor works on this day of the week
+        public bool worksOn(int dayOfWeek)
+        {
+            //placeholder
+            if (dayOfWeek == 0 || dayOfWeek == 6) //sunday or saturday -- from our research
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
        /* public static ObservableCollection<Doctor> getDoctor()
