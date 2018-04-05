@@ -113,7 +113,7 @@ namespace P3
             //load days
             for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++) //currently using 2018 as placeholder
             {
-                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, rnd.Next(0, 11), "Slot");
+                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, getNumSlotsForAllDoctorsByDay(currentYear, currentMonth, i+1), "Slot");
                 dayBox.MouseLeftButtonDown += DayBox_MouseLeftButtonDown;
                 this.uniformMonthGrid.Children.Add(dayBox);
             }
@@ -143,12 +143,29 @@ namespace P3
             loadMonthCal(potentialLength, currentMonth, currentYear);
         }
 
-
+        //gets the offset fromt he start for a day of the week
         private int getDayOfWeekOffset(DateTime day)
         {
             DayOfWeek dayOfWeek = day.DayOfWeek;
 
             return (int)dayOfWeek;
+        }
+
+        //gets the number of open appointments for all doctors
+        private int getNumSlotsForAllDoctorsByDay(int year, int month, int day)
+        {
+            int numAppts = 0;
+            List<Doctor> allDoctors = MediSchedData.getDocList();
+
+            foreach (Doctor doc in allDoctors)
+            {
+                if (doc.worksOn((int)new DateTime(year, month, day).DayOfWeek))
+                {
+                    numAppts += MediSchedData.getDaySchedule(doc, year, month, day).getNumSlots(potentialLength,doc.getStartBlock(), doc.getEndBlock());
+                }
+            }
+
+            return numAppts;
         }
     }
 }

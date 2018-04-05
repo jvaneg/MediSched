@@ -59,7 +59,7 @@ namespace P3
             //load days
             for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++) //currently using 2018 as placeholder
             {
-                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, rnd.Next(0, 11), "Appointment");
+                MonthDayBoxControl dayBox = new MonthDayBoxControl(i + 1, getNumApptsForAllDoctorsByDay(currentYear, currentMonth, i+1), "Appointment");
                 dayBox.MouseLeftButtonDown += DayBox_MouseLeftButtonDown;
                 this.uniformMonthGrid.Children.Add(dayBox);
             }
@@ -105,8 +105,15 @@ namespace P3
         private int getNumApptsForAllDoctorsByDay(int year, int month, int day)
         {
             int numAppts = 0;
+            List<Doctor> allDoctors = MediSchedData.getDocList();
 
-
+            foreach( Doctor doc in allDoctors)
+            {
+                if (doc.worksOn((int)new DateTime(year, month, day).DayOfWeek))
+                {
+                    numAppts += MediSchedData.getDaySchedule(doc, year, month, day).getNumAppointments();
+                }
+            }
 
             return numAppts;
         }

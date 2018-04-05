@@ -11,6 +11,17 @@ namespace P3
     {
         private static List<Doctor> docList = new List<Doctor>();
 
+        //sets up the fake db
+        public static void setUpFakeDb()
+        {
+            addDocToList("Dr A", "MWF", "placeholder"); //placeholder
+            addDocToList("Dr B", "MWF", "placeholder"); //placeholder
+            addDocToList("Dr C", "MWF", "placeholder"); //placeholder
+        }
+
+        //triggers when the db changes
+        public static event EventHandler dbChanged = delegate {};
+
         public static List<Doctor> getDocList()
         {
             return docList;
@@ -19,6 +30,14 @@ namespace P3
         public static void addDocToList(string docName, string workingdays, string workingTime)
         {
             docList.Add(new Doctor() { Name = docName, Days = workingdays, Hours = workingTime });
+            dbChanged(null, null); //im sorry this is so janky, triggers the dbChanged event
+        }
+
+        //gets the doctor's schedule for this day
+        public static DaySchedule getDaySchedule(Doctor doctor, int year, int month, int day)
+        {
+            //placeholder return
+            return new DaySchedule();
         }
         
     }

@@ -24,22 +24,19 @@ namespace P3
 
         public MainWindow()
         {
+            MediSchedData.setUpFakeDb(); //setting up the fake database
+            
             InitializeComponent();
-            this.time = DateTime.Now;
-            this.dateText.Text = time.ToString("d MMM yyyy");
 
-            //adding a dummy for the horz prototype
-            //SchedDayControl schedDay = new SchedDayControl("Doctor A", null);
-            SchedDayControl schedDay = new SchedDayControl(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00 20:30" }, new DaySchedule());
-            this.scheduleGrid.Children.Add(schedDay);
+            MediSchedData.dbChanged += handleDbChange;
 
-            for (int i = 0; i < 2; i++)
-            {
-                //SchedDayControl schedDay = new SchedDayControl("Doctor A", 3, "Cool Joey", "Appointment Type 2");
-                //SchedDayControl schedDay = new SchedDayControl("Doctor A");
-                schedDay = new SchedDayControl("Doctor A");
-                this.scheduleGrid.Children.Add(schedDay);
-            }
+            loadDaySchedules();
+        }
+
+        //reloads the page when the db changes
+        private void handleDbChange(object sender, EventArgs e)
+        {
+            loadDaySchedules();
         }
 
         private void newApptButton_Click(object sender, RoutedEventArgs e)
@@ -83,6 +80,27 @@ namespace P3
             DoctorsWindow docWindow =  new DoctorsWindow();
             docWindow.Owner = this;
             docWindow.Show();
+        }
+
+        //loads the day schedules and updates the date
+        private void loadDaySchedules()
+        {
+            this.time = DateTime.Now;
+            this.dateText.Text = time.ToString("d MMM yyyy");
+
+            SchedDayControl schedDay = null;
+            List<Doctor> allDoctors = MediSchedData.getDocList();
+
+            this.scheduleGrid.Children.Clear();
+
+            foreach (Doctor doc in allDoctors)
+            {
+                if (doc.worksOn((int)time.DayOfWeek))
+                {
+                    schedDay = new SchedDayControl(doc, MediSchedData.getDaySchedule(doc, time.Year, time.Month, time.Day));
+                    this.scheduleGrid.Children.Add(schedDay);
+                }
+            }
         }
 
     }

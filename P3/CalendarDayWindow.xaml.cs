@@ -29,14 +29,20 @@ namespace P3
             this.time = new DateTime(year, month, day);
             this.dateText.Text = time.ToString("d MMM yyyy");
 
-            for (int i = 0; i < 3; i++)
-            {
-                //SchedDayControl schedDay = new SchedDayControl("Doctor A");
-                SchedDayControl schedDay = new SchedDayControl(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00 20:30" }, new DaySchedule());
-                this.scheduleGrid.Children.Add(schedDay);
-            }
+            MediSchedData.dbChanged += handleDbChange;
+
+            loadDaySchedules();
         }
 
+
+        //reloads the page when the db changes
+        private void handleDbChange(object sender, EventArgs e)
+        {
+            loadDaySchedules();
+        }
+
+
+        //when the window closes
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             //do my stuff before closing
@@ -48,11 +54,30 @@ namespace P3
             base.OnClosing(e);
         }
 
+        //when you press the back button
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.backButtoned = true;
 
             this.Close();
+        }
+
+        //loads the day schedules
+        private void loadDaySchedules()
+        {
+            SchedDayControl schedDay = null;
+            List<Doctor> allDoctors = MediSchedData.getDocList();
+
+            this.scheduleGrid.Children.Clear();
+
+            foreach (Doctor doc in allDoctors)
+            {
+                if (doc.worksOn((int)time.DayOfWeek))
+                {
+                    schedDay = new SchedDayControl(doc, MediSchedData.getDaySchedule(doc, time.Year, time.Month, time.Day));
+                    this.scheduleGrid.Children.Add(schedDay);
+                }
+            }
         }
     }
 }
