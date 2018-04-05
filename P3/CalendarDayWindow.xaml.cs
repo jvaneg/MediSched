@@ -31,7 +31,8 @@ namespace P3
 
             for (int i = 0; i < 3; i++)
             {
-                SchedDayControl schedDay = new SchedDayControl("Doctor A");
+                //SchedDayControl schedDay = new SchedDayControl("Doctor A");
+                SchedDayControl schedDay = new SchedDayControl(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00 20:30" }, new DaySchedule());
                 this.scheduleGrid.Children.Add(schedDay);
             }
         }
