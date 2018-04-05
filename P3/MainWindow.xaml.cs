@@ -79,7 +79,8 @@ namespace P3
 
         private void doctorsButton_Click(object sender, RoutedEventArgs e)
         {
-            DoctorsWindow docWindow = new DoctorsWindow();
+            
+            DoctorsWindow docWindow =  new DoctorsWindow();
             docWindow.Owner = this;
             docWindow.Show();
         }
