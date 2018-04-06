@@ -32,8 +32,8 @@ namespace P3
             set;
         }
 
-        private int startBlock = 25; //placeholders, every block in 30 mins, starting at block zero
-        private int endBlock = 40; //placeholders
+        private int startBlock = 10; //placeholders, every block in 30 mins, starting at block zero
+        private int endBlock = 44; //placeholders
 
 
         //gets the first block the doctor works in on a day

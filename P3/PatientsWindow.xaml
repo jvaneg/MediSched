@@ -25,9 +25,9 @@
         <ScrollViewer x:Name="searchScroller" Height="210" Canvas.Left="40" Canvas.Top="75" Width="273">
             <ListBox x:Name="PatientList" Width="256" Background="White" BorderBrush="#FFABADB3">
 
-                <ListBoxItem x:Name="PatientA" Selected="PatientA_Selected" Content="ListBox Item #1" />
-                <ListBoxItem x:Name="PatientB" Selected="PatientA_Selected" Content="ListBox Item #2" />
-                <ListBoxItem x:Name="PatientC" Selected="PatientA_Selected" Content="ListBox Item #3" />
+                <ListBoxItem x:Name="PatientA" Selected="Patient_Selected" Content="ListBox Item #1" />
+                <ListBoxItem x:Name="PatientB" Selected="Patient_Selected" Content="ListBox Item #2" />
+                <ListBoxItem x:Name="PatientC" Selected="Patient_Selected" Content="ListBox Item #3" />
             </ListBox>
         </ScrollViewer>
 

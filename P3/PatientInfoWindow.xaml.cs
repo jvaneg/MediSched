@@ -103,7 +103,7 @@ namespace P3
 
             foreach(Appointment appt in patient.getAppointments())
             {
-                if(appt.getDate() < DateTime.Now)
+                if(appt.getDate() <= DateTime.Now)
                 {
                     //add to history list
                     this.historyList.Items.Add(appt); //not really clear on how this works honestly
@@ -172,7 +172,8 @@ namespace P3
             this.patient.age = this.ageBox.Text;
             this.patient.bloodType = this.bloodBox.Text;
 
-
+            //force db to refresh
+            MediSchedData.forceRefresh();
         }
 
         //sets personal tab to edit mode
@@ -240,6 +241,9 @@ namespace P3
             this.patient.billCountry = this.billCountryBlock.Text;
             this.patient.billPhone = this.billPhoneBlock.Text;
             this.patient.billPostal = this.billPostalBlock.Text;
+
+            //force the db to refresh
+            //MediSchedData.forceRefresh();
         }
 
         //sets billing info to edit mode

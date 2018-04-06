@@ -12,17 +12,42 @@ namespace P3
     {
         private static List<Doctor> docList = new List<Doctor>();
         private static List<Patient> patientList = new List<Patient>();
+        private static Dictionary<Doctor, List<DaySchedule>> daySchedules = new Dictionary<Doctor, List<DaySchedule>>(); 
 
         //sets up the fake db
         public static void setUpFakeDb()
         {
-            //addDocToList("Dr A", "MWF", "placeholder"); //placeholder
-            //addDocToList("Dr B", "MWF", "placeholder"); //placeholder
-            //addDocToList("Dr C", "MWF", "placeholder"); //placeholder
+            //generate sample doctors
+            addDocToList(new Doctor() { Name = "Dr van Egmond", Days = "MWF", Hours = "1:20-2:20" }); //placeholder, change to preset system like patients has
+            addDocToList(new Doctor() { Name = "Dr Niu", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
+            addDocToList(new Doctor() { Name = "Dr Dhillon", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
 
-            addDocToList(new Doctor() { Name = "Dr A", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
-            addDocToList(new Doctor() { Name = "Dr B", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
-            addDocToList(new Doctor() { Name = "Dr C", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
+            //generate sample patients
+            addPatientToList(new Patient(1)); //preset patients
+            addPatientToList(new Patient(2)); //preset patients
+            addPatientToList(new Patient(3)); //preset patients
+
+            //add doctors to <doctor, dayschedule list> hashtable
+            foreach( Doctor doc in docList)
+            {
+                daySchedules.Add(doc, new List<DaySchedule>());
+            }
+
+            //add preset day schedules to the doctors
+            //doc 1 gets 1 2 3
+            daySchedules[docList[0]].Add(new DaySchedule(1, patientList));
+            daySchedules[docList[0]].Add(new DaySchedule(2, patientList));
+            daySchedules[docList[0]].Add(new DaySchedule(3, patientList));
+            //doc 2 gets 3 1 2
+            daySchedules[docList[1]].Add(new DaySchedule(3, patientList));
+            daySchedules[docList[1]].Add(new DaySchedule(1, patientList));
+            daySchedules[docList[1]].Add(new DaySchedule(2, patientList));
+            //doc 3 gets 2 3 1
+            daySchedules[docList[2]].Add(new DaySchedule(2, patientList));
+            daySchedules[docList[2]].Add(new DaySchedule(3, patientList));
+            daySchedules[docList[2]].Add(new DaySchedule(1, patientList));
+
+
         }
 
         //triggers when the db changes
@@ -42,10 +67,13 @@ namespace P3
         }
 
         //gets the doctor's schedule for this day
+        //fakes it by just grabbing one of 3 possible days
+        //ignores the eyar and month and mods the day by the # of possible schedules
         public static DaySchedule getDaySchedule(Doctor doctor, int year, int month, int day)
         {
+            return daySchedules[doctor][day % 3];
             //placeholder return
-            return new DaySchedule();
+            //return new DaySchedule(1, patientList);
         }
 
         /* 
@@ -92,7 +120,13 @@ namespace P3
         public static void addPatientToList(Patient newPatient)
         {
             patientList.Add(newPatient);
+            dbChanged(null, null);
         }
 
+
+        public static void forceRefresh()
+        {
+            dbChanged(null, null);
+        }
     }
 }

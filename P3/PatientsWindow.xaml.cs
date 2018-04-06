@@ -29,7 +29,11 @@ namespace P3
         ObservableCollection<Patient> patientList = new ObservableCollection<Patient>();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            patientList.Add(new Patient(1)); //placeholder
+            patientList.Add(new Patient(2)); //placeholder
+            patientList.Add(new Patient(3)); //placeholder
 
+            /*
             patientList.Add(new Patient() { PatientNo = 1001, PatientName = "Mahesh" });
             patientList.Add(new Patient() { PatientNo = 1002, PatientName = "Amit" });
             patientList.Add(new Patient() { PatientNo = 1003, PatientName = "Vaibhav" });
@@ -40,6 +44,7 @@ namespace P3
             patientList.Add(new Patient() { PatientNo = 1008, PatientName = "Pankaj" });
             patientList.Add(new Patient() { PatientNo = 1009, PatientName = "Kaustubh" });
             patientList.Add(new Patient() { PatientNo = 1010, PatientName = "Mohan" });
+            */
 
 
             lstPatientData.ItemsSource = patientList;
@@ -84,10 +89,10 @@ namespace P3
 
         //select a patient from the list
         //currently generates a placeholder patient
-        private void PatientA_Selected(object sender, RoutedEventArgs e)
+        private void Patient_Selected(object sender, RoutedEventArgs e)
         {
             //somehow get the patient object from the selected item
-            Patient selectedPatient = new Patient(); //placeholder
+            Patient selectedPatient = new Patient(1); //placeholder
             PatientInfo patientinfo = new PatientInfo(selectedPatient);
             patientinfo.Owner = this.Owner;
             this.Close();

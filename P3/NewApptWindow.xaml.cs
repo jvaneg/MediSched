@@ -47,7 +47,7 @@ namespace P3
         private void Patient_Selected(object sender, RoutedEventArgs e)
         {
             //somehow get the patient object from the selected item
-            Patient selectedPatient = new Patient(); //placeholder
+            Patient selectedPatient = new Patient(1); //placeholder
             NewApptMonth apptMonthWindow = new NewApptMonth(selectedPatient);
             apptMonthWindow.Owner = this.Owner;
             apptMonthWindow.Show();

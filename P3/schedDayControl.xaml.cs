@@ -97,6 +97,8 @@ namespace P3
             this.doctorNameBlock.Text = doctor.Name;
             this.patient = patient;
             this.time = time;
+            this.apptType = apptType;
+            this.potentialLength = potentialLength;
             int startBlock = doctor.getStartBlock();
             int endBlock = doctor.getEndBlock();
 
@@ -224,8 +226,11 @@ namespace P3
                 //add the appointment to the patient as well
                 this.patient.addAppointment(apptBlock.getApptRepresenting());
 
-                MessageBox.Show("SAVED");
+                //MessageBox.Show("SAVED");
                 Window.GetWindow(this).Close();
+
+                //force the windows to update
+                MediSchedData.forceRefresh();
             }
         }
 
