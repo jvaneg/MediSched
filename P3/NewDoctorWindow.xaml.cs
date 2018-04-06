@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 
@@ -71,9 +72,8 @@ namespace P3
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
             DoctorsWindow parentDoc = (DoctorsWindow)this.Owner;
-            if (parentDoc != null )
+            if (parentDoc != null)
             {
-
                 Doctor rowToBeUpdated = (Doctor)parentDoc.docListGrid.SelectedItem;
 
                 string dash = "-";
@@ -81,7 +81,6 @@ namespace P3
                 {
                     dash = "";
                 }
-
 
                 if (mondayBox.IsChecked == true)
                     isM = true;
@@ -164,11 +163,10 @@ namespace P3
                     endTBlock2.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
-
                 if (canAdd)
                 {
                     canAdd = true;
-
+                    
                     //if row is selected and edit button is clicked
                     if (rowToBeUpdated != null && isEdit == true)
                     {
@@ -176,13 +174,22 @@ namespace P3
                         rowToBeUpdated.Hours = startTBlock1.Text + ':' + startTBlock2.Text  + dash + endTBlock1.Text + ':' + endTBlock2.Text;
                         rowToBeUpdated.Days = this.workingDays;
 
+                        MediSchedData.updateDocInfo(rowToBeUpdated.ID, rowToBeUpdated.Name, rowToBeUpdated.Hours, rowToBeUpdated.Days);
                         parentDoc.docListGrid.Items.Refresh();
                     }
                     else if (isEdit == false)   //otherwise they clicked the add new doctor button
                     {
+                        List<Doctor> docLs = MediSchedData.getDocList();
+                        int lastID = 0;
+
+                        if (docLs.Count != 0)
+                        {
+                            lastID = docLs[docLs.Count - 1].ID;
+                        }
+
                         parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text) });
+                        MediSchedData.addDocToList(new Doctor() {ID = (lastID + 1), Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text) });
                     }
-                    MediSchedData.addDocToList(docNameBlock.Text, this.workingDays, (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text));
                 }
             }
             if(canAdd)
