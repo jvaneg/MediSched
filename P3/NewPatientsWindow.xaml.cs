@@ -31,8 +31,13 @@ namespace P3
         //press ok on new patient window
         private void OkButtonStyle(object sender, RoutedEventArgs e)
         {
+            //maybe prevent from adding patient with no name
+
             //create patient from form data
-            Patient newPatient = new Patient(); //placeholder
+            Patient newPatient = new Patient(this.nameBlock.Text, this.emailBlock.Text, this.streetBlock.Text, this.cityBlock.Text, this.provBlock.Text, this.countryBlock.Text, this.phoneBlock.Text,
+                                             this.ageBlock.Text, this.bloodBlock.Text, this.billStreetBox.Text, this.billCityBox.Text, this.billProvBox.Text, this.billCountryBox.Text, this.billPhoneBox.Text,
+                                             this.billPostalBox.Text);
+
             MediSchedData.addPatientToList(newPatient);
 
             if (fromAppointment)
