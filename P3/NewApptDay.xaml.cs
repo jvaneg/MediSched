@@ -27,6 +27,7 @@ namespace P3
 
 
         //deprecated dont use
+        /*
         public NewApptDay()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace P3
                 this.scheduleGrid.Children.Add(schedDay);
             }
         }
+        */
 
         //creates a new day
         public NewApptDay(int day, int month, int year, int potentialLength, string apptType, Patient targetPatient)

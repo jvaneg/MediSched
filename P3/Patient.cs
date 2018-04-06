@@ -66,6 +66,11 @@ namespace P3
             this.PatientName = "Arsho";
             this.PatientNo = 1;
         }
+
+        public void addAppointment(Appointment newAppt)
+        {
+            this.appointments.Add(newAppt);
+        }
         
        
     }
