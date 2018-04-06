@@ -65,9 +65,6 @@ namespace P3
         {
             this.PatientName = "Arsho";
             this.PatientNo = 1;
-        }
-        
-       
+        }       
     }
-
 }

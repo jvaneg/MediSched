@@ -31,26 +31,57 @@ namespace P3
         //press ok on new patient window
         private void OkButtonStyle(object sender, RoutedEventArgs e)
         {
+            bool canClose = true;
             //maybe prevent from adding patient with no name
 
-            //create patient from form data
-            Patient newPatient = new Patient(this.nameBlock.Text, this.emailBlock.Text, this.streetBlock.Text, this.cityBlock.Text, this.provBlock.Text, this.countryBlock.Text, this.phoneBlock.Text,
-                                             this.ageBlock.Text, this.bloodBlock.Text, this.billStreetBox.Text, this.billCityBox.Text, this.billProvBox.Text, this.billCountryBox.Text, this.billPhoneBox.Text,
-                                             this.billPostalBox.Text);
-
-            MediSchedData.addPatientToList(newPatient);
-
-            if (fromAppointment)
+            if (string.IsNullOrEmpty(nameBlock.Text.Trim()))
             {
-                NewApptMonth apptmonthWindow = new NewApptMonth(newPatient);
-                apptmonthWindow.Owner = this.Owner;
-                apptmonthWindow.Show();
+                canClose = false;
+                nameBlock.BorderBrush = new SolidColorBrush(Colors.Red);
             }
             else
             {
-                //maybe open the thing for that patient but probably not
+                nameBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
             }
-            this.Close();
+
+            
+            /*if (string.IsNullOrEmpty(ageBlock.Text.Trim()))
+            {
+                canClose = false;
+                ageBlock.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                ageBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
+            }
+            */
+
+            if (canClose)
+            {
+                //create patient from form data
+                Patient newPatient = new Patient(this.nameBlock.Text, this.emailBlock.Text, this.streetBlock.Text, this.cityBlock.Text, this.provBlock.Text, this.countryBlock.Text, this.phoneBlock.Text,
+                                                 this.ageBlock.Text, this.bloodBlock.Text, this.billStreetBox.Text, this.billCityBox.Text, this.billProvBox.Text, this.billCountryBox.Text, this.billPhoneBox.Text,
+                                                 this.billPostalBox.Text);
+
+                MediSchedData.addPatientToList(newPatient);
+
+
+
+
+
+                if (fromAppointment)
+                {
+                    NewApptMonth apptmonthWindow = new NewApptMonth(newPatient);
+                    apptmonthWindow.Owner = this.Owner;
+                    apptmonthWindow.Show();
+                }
+                else
+                {
+                    //maybe open the thing for that patient but probably not
+                }
+
+                this.Close();
+            }
         }
     }
 }
