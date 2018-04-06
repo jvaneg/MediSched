@@ -7,10 +7,11 @@ using System.Windows;
 
 namespace P3
 {
-    
+
     public static class MediSchedData
     {
         private static List<Doctor> docList = new List<Doctor>();
+        private static List<Patient> patientList = new List<Patient>();
 
         //sets up the fake db
         public static void setUpFakeDb()
@@ -19,13 +20,13 @@ namespace P3
             //addDocToList("Dr B", "MWF", "placeholder"); //placeholder
             //addDocToList("Dr C", "MWF", "placeholder"); //placeholder
 
-            addDocToList(new Doctor() { Name = "Dr A", Days = "MWF", Hours = "1:20-2:20"}); //placeholder
+            addDocToList(new Doctor() { Name = "Dr A", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
             addDocToList(new Doctor() { Name = "Dr B", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
             addDocToList(new Doctor() { Name = "Dr C", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
         }
 
         //triggers when the db changes
-        public static event EventHandler dbChanged = delegate {};
+        public static event EventHandler dbChanged = delegate { };
 
         public static List<Doctor> getDocList()
         {
@@ -55,7 +56,7 @@ namespace P3
         {
             for (int i = 0; i < docList.Count; i++)
             {
-                
+
                 if (docList[i].ID == ID)
                 {
                     docList.RemoveAt(i);
@@ -72,7 +73,7 @@ namespace P3
          * Hours: updated doctor's hours
          * Days: updated doctor's days
          */
-        internal static void updateDocInfo(int ID, string name, string hours, string days)
+        public static void updateDocInfo(int ID, string name, string hours, string days)
         {
             for (int i = 0; i < docList.Count; i++)
             {
@@ -86,5 +87,12 @@ namespace P3
             }
             dbChanged(null, null);
         }
+
+        //adds a patient to the patient list
+        public static void addPatientToList(Patient newPatient)
+        {
+            patientList.Add(newPatient);
+        }
+
     }
 }
