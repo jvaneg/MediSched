@@ -35,7 +35,7 @@ namespace P3
 
                 for (int i = 0; i < ls.Count; i++)
                 {
-                    docListGrid.Items.Add(new Doctor() { Name = ls[i].Name, Days = ls[i].Days, Hours = ls[i].Hours });
+                    docListGrid.Items.Add(new Doctor() {ID = ls[i].ID, Name = ls[i].Name, Days = ls[i].Days, Hours = ls[i].Hours });
                 }
             }
 
@@ -61,6 +61,7 @@ namespace P3
                 NewDoctorWindow newDocWindow = new NewDoctorWindow(doc.Name, doc.Days, doc.Hours, true); //true -> set edit mode
                 newDocWindow.Owner = this;
                 newDocWindow.Show();
+
             }
         }
 
@@ -68,9 +69,8 @@ namespace P3
         {
             if (docListGrid.SelectedItem != null)
             {
-                //TODO delete from DB 
-                
-                docListGrid.Items.Remove((Doctor)docListGrid.SelectedItem);
+                MediSchedData.deleteDoc((docListGrid.SelectedItem as Doctor).ID);
+                docListGrid.Items.Remove(docListGrid.SelectedItem);
             }
         }
     }
