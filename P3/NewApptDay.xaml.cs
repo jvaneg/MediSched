@@ -74,7 +74,7 @@ namespace P3
             {
                 if (doc.worksOn((int)time.DayOfWeek))
                 {
-                    schedDay = new SchedDayControl(doc, MediSchedData.getDaySchedule(doc, time.Year, time.Month, time.Day), this.potentialLength, this.apptType, this.patient);
+                    schedDay = new SchedDayControl(doc, MediSchedData.getDaySchedule(doc, time.Year, time.Month, time.Day), this.potentialLength, this.apptType, this.patient, this.time);
                     this.scheduleGrid.Children.Add(schedDay);
                 }
             }

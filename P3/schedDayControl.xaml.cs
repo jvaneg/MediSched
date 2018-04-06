@@ -26,6 +26,7 @@ namespace P3
         private string apptType = ""; //for add mode
         private int potentialLength = 1;
         private int startBlock = 0;
+        private DateTime time = DateTime.Now;
 
 
         //for view mode deprecated
@@ -88,13 +89,14 @@ namespace P3
         */
 
         //loading a day schedule for add mode
-        public SchedDayControl(Doctor doctor, DaySchedule daySchedule, int potentialLength, string apptType, Patient patient)
+        public SchedDayControl(Doctor doctor, DaySchedule daySchedule, int potentialLength, string apptType, Patient patient, DateTime time)
         {
             InitializeComponent();
             Appointment appt = null;
             this.daySched = daySchedule;
             this.doctorNameBlock.Text = doctor.Name;
             this.patient = patient;
+            this.time = time;
             int startBlock = doctor.getStartBlock();
             int endBlock = doctor.getEndBlock();
 
@@ -216,10 +218,10 @@ namespace P3
             {
                 //save and close
                 string apptStatus = "Not Arrived";
-                apptBlock.setApptRepresenting(new Appointment(patient, apptType, apptStatus, potentialLength, this.startBlock)); //saves the appointment to the block (probably dont need this)
+                apptBlock.setApptRepresenting(new Appointment(patient, apptType, apptStatus, potentialLength, this.startBlock, this.time)); //saves the appointment to the block (probably dont need this)
                 daySched.setAppointmentAtTime(apptBlock.getApptRepresenting(), Array.IndexOf(apptBlocks, apptBlock)); //save the appointment to the schedule
 
-                //TODO: add the appointment to the patient as well
+                //add the appointment to the patient as well
                 this.patient.addAppointment(apptBlock.getApptRepresenting());
 
                 MessageBox.Show("SAVED");

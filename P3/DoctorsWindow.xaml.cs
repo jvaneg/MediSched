@@ -35,7 +35,8 @@ namespace P3
 
                 for (int i = 0; i < ls.Count; i++)
                 {
-                    docListGrid.Items.Add(new Doctor() {ID = ls[i].ID, Name = ls[i].Name, Days = ls[i].Days, Hours = ls[i].Hours });
+                    //docListGrid.Items.Add(new Doctor() {ID = ls[i].ID, Name = ls[i].Name, Days = ls[i].Days, Hours = ls[i].Hours });
+                    docListGrid.Items.Add(ls[i]);
                 }
             }
 

@@ -82,10 +82,13 @@ namespace P3
         }
 
 
-
+        //select a patient from the list
+        //currently generates a placeholder patient
         private void PatientA_Selected(object sender, RoutedEventArgs e)
         {
-            PatientInfo patientinfo = new PatientInfo();
+            //somehow get the patient object from the selected item
+            Patient selectedPatient = new Patient(); //placeholder
+            PatientInfo patientinfo = new PatientInfo(selectedPatient);
             patientinfo.Owner = this.Owner;
             this.Close();
             patientinfo.Show();
@@ -102,6 +105,7 @@ namespace P3
             
         }
 
+        //click new patient
         private void NewPatient_Click(object sender, RoutedEventArgs e)
         {
             NewPatientsWindow patientWindow = new NewPatientsWindow(false);

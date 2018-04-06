@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,20 @@ namespace P3
     /// </summary>
     public partial class PatientInfo : Window
     {
-        public PatientInfo()
+        private Patient patient = null;
+        private ObservableCollection<Appointment> History { get; set; } //dont understand how binding works but if this is gone it stops working
+
+        public PatientInfo(Patient selectedPatient)
         {
+            this.patient = selectedPatient;
+            History = new ObservableCollection<Appointment>();
+
             InitializeComponent();
+
+            this.historyList.SelectionChanged += appt_Selected;
+            this.futureList.SelectionChanged += appt_Selected;
+
+
 
             this.nameBox.Visibility = Visibility.Hidden;
             this.emailBox.Visibility = Visibility.Hidden;
@@ -62,13 +74,59 @@ namespace P3
 
             this.editBillButton.Visibility = Visibility.Visible;
             this.saveBillButton.Visibility = Visibility.Hidden;
+
+            loadPatientData();
         }
 
+
+        //loads data from the patient object
+        private void loadPatientData()
+        {
+            this.displayPatientname.Text = this.patient.PatientName;
+
+            this.nameBlock.Text = this.patient.PatientName;
+            this.emailBlock.Text = this.patient.email;
+            this.streetBlock.Text = this.patient.address;
+            this.cityBlock.Text = this.patient.city;
+            this.provBlock.Text = this.patient.province;
+            this.countryBlock.Text = this.patient.country;
+            this.phoneBlock.Text = this.patient.phone;
+            this.ageBlock.Text = this.patient.age;
+            this.bloodBlock.Text = this.patient.bloodType;
+
+            this.billStreetBlock.Text = this.patient.billAddress;
+            this.billCityBlock.Text = this.patient.billCity;
+            this.billProvBlock.Text = this.patient.billProvince;
+            this.billCountryBlock.Text = this.patient.billCountry;
+            this.billPhoneBlock.Text = this.patient.billPhone;
+            this.billPostalBlock.Text = this.patient.billPostal;
+
+            foreach(Appointment appt in patient.getAppointments())
+            {
+                if(appt.getDate() < DateTime.Now)
+                {
+                    //add to history list
+                    this.historyList.Items.Add(appt); //not really clear on how this works honestly
+                    //History.Add(appt);
+                    
+                }
+                else
+                {
+                    //add to future list
+                    this.futureList.Items.Add(appt);
+                }
+            }
+        }
+
+
+        //idk
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
         }
 
+
+        //saves personal info
         private void savePersonal()
         {
             this.nameBox.Visibility = Visibility.Hidden;
@@ -103,9 +161,21 @@ namespace P3
             this.ageBlock.Visibility = Visibility.Visible;
             this.bloodBlock.Visibility = Visibility.Visible;
 
-            
+            //save to the object
+            this.patient.PatientName = this.nameBox.Text;
+            this.patient.email = this.emailBox.Text;
+            this.patient.address = this.streetBox.Text;
+            this.patient.city = this.cityBox.Text;
+            this.patient.province = this.provBox.Text;
+            this.patient.country = this.countryBox.Text;
+            this.patient.phone = this.phoneBox.Text;
+            this.patient.age = this.ageBox.Text;
+            this.patient.bloodType = this.bloodBox.Text;
+
+
         }
 
+        //sets personal tab to edit mode
         private void editPersonal()
         {
             this.nameBlock.Visibility = Visibility.Hidden;
@@ -139,6 +209,7 @@ namespace P3
             this.bloodBox.Visibility = Visibility.Visible;
         }
 
+        //saves billing info
         private void saveBilling()
         {
             this.billStreetBox.Visibility = Visibility.Hidden;
@@ -161,8 +232,17 @@ namespace P3
             this.billCountryBlock.Visibility = Visibility.Visible;
             this.billPhoneBlock.Visibility = Visibility.Visible;
             this.billPostalBlock.Visibility = Visibility.Visible;
+
+            //save to the object
+            this.patient.billAddress = this.billStreetBlock.Text;
+            this.patient.billCity = this.billCityBlock.Text;
+            this.patient.billProvince = this.billProvBlock.Text;
+            this.patient.billCountry = this.billCountryBlock.Text;
+            this.patient.billPhone = this.billPhoneBlock.Text;
+            this.patient.billPostal = this.billPostalBlock.Text;
         }
 
+        //sets billing info to edit mode
         private void editBilling()
         {
             this.billStreetBlock.Visibility = Visibility.Hidden;
@@ -187,11 +267,15 @@ namespace P3
             this.billPostalBox.Visibility = Visibility.Visible;
         }
 
+
+        //clicked the backup button
         private void BackupButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Information backed up");
         }
         
+
+        //clicked the edit button on the personal info tab
         private void EditPersonalInfoButton_Click(object sender, RoutedEventArgs e)
         {
             editPersonal();
@@ -199,6 +283,7 @@ namespace P3
             this.savePersButton.Visibility = Visibility.Visible;
         }
 
+        //clicked the edit button on the billing tab
         private void EditBillingInfoButton_Click(object sender, RoutedEventArgs e)
         {
             editBilling();
@@ -206,6 +291,7 @@ namespace P3
             this.saveBillButton.Visibility = Visibility.Visible;
         }
 
+        //pressed the save personal info button after editing
         private void savePersButton_Click(object sender, RoutedEventArgs e)
         {
             savePersonal();
@@ -213,6 +299,7 @@ namespace P3
             this.savePersButton.Visibility = Visibility.Hidden;
         }
 
+        //pressed the save billing info button after editing
         private void saveBillButton_Click(object sender, RoutedEventArgs e)
         {
             saveBilling();
@@ -220,9 +307,14 @@ namespace P3
             this.saveBillButton.Visibility = Visibility.Hidden;
         }
 
+
+        //selected an appointment from the past/future tabs
+        //TODO contains placeholder
         private void appt_Selected(object sender, RoutedEventArgs e)
         {
-            ApptWindow apptWindow = new ApptWindow();
+            //get the appointment from the list somehow
+            Appointment apptSelected = ((sender as ListBox).SelectedItem as Appointment);
+            ApptWindow apptWindow = new ApptWindow(apptSelected);
             apptWindow.Owner = this;
             apptWindow.Show();
         }

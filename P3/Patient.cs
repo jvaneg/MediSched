@@ -37,7 +37,7 @@ namespace P3
         public string billPhone = "";
         public string billPostal = "";
 
-        List<Appointment> appointments = new List<Appointment>(); //list of appointments
+        private List<Appointment> appointments = new List<Appointment>(); //list of appointments
 
 
         //real patient constructor
@@ -60,18 +60,32 @@ namespace P3
             this.billPostal = billPostal;
         }
 
-        //stub only here temporarily
+        //stub only here temporarily for testing, being called from the two patient select search spots
         public Patient()
+        {
+            this.PatientName = "Arsho2";
+            this.PatientNo = 1;
+            this.appointments.Add(new Appointment(this, "Appt Type 1", "Not Arrived", 3, 5, new DateTime(2050,1,1))); //test stuff
+        }
+
+        //fake constructor get rid of me once everything works
+        public Patient(int fake)
         {
             this.PatientName = "Arsho";
             this.PatientNo = 1;
         }
 
+        //adds a new appointment to the patient
         public void addAppointment(Appointment newAppt)
         {
             this.appointments.Add(newAppt);
         }
         
+        //gets the list of appointments associated with the patient
+        public List<Appointment> getAppointments()
+        {
+            return this.appointments;
+        }
        
     }
 

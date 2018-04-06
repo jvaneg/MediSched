@@ -133,7 +133,7 @@ namespace P3
         //event for when you click on the patient's name
         private void pnameButton_Click(object sender, RoutedEventArgs e)
         {
-            PatientInfo patientInfoWindow = new PatientInfo();
+            PatientInfo patientInfoWindow = new PatientInfo(this.apptRepresenting.getPatient());
             patientInfoWindow.Owner = this;
             patientInfoWindow.Show();
         }
