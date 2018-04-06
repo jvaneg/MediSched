@@ -38,15 +38,20 @@ namespace P3
         {
             NewPatientsWindow patientWindow = new NewPatientsWindow(true);
             patientWindow.Owner = this.Owner;
-            this.Close();
             patientWindow.Show();
-        }
-        private void PatientA_Selected(object sender, RoutedEventArgs e)
-        {
-            NewApptMonth apptmonthWindow = new NewApptMonth();
-            apptmonthWindow.Owner = this.Owner;
             this.Close();
-            apptmonthWindow.Show();
+        }
+
+        //currently just creates a patient
+        //placeholder
+        private void Patient_Selected(object sender, RoutedEventArgs e)
+        {
+            //somehow get the patient object from the selected item
+            Patient selectedPatient = new Patient(); //placeholder
+            NewApptMonth apptMonthWindow = new NewApptMonth(selectedPatient);
+            apptMonthWindow.Owner = this.Owner;
+            apptMonthWindow.Show();
+            this.Close();
         }
     }
 }

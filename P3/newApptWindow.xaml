@@ -29,7 +29,7 @@
         </Style>
     </Window.Resources>
     <Canvas x:Name="newApptCanvas" Height="350" Width="354">
-        <Button x:Name="NewPatientBttn" Content="New patient" Click="NewPatient_Click" Height="26" Canvas.Left="258" Style="{DynamicResource mediButtonStyle}" Canvas.Top="314" Width="86" Cursor="Hand"/>
+        <Button x:Name="NewPatientBttn" Content="New patient" Click="NewPatient_Click" Height="26" Canvas.Left="236" Style="{DynamicResource mediButtonStyle}" Canvas.Top="314" Width="86" Cursor="Hand"/>
 
 
         <ListBox Height="204" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="255" Canvas.Left="49" Canvas.Top="67">
@@ -46,9 +46,9 @@
         <ScrollViewer x:Name="searchScroller" Height="210" Canvas.Left="49" Canvas.Top="67" Width="273">
             <ListBox x:Name="PatientList" Width="256" Background="White" BorderBrush="#FFABADB3">
 
-                <ListBoxItem x:Name="PatientA" Selected="PatientA_Selected" Content="ListBox Item #1" />
-                <ListBoxItem x:Name="PatientB" Selected="PatientA_Selected" Content="ListBox Item #2" />
-                <ListBoxItem x:Name="PatientC" Selected="PatientA_Selected" Content="ListBox Item #3" />
+                <ListBoxItem x:Name="PatientA" Selected="Patient_Selected" Content="ListBox Item #1" />
+                <ListBoxItem x:Name="PatientB" Selected="Patient_Selected" Content="ListBox Item #2" />
+                <ListBoxItem x:Name="PatientC" Selected="Patient_Selected" Content="ListBox Item #3" />
             </ListBox>
         </ScrollViewer>
 

@@ -37,14 +37,14 @@ namespace P3
             }
         }
 
-        //placeholder patient still in here
-        public NewApptDay(int day, int month, int year, int potentialLength, string apptType)
+        //creates a new day
+        public NewApptDay(int day, int month, int year, int potentialLength, string apptType, Patient targetPatient)
         {
             InitializeComponent();
 
             this.potentialLength = potentialLength;
             this.apptType = apptType;
-            this.patient = new Patient() { PatientName = "Arsho", PatientNo = 2 }; //placeholder
+            this.patient = targetPatient;
 
             this.time = new DateTime(year, month, day);
             this.dateText.Text = time.ToString("d MMM yyyy");
@@ -78,6 +78,7 @@ namespace P3
             }
         }
 
+        //special close logic
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             //do my stuff before closing
@@ -89,6 +90,7 @@ namespace P3
             base.OnClosing(e);
         }
 
+        //press the back button
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.backButtoned = true;

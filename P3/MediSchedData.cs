@@ -10,6 +10,7 @@ namespace P3
     public static class MediSchedData
     {
         private static List<Doctor> docList = new List<Doctor>();
+        private static List<Patient> patientList = new List<Patient>();
 
         //sets up the fake db
         public static void setUpFakeDb()
@@ -40,5 +41,10 @@ namespace P3
             return new DaySchedule();
         }
         
+        //add a new patient to the list
+        public static void addPatientToList(Patient newPatient)
+        {
+            patientList.Add(newPatient);
+        }
     }
 }

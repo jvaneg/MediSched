@@ -20,23 +20,30 @@ namespace P3
     public partial class NewPatientsWindow : Window
     {
         bool fromAppointment = false;
+
+        //initialize new patient window depending on if its from a new appointment window
         public NewPatientsWindow(bool fromAppointment)
         {
             InitializeComponent();
             this.fromAppointment = fromAppointment;
         }
 
+        //press ok on new patient window
         private void OkButtonStyle(object sender, RoutedEventArgs e)
         {
+            //create patient from form data
+            Patient newPatient = new Patient(); //placeholder
+            MediSchedData.addPatientToList(newPatient);
+
             if (fromAppointment)
             {
-                NewApptMonth apptmonthWindow = new NewApptMonth();
+                NewApptMonth apptmonthWindow = new NewApptMonth(newPatient);
                 apptmonthWindow.Owner = this.Owner;
                 apptmonthWindow.Show();
             }
             else
             {
-                //something in the implementation phase
+                //maybe open the thing for that patient but probably not
             }
             this.Close();
         }

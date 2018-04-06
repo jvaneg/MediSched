@@ -12,7 +12,7 @@ namespace P3
         private string apptType = "Appointment Type 1";
         private string apptStatus = "Being Seen";
         private int apptBlockLength = 3; //length in 30 min blocks
-        private Patient patient = new Patient() { PatientName = "Arsho", PatientNo = 2 };
+        private Patient patient = new Patient(); //placeholder
         private int apptStartBlock = 1; //not really used for loading, just use this to calculate time
 
         //constructor for creating a new appointment from the new appointment process

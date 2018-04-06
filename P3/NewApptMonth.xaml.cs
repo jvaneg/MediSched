@@ -26,9 +26,14 @@ namespace P3
         private string apptType = "Appointment Type 1";
         private int potentialLength = 1;
 
-        public NewApptMonth()
+        private Patient targetPatient = null;
+
+        //create the new month
+        public NewApptMonth(Patient selectedPatient)
         {
             InitializeComponent();
+
+            this.targetPatient = selectedPatient;
 
             loadMonthCal(potentialLength, currentMonth, currentYear);
 
@@ -36,21 +41,24 @@ namespace P3
             this.durationComboBox.SelectedIndex = 0; //sets default selection
         }
 
+        //clicking on a day
         private void DayBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MonthDayBoxControl dayClicked = (MonthDayBoxControl)sender;
-            NewApptDay dayWindow = new NewApptDay(dayClicked.getDay(), this.currentMonth, this.currentYear, potentialLength, apptType);
+            NewApptDay dayWindow = new NewApptDay(dayClicked.getDay(), this.currentMonth, this.currentYear, potentialLength, apptType, targetPatient);
             dayWindow.Owner = this;
             dayWindow.Show();
             this.Hide();
         }
 
+        //select appointment - currently these are stubs
         private void cmbType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if(this.typeComboBox.SelectedValue != null)
                 this.apptType = this.typeComboBox.SelectedValue.ToString();
         }
 
+        //select meeting block
         private void cmbDuration_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (this.durationComboBox.SelectedValue != null)
@@ -119,6 +127,7 @@ namespace P3
             }
         }
 
+        //decrement month
         private void leftMonthButton_Click(object sender, RoutedEventArgs e)
         {
             this.currentMonth--;
@@ -131,6 +140,7 @@ namespace P3
             loadMonthCal(potentialLength, currentMonth, currentYear);
         }
 
+        //increment month
         private void rightMonthButton_Click(object sender, RoutedEventArgs e)
         {
             this.currentMonth++;
