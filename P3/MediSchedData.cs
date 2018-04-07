@@ -91,6 +91,9 @@ namespace P3
                     break;
                 }
             }
+
+            //probably also remove the doctor from the hashtable
+
             dbChanged(null, null);
         }
 
@@ -123,7 +126,29 @@ namespace P3
             dbChanged(null, null);
         }
 
+        //removes an appointment from the system
+        //im glad this isnt a real program cause this is o(n^2) lmao
+        public static void deleteAppointment(Appointment apptToDelete)
+        {
+            //remove from the hashtable
+            foreach (List<DaySchedule> schedules in daySchedules.Values)
+            {
+                foreach(DaySchedule schedule in schedules)
+                {
+                    schedule.removeAppointment(apptToDelete);
+                }
+            }
 
+            //remove from patients
+            foreach(Patient patient in patientList)
+            {
+                patient.removeAppointment(apptToDelete);
+            }
+
+            dbChanged(null, null);
+        }
+
+        //allows other classes to force windows to refresh
         public static void forceRefresh()
         {
             dbChanged(null, null);

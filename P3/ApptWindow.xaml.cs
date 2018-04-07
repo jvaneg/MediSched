@@ -27,6 +27,7 @@ namespace P3
         
         //old constructor that is now depricated
         //i think history/future currently uses this but that should be changed
+        /*
         public ApptWindow()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace P3
             this.notArrivedRadio.IsChecked = true; //default radio button selection
             apptStatus = "Not Arrived";
         }
+        */
 
         //initializes given a block that was clicked, and the appointment object that block contained
         //use this constructor if one of the coloured blocks was clicked to open this
@@ -52,6 +54,8 @@ namespace P3
             this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
 
             this.billingButton.Click += BillingButton_Click;
+
+            MediSchedData.dbChanged += handleDbChange;
         }
 
         //initializes given only the appointment object that block contained
@@ -66,6 +70,21 @@ namespace P3
             this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
 
             this.billingButton.Click += BillingButton_Click;
+
+            MediSchedData.dbChanged += handleDbChange;
+        }
+
+        //handles the database changing
+        private void handleDbChange(object sender, EventArgs e)
+        {
+            if (this.apptRepresenting != null)
+            {
+                loadAppointment(this.apptRepresenting);
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         //loads an appointment object's data to the window
@@ -96,6 +115,7 @@ namespace P3
             }
         }
 
+        //opens the billing for this appointment
         private void BillingButton_Click(object sender, RoutedEventArgs e)
         {
             BillingWindow billingWindow = new BillingWindow();
@@ -111,7 +131,7 @@ namespace P3
             this.addNotesButton.Content = "View Notes";
         }
 
-        //Shows and hides the notes section
+        //Shows and saves/hides the notes section
         private void addNotesButton_Click(object sender, RoutedEventArgs e)
         {
             if (!notesShown)
@@ -143,6 +163,7 @@ namespace P3
         {
             //delete the appointment
             this.Close();
+            MediSchedData.deleteAppointment(this.apptRepresenting);
         }
 
         //event for changing the status of the appointment

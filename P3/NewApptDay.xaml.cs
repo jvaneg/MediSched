@@ -26,19 +26,6 @@ namespace P3
         private string apptType = "";
 
 
-        //deprecated dont use
-        /*
-        public NewApptDay()
-        {
-            InitializeComponent();
-            for (int i = 0; i < 3; i++)
-            {
-                SchedDayControl schedDay = new SchedDayControl("Doctor A", 3, "Cool Joey", "Appointment Type 2");
-                this.scheduleGrid.Children.Add(schedDay);
-            }
-        }
-        */
-
         //creates a new day
         public NewApptDay(int day, int month, int year, int potentialLength, string apptType, Patient targetPatient)
         {

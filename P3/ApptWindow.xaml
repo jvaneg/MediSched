@@ -154,7 +154,7 @@
         <RadioButton x:Name="seenRadio" Content="Seen" HorizontalAlignment="Left" Margin="274.012,107.359,0,0" VerticalAlignment="Top" Height="14.96" Width="44.717" Click="radio_Click"/>
         <RadioButton x:Name="billedRadio" Content="Billed" HorizontalAlignment="Left" Margin="274.012,127.319,0,0" VerticalAlignment="Top" Height="14.96" Width="47.943" Click="radio_Click"/>
         <Button x:Name="pnameButton" Content="Cool Joey" HorizontalAlignment="Left" Height="19.95" Margin="10,10,0,0" Style="{DynamicResource pnameStyle}" VerticalAlignment="Top" Cursor="Hand" MaxWidth="254" Click="pnameButton_Click" />
-        <TextBlock x:Name="statusBlock" HorizontalAlignment="Left" Height="17.282" Margin="273.345,13.283,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Top" Width="89.245" FontSize="14" FontFamily="Arial"/>
+        <TextBlock x:Name="statusBlock" HorizontalAlignment="Left" Height="20.334" Margin="274.012,9.616,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Top" Width="89.245" FontSize="16"/>
         <Rectangle Fill="#FFE55039" HorizontalAlignment="Left" Height="14.96" Margin="257.536,47.479,0,0" VerticalAlignment="Top" Width="11.476"/>
         <Rectangle Fill="#FFF6B93B" HorizontalAlignment="Left" Height="14.96" Margin="257.536,67.439,0,0" VerticalAlignment="Top" Width="11.476"/>
         <Rectangle Fill="#FF78E08F" HorizontalAlignment="Left" Height="14.96" Margin="257.536,87.399,0,0" VerticalAlignment="Top" Width="11.476"/>

@@ -93,12 +93,6 @@ namespace P3
                 this.billCountry = "Canada";
                 this.billPhone = "111-111-1111";
                 this.billPostal = "T2GG4G";
-
-                //put appointments for this preset here
-                //this.appointments.Add(new Appointment(1, this));
-                //this.appointments.Add(new Appointment(2, this));
-                //this.appointments.Add(new Appointment(6, this));
-                //this.appointments.Add(new Appointment(7, this));
             }
             else if(preset == 2)
             {
@@ -150,6 +144,13 @@ namespace P3
         public void addAppointment(Appointment newAppt)
         {
             this.appointments.Add(newAppt);
+            this.appointments.Sort((x, y) => x.getDate().CompareTo(y.getDate()));
+        }
+
+        //removes an appointment from the list
+        public void removeAppointment(Appointment appt)
+        {
+            this.appointments.Remove(appt);
         }
         
         //gets the list of appointments associated with the patient

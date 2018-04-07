@@ -179,10 +179,5 @@ namespace P3
         {
             return this.apptStartBlock;
         }
-
-        public new string ToString()
-        {
-            return "Hello its me!";
-        }
     }
 }

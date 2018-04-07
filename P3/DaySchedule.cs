@@ -8,6 +8,7 @@ namespace P3
 {
     public class DaySchedule
     {
+        /*
         Appointment[] appointments = new Appointment[] { null, null, null, null, null, null,
                                                          null, null, null, null, null, null,
                                                          null, null, null, null, null, null,
@@ -16,8 +17,19 @@ namespace P3
                                                          null, null, null, null, null, null,
                                                          null, null, null, null, null, null,
                                                          null, null, null, null, null, null};
+        */
+        List<Appointment> appointments = new List<Appointment>() { null, null, null, null, null, null,
+                                                         null, null, null, null, null, null,
+                                                         null, null, null, null, null, null,
+                                                         null, null, null, null, null, null,
+                                                         null, null, null, null, null, null,
+                                                         null, null, null, null, null, null,
+                                                         null, null, null, null, null, null,
+                                                         null, null, null, null, null, null};
+
 
         //placeholder
+        /*
         public DaySchedule()
         {
             //all placeholders right now
@@ -31,6 +43,7 @@ namespace P3
                                                 null, null, null, new Appointment(), null, null};
            
         }
+        */
 
         //creates day schedules from presets, requires patients to assign
         public DaySchedule(int preset, List<Patient> patients)
@@ -51,7 +64,7 @@ namespace P3
 
                 //Appt 4 for sam
                 appt = new Appointment(4, patients[2]);
-                patients[1].addAppointment(appt);
+                patients[2].addAppointment(appt);
                 setAppointmentAtTime(appt, appt.getStartBlock());
 
                 //Appt 6 for joey
@@ -63,7 +76,7 @@ namespace P3
             {
                 //Appt 1 for sam
                 appt = new Appointment(1, patients[2]);
-                patients[0].addAppointment(appt);
+                patients[2].addAppointment(appt);
                 setAppointmentAtTime(appt, appt.getStartBlock());
 
                 //Appt 2 for arsh
@@ -73,12 +86,12 @@ namespace P3
 
                 //Appt 5 for joey
                 appt = new Appointment(5, patients[0]);
-                patients[1].addAppointment(appt);
+                patients[0].addAppointment(appt);
                 setAppointmentAtTime(appt, appt.getStartBlock());
 
                 //Appt 7 for arsh
                 appt = new Appointment(7, patients[1]);
-                patients[0].addAppointment(appt);
+                patients[1].addAppointment(appt);
                 setAppointmentAtTime(appt, appt.getStartBlock());
             }
             else
@@ -90,12 +103,12 @@ namespace P3
 
                 //Appt 1 for sam
                 appt = new Appointment(1, patients[2]);
-                patients[0].addAppointment(appt);
+                patients[2].addAppointment(appt);
                 setAppointmentAtTime(appt, appt.getStartBlock());
 
                 //Appt 3 for joey
                 appt = new Appointment(3, patients[0]);
-                patients[1].addAppointment(appt);
+                patients[0].addAppointment(appt);
                 setAppointmentAtTime(appt, appt.getStartBlock());
 
                 //Appt 5 for arsh
@@ -105,7 +118,7 @@ namespace P3
 
                 //Appt 6 for sam
                 appt = new Appointment(6, patients[2]);
-                patients[0].addAppointment(appt);
+                patients[2].addAppointment(appt);
                 setAppointmentAtTime(appt, appt.getStartBlock());
             }
         }
@@ -124,6 +137,14 @@ namespace P3
             this.appointments[timeBlock] = appt;
         }
 
+        //remove appointment from the 
+        public void removeAppointment(Appointment appt)
+        {
+            if(appointments.IndexOf(appt) != -1)
+            {
+                appointments[appointments.IndexOf(appt)] = null;
+            }   
+        }
 
         //gets the number of open appointments for this day
         public int getNumAppointments()
@@ -149,7 +170,7 @@ namespace P3
             int counter = 0;
 
             int openBlockSizeCounter = 0;
-            for(int i = startBlock; i < appointments.Length && i <= endBlock; i++)
+            for(int i = startBlock; i < appointments.Count && i <= endBlock; i++)
             {
                 if(appointments[i] == null)
                 {

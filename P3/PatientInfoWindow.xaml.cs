@@ -32,7 +32,7 @@ namespace P3
 
             this.historyList.SelectionChanged += appt_Selected;
             this.futureList.SelectionChanged += appt_Selected;
-
+            MediSchedData.dbChanged += handleDbChange;
 
 
             this.nameBox.Visibility = Visibility.Hidden;
@@ -78,6 +78,12 @@ namespace P3
             loadPatientData();
         }
 
+        //reloads the page when the db changes
+        private void handleDbChange(object sender, EventArgs e)
+        {
+            loadPatientData();
+        }
+
 
         //loads data from the patient object
         private void loadPatientData()
@@ -100,6 +106,9 @@ namespace P3
             this.billCountryBlock.Text = this.patient.billCountry;
             this.billPhoneBlock.Text = this.patient.billPhone;
             this.billPostalBlock.Text = this.patient.billPostal;
+
+            this.historyList.Items.Clear();
+            this.futureList.Items.Clear();
 
             foreach(Appointment appt in patient.getAppointments())
             {
@@ -243,7 +252,7 @@ namespace P3
             this.patient.billPostal = this.billPostalBlock.Text;
 
             //force the db to refresh
-            //MediSchedData.forceRefresh();
+            MediSchedData.forceRefresh();
         }
 
         //sets billing info to edit mode
@@ -318,9 +327,12 @@ namespace P3
         {
             //get the appointment from the list somehow
             Appointment apptSelected = ((sender as ListBox).SelectedItem as Appointment);
-            ApptWindow apptWindow = new ApptWindow(apptSelected);
-            apptWindow.Owner = this;
-            apptWindow.Show();
+            if (apptSelected != null)
+            {
+                ApptWindow apptWindow = new ApptWindow(apptSelected);
+                apptWindow.Owner = this;
+                apptWindow.Show();
+            }
         }
     }
 }
