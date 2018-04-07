@@ -80,9 +80,11 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </ComboBox.Background>
-            <ComboBoxItem IsSelected="True">Appointment Type 1</ComboBoxItem>
-            <ComboBoxItem>Appointment Type 2</ComboBoxItem>
-            <ComboBoxItem>Appointment Type 3</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Broken Bone</ComboBoxItem>
+            <ComboBoxItem>Flu Shot</ComboBoxItem>
+            <ComboBoxItem>Head Injury</ComboBoxItem>
+            <ComboBoxItem>Routine Checkup</ComboBoxItem>
+            <ComboBoxItem>Sprain</ComboBoxItem>
         </ComboBox>
         <ComboBox x:Name="durationComboBox" SelectedValuePath="Content" HorizontalAlignment="Left" Height="22" Margin="104,44.74,0,0" VerticalAlignment="Top" Width="158" SelectionChanged="cmbDuration_SelectionChanged">
             <ComboBoxItem IsSelected="True">0:30</ComboBoxItem>

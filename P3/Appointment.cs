@@ -15,6 +15,7 @@ namespace P3
         private Patient patient = null; //placeholder
         private int apptStartBlock = 1; //not really used for loading, just use this to calculate time
         private DateTime apptDate = DateTime.Now; //only used for the patient history future stuff
+        private string notes = "";
 
         //used with binding to show the text in the history/future listboxes
         public string DateAndType
@@ -59,6 +60,7 @@ namespace P3
                 this.apptStartBlock = 11;
                 this.apptBlockLength = 2;
                 this.apptDate = new DateTime(2016, 2, 1);
+                this.notes = "He sick";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
             else if(preset == 1)
@@ -68,6 +70,7 @@ namespace P3
                 this.apptStartBlock = 16;
                 this.apptBlockLength = 1;
                 this.apptDate = new DateTime(2016, 2, 2);
+                this.notes = "He very sick";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
             else if( preset == 2)
@@ -77,6 +80,7 @@ namespace P3
                 this.apptStartBlock = 18;
                 this.apptBlockLength = 2;
                 this.apptDate = new DateTime(2016, 8, 8);
+                this.notes = "his back hurts lol";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
             else if (preset == 3)
@@ -86,6 +90,7 @@ namespace P3
                 this.apptStartBlock = 22;
                 this.apptBlockLength = 4;
                 this.apptDate = new DateTime(2017, 1, 4);
+                this.notes = "haha thats gonna take months to heal";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
             else if (preset == 4) //overlaps with 5
@@ -95,6 +100,7 @@ namespace P3
                 this.apptStartBlock = 27;
                 this.apptBlockLength = 5;
                 this.apptDate = new DateTime(2018, 7, 6);
+                this.notes = "homie gonna die";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
             else if (preset == 5) //overlaps with 4
@@ -104,6 +110,7 @@ namespace P3
                 this.apptStartBlock = 26;
                 this.apptBlockLength = 4;
                 this.apptDate = new DateTime(2018, 8, 10);
+                this.notes = "wasn't paying attention the whole time tbh";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
             else if (preset == 6)
@@ -113,6 +120,7 @@ namespace P3
                 this.apptStartBlock = 33;
                 this.apptBlockLength = 2;
                 this.apptDate = new DateTime(2019, 2, 2);
+                this.notes = "should've worn a helmet";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
             else
@@ -122,6 +130,7 @@ namespace P3
                 this.apptStartBlock = 36;
                 this.apptBlockLength = 1;
                 this.apptDate = new DateTime(2020, 2, 5);
+                this.notes = "Hahahahahahahaha How Is Ankle Sprain Real Hahahaha Just Walk On The Other Foot Like Jump Everywhere Haha";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
         }
@@ -178,6 +187,19 @@ namespace P3
         public int getStartBlock()
         {
             return this.apptStartBlock;
+        }
+
+        //gets the notes on this appointment
+        public string getNotes()
+        {
+            return this.notes;
+        }
+
+        //sets the notes
+        public void setNotes(string notes)
+        {
+            this.notes = notes;
+            MediSchedData.forceRefresh();
         }
     }
 }

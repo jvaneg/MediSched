@@ -95,6 +95,7 @@ namespace P3
             this.apptType.Text = this.apptRepresenting.getApptType();
             this.pnameButton.Content = this.apptRepresenting.getPatientName();
             this.apptStatus = this.apptRepresenting.getApptStatus();
+            this.noteText.Text = this.apptRepresenting.getNotes();
             switch (this.apptStatus)
             {
                 case "Not Arrived":
@@ -147,6 +148,9 @@ namespace P3
                 this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
                 this.addNotesButton.Content = "View Notes";
                 notesShown = false;
+
+                //save the notes
+                this.apptRepresenting.setNotes(this.noteText.Text);
             }
         }
 

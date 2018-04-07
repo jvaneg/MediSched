@@ -28,66 +28,6 @@ namespace P3
         private int startBlock = 0;
         private DateTime time = DateTime.Now;
 
-
-        //for view mode deprecated
-        /*
-        public SchedDayControl(string doctorName)
-        {
-            InitializeComponent();
-            this.doctorNameBlock.Text = doctorName;
-        }
-        */
-
-        //for add mode deprecated
-        /*
-        public SchedDayControl(string doctorName, int potentialLength, string patientName, string apptType)
-        {
-            InitializeComponent();
-            this.doctorNameBlock.Text = doctorName;
-
-            this.apptBlocks = new ApptBlockControl[] {this.apptBlock1, this.apptBlock2, this.apptBlock3, this.apptBlock4, this.apptBlock5, this.apptBlock6,
-                                                        this.apptBlock7, this.apptBlock8, this.apptBlock9, this.apptBlock10, this.apptBlock11, this.apptBlock12,
-                                                        this.apptBlock13, this.apptBlock14, this.apptBlock15, this.apptBlock16, this.apptBlock17, this.apptBlock18,
-                                                        this.apptBlock19, this.apptBlock20, this.apptBlock21, this.apptBlock22, this.apptBlock23, this.apptBlock24,
-                                                        this.apptBlock25, this.apptBlock26, this.apptBlock27, this.apptBlock28, this.apptBlock29, this.apptBlock30,
-                                                        this.apptBlock31, this.apptBlock32, this.apptBlock33, this.apptBlock34, this.apptBlock35, this.apptBlock36,
-                                                        this.apptBlock37, this.apptBlock38, this.apptBlock39, this.apptBlock40, this.apptBlock41, this.apptBlock42,
-                                                        this.apptBlock43, this.apptBlock44, this.apptBlock45, this.apptBlock46, this.apptBlock47, this.apptBlock48};
-
-            setSchedDays(potentialLength, patientName, apptType);
-
-            foreach (ApptBlockControl apptBlock in this.apptBlocks)
-            {
-                apptBlock.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            }
-
-        }
-        */
-
-        //currently just adds some dummy stuff (depricated)
-        //DEPRICATED
-        /*
-        public SchedDayControl(string doctorName, int[] dayScheduleArray)
-        {
-            InitializeComponent();
-
-            this.doctorNameBlock.Text = doctorName;
-            //will load array here, for now hardcode sets up some stuff
-            this.apptBlock5.setEnabled(4, "Cool Joey", "Appointment Type 4", "Seen");
-            this.apptBlock5.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-
-            this.apptBlock12.setEnabled(3, "stinky arsh", "Appointment Type 8", "Being Seen");
-            this.apptBlock12.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-
-            this.apptBlock20.setEnabled(1, "even more stinky arsh", "Appointment Type 420", "Waiting");
-            this.apptBlock20.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-
-            this.apptBlock30.setEnabled(4, "superb sam", "Appointment Type 8", "Not Arrived");
-            this.apptBlock30.MouseLeftButtonDown += ApptBlock_MouseLeftButtonDown;
-            
-        }
-        */
-
         //loading a day schedule for add mode
         public SchedDayControl(Doctor doctor, DaySchedule daySchedule, int potentialLength, string apptType, Patient patient, DateTime time)
         {
@@ -184,6 +124,8 @@ namespace P3
             Appointment appt = null;
             this.daySched = daySchedule;
             this.doctorNameBlock.Text = doctor.Name;
+            int startBlock = doctor.getStartBlock();
+            int endBlock = doctor.getEndBlock();
 
             this.apptBlocks = new ApptBlockControl[] {this.apptBlock1, this.apptBlock2, this.apptBlock3, this.apptBlock4, this.apptBlock5, this.apptBlock6,
                                                         this.apptBlock7, this.apptBlock8, this.apptBlock9, this.apptBlock10, this.apptBlock11, this.apptBlock12,
@@ -194,7 +136,24 @@ namespace P3
                                                         this.apptBlock37, this.apptBlock38, this.apptBlock39, this.apptBlock40, this.apptBlock41, this.apptBlock42,
                                                         this.apptBlock43, this.apptBlock44, this.apptBlock45, this.apptBlock46, this.apptBlock47, this.apptBlock48};
 
-            for(int i = 0; i < apptBlocks.Length; i++)
+            //disable times doctor doesnt work
+            //start of day
+            for (int i = 0; i < startBlock; i++)
+            {
+                //apptBlocks[i].disableAddMode();
+                apptBlocks[i].greyOut();
+               // apptBlocks[i].MouseLeftButtonDown += ApptBlock_DisableMouseDown;
+            }
+
+            //end of day
+            for (int i = endBlock + 1; i < apptBlocks.Length; i++)
+            {
+                //apptBlocks[i].disableAddMode();
+                apptBlocks[i].greyOut();
+                //apptBlocks[i].MouseLeftButtonDown += ApptBlock_DisableMouseDown;
+            }
+
+            for (int i = 0; i < apptBlocks.Length; i++)
             {
                 appt = daySchedule.getAppointmentAtTime(i);
                 if(appt != null)
