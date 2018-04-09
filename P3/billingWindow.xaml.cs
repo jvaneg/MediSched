@@ -26,9 +26,11 @@ namespace P3
 
 
 
-        public BillingWindow()
+        public BillingWindow(string patientName, string apptType)
         {
             InitializeComponent();
+
+            this.patientInformationTextbox.Text = "Patient: " + patientName + "\r\nAppointment Type: " + apptType;
 
             this.addToTableButton.Click += AddToTableButton_Click;
             this.printButton.Click += PrintButton_Click;
@@ -73,6 +75,14 @@ namespace P3
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+
+            List<Billing> savedBilling = new List<Billing>();
+
+            foreach(DataRowView dr in descriptCostDataGrid.ItemsSource)
+            {
+                
+            }
+
             this.Close();
         }
 

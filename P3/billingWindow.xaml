@@ -8,9 +8,9 @@
         Title="Billing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
     <Canvas Name="billingCanvas" Width="395.5" Height="329">
         <TextBlock Name="clinicInformationLabel" HorizontalAlignment="Left" Height="26.087" Margin="24.146,17.936,0,0" TextWrapping="Wrap" Text="Clinic Information" VerticalAlignment="Top" Width="107.781"/>
-        <TextBlock x:Name="patientInformationLabel" HorizontalAlignment="Left" Height="26.087" TextWrapping="Wrap" Text="Patient Information" VerticalAlignment="Top" Width="107.781" Canvas.Left="238.528" Canvas.Top="17.936"/>
+        <TextBlock x:Name="patientInformationLabel" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Patient Information" VerticalAlignment="Top" Width="108" Canvas.Left="223" Canvas.Top="18"/>
         <TextBlock Name="clinicInformationTextbox" Height="50.801" Canvas.Left="24.146" TextWrapping="Wrap" Text="Super Awesome Clinic Address: 123 Awesome Street Postal Code: T8Z9S4 " Canvas.Top="44.023" Width="159.787"/>
-        <TextBlock x:Name="patientInformationTextbox" Height="50.801" Canvas.Left="238.528" TextWrapping="Wrap" Text="" Canvas.Top="44.023" Width="136.122"/>
+        <TextBlock x:Name="patientInformationTextbox" Height="51" Canvas.Left="223" TextWrapping="Wrap" Text="" Canvas.Top="44" Width="154"/>
         <TextBlock x:Name="patientInformationTextbox_Copy" Height="50.801" Canvas.Left="210.187" TextWrapping="Wrap" Text="" Canvas.Top="141.416" Width="136.122"/>
         <Button Name="OKButton" Content="Save" Height="24.666" Canvas.Left="283.86" Canvas.Top="286.293" Width="41.664" Style="{DynamicResource mediButtonStyle}"/>
         <Button x:Name="printButton" Content="Print" Height="24.666" Canvas.Left="335.424" Canvas.Top="286.293" Width="41.664" Style="{DynamicResource mediButtonStyle}"/>
