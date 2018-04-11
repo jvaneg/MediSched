@@ -67,6 +67,7 @@ namespace P3
 
             List<Patient> filteredPatients = this.patientList.Where(p => p.PatientName.Contains(txtOrig)).ToList();
 
+            
             Console.WriteLine(filteredPatients);
 
             var patientFiltered = from Patient in patientList
