@@ -18,9 +18,9 @@ namespace P3
         public static void setUpFakeDb()
         {
             //generate sample doctors
-            addDocToList(new Doctor() { Name = "Dr van Egmond", Days = "MWF", Hours = "1:20-2:20" }); //placeholder, change to preset system like patients has
-            addDocToList(new Doctor() { Name = "Dr Niu", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
-            addDocToList(new Doctor() { Name = "Dr Dhillon", Days = "MWF", Hours = "1:20-2:20" }); //placeholder
+            docList.Add(new Doctor("Dr van Egmond", "MTWF", "1:00AM-2:30PM"));
+            docList.Add(new Doctor("Dr Niu", "MWF", "1:00AM-2:20PM"));
+            docList.Add(new Doctor("Dr Dhillon", "MWRF", "1:00AM-2:30PM"));
 
             //generate sample patients
             addPatientToList(new Patient(1)); //preset patients
@@ -62,7 +62,13 @@ namespace P3
         public static void addDocToList(Doctor newDoc)
         {
             //docList.Add(new Doctor() { Name = docName, Days = workingdays, Hours = workingTime });
+
+        
             docList.Add(newDoc);
+            daySchedules.Add(newDoc, new List<DaySchedule>());
+            daySchedules[newDoc].Add(new DaySchedule());    //add 3 because only 3 days exist
+            daySchedules[newDoc].Add(new DaySchedule());
+            daySchedules[newDoc].Add(new DaySchedule());
             dbChanged(null, null); //im sorry this is so janky, triggers the dbChanged event
         }
 
@@ -72,16 +78,17 @@ namespace P3
         public static DaySchedule getDaySchedule(Doctor doctor, int year, int month, int day)
         {
             return daySchedules[doctor][day % 3];
-            //placeholder return
-            //return new DaySchedule(1, patientList);
         }
 
         /* 
          * Called when doctor is to be deleted
-         * ID: doctor's ID
          */
-        public static void deleteDoc(int ID)
+        public static void deleteDoc(Doctor docToRemove)
         {
+            //remove from the doc list
+            docList.Remove(docToRemove);
+
+            /*
             for (int i = 0; i < docList.Count; i++)
             {
 
@@ -91,9 +98,32 @@ namespace P3
                     break;
                 }
             }
+            */
 
-            //probably also remove the doctor from the hashtable
+            //remove from the hashtable
+            daySchedules.Remove(docToRemove);
 
+            //alert that db has changed
+            dbChanged(null, null);
+        }
+
+        public static void updateDoc(Doctor docToEdit)
+        {
+
+            //dont think this needs to be changed at all
+
+            /*
+            for (int i = 0; i < docList.Count; i++)
+            {
+                if (docList[i].ID == ID)
+                {
+                    docList[i].Name = name;
+                    docList[i].Hours = hours;
+                    docList[i].Days = days;
+                    break;
+                }
+            }
+            */
             dbChanged(null, null);
         }
 
@@ -106,6 +136,9 @@ namespace P3
          */
         public static void updateDocInfo(int ID, string name, string hours, string days)
         {
+            //dont think this needs to be changed at all
+
+            /*
             for (int i = 0; i < docList.Count; i++)
             {
                 if (docList[i].ID == ID)
@@ -116,6 +149,7 @@ namespace P3
                     break;
                 }
             }
+            */
             dbChanged(null, null);
         }
 

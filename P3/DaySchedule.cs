@@ -45,6 +45,12 @@ namespace P3
         }
         */
 
+        //creates an empty schedule
+        public DaySchedule()
+        {
+            //intentionally do nothing
+        }
+
         //creates day schedules from presets, requires patients to assign
         public DaySchedule(int preset, List<Patient> patients)
         {
