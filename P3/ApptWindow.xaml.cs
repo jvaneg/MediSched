@@ -92,6 +92,11 @@ namespace P3
         private void loadAppointment(Appointment sourceAppt)
         {
             this.apptRepresenting = sourceAppt;
+
+            int startBlock = this.apptRepresenting.getStartBlock();
+            int blockDuration = this.apptRepresenting.getApptBlockLength();
+
+            this.apptTime.Text = this.apptRepresenting.apptBlockFormatting(startBlock) + " - " + this.apptRepresenting.apptBlockFormatting(startBlock + blockDuration);
             this.apptType.Text = this.apptRepresenting.getApptType();
             this.pnameButton.Content = this.apptRepresenting.getPatientName();
             this.apptStatus = this.apptRepresenting.getApptStatus();

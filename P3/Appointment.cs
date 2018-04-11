@@ -16,6 +16,8 @@ namespace P3
         private int apptStartBlock = 1; //not really used for loading, just use this to calculate time
         private DateTime apptDate = DateTime.Now; //only used for the patient history future stuff
         private string notes = "";
+        private string apptStartBlockString = "";
+        private string apptEndBlockString = "";
 
         private List<Billing> billingInfoList = new List<Billing>();
 
@@ -36,6 +38,8 @@ namespace P3
             this.apptStatus = apptStatus;
             this.apptBlockLength = apptBlockLength;
             this.apptStartBlock = startBlock;
+            this.apptStartBlockString = apptBlockFormatting(apptStartBlock);
+            this.apptEndBlockString = apptBlockFormatting(apptStartBlock + apptBlockLength);
             this.apptDate = apptDate;
             this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
         }
@@ -228,6 +232,118 @@ namespace P3
         {
             billingInfoList[billingInfoList.IndexOf(rowToBeUpdated)].Description = rowToBeUpdated.Description;
             billingInfoList[billingInfoList.IndexOf(rowToBeUpdated)].Cost = rowToBeUpdated.Cost;
+        }
+
+        public string apptBlockFormatting(int blockNum)
+        {
+            string finishedFormat = "";
+
+            if(blockNum % 2 == 0)
+            {
+                finishedFormat += "00";
+            } else
+            {
+                finishedFormat += "30";
+            }
+
+            switch (blockNum)
+            {
+                case 0:
+                case 1:
+                case 24:
+                case 25:
+                    finishedFormat = "12:" + finishedFormat;
+                    break;
+
+                case 2:
+                case 3:
+                case 26:
+                case 27:
+                    finishedFormat = "1:" + finishedFormat;
+                    break;
+
+                case 4:
+                case 5:
+                case 28:
+                case 29:
+                    finishedFormat = "2:" + finishedFormat;
+                    break;
+
+                case 6:
+                case 7:
+                case 30:
+                case 31:
+                    finishedFormat = "3:" + finishedFormat;
+                    break;
+
+                case 8:
+                case 9:
+                case 32:
+                case 33:
+                    finishedFormat = "4:" + finishedFormat;
+                    break;
+
+                case 10:
+                case 11:
+                case 35:
+                case 34:
+                    finishedFormat = "5:" + finishedFormat;
+                    break;
+
+                case 12:
+                case 13:
+                case 37:
+                case 36:
+                    finishedFormat = "6:" + finishedFormat;
+                    break;
+
+                case 14:
+                case 15:
+                case 39:
+                case 38:
+                    finishedFormat = "7:" + finishedFormat;
+                    break;
+
+                case 16:
+                case 17:
+                case 41:
+                case 40:
+                    finishedFormat = "8:" + finishedFormat;
+                    break;
+
+                case 18:
+                case 19:
+                case 43:
+                case 42:
+                    finishedFormat = "9:" + finishedFormat;
+                    break;
+
+                case 20:
+                case 21:
+                case 45:
+                case 44:
+                    finishedFormat = "10:" + finishedFormat;
+                    break;
+
+                case 22:
+                case 46:
+                case 23:
+                case 47:
+                    finishedFormat = "11:" + finishedFormat;
+                    break;
+            }
+
+            if(blockNum > 23)
+            {
+                finishedFormat += " PM";
+            } else
+            {
+                finishedFormat += " AM";
+            }
+
+
+
+            return finishedFormat;
         }
 
     }
