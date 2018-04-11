@@ -18,9 +18,9 @@ namespace P3
         public static void setUpFakeDb()
         {
             //generate sample doctors
-            docList.Add(new Doctor("Dr van Egmond", "MTWF", "1:00-2:20"));
-            docList.Add(new Doctor("Dr Niu", "MWF", "1:20-2:20"));
-            docList.Add(new Doctor("Dr Dhillon", "MWRF", "1:20-2:20"));
+            docList.Add(new Doctor("Dr van Egmond", "MTWF", "1:00AM-2:30PM"));
+            docList.Add(new Doctor("Dr Niu", "MWF", "1:00AM-2:20PM"));
+            docList.Add(new Doctor("Dr Dhillon", "MWRF", "1:00AM-2:30PM"));
 
             //generate sample patients
             addPatientToList(new Patient(1)); //preset patients
