@@ -174,7 +174,8 @@ namespace P3
                         rowToBeUpdated.Hours = startTBlock1.Text + ':' + startTBlock2.Text  + dash + endTBlock1.Text + ':' + endTBlock2.Text;
                         rowToBeUpdated.Days = this.workingDays;
 
-                        MediSchedData.updateDocInfo(rowToBeUpdated.ID, rowToBeUpdated.Name, rowToBeUpdated.Hours, rowToBeUpdated.Days);
+                        //MediSchedData.updateDocInfo(rowToBeUpdated.ID, rowToBeUpdated.Name, rowToBeUpdated.Hours, rowToBeUpdated.Days);
+                        MediSchedData.updateDoc(rowToBeUpdated);
                         parentDoc.docListGrid.Items.Refresh();
                     }
                     else if (isEdit == false)   //otherwise they clicked the add new doctor button
@@ -187,8 +188,9 @@ namespace P3
                             lastID = docLs[docLs.Count - 1].ID;
                         }
 
-                        parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text) });
-                        MediSchedData.addDocToList(new Doctor() {ID = (lastID + 1), Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text) });
+                        Doctor newDoc = new Doctor(docNameBlock.Text, this.workingDays, (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text));
+                        parentDoc.docListGrid.Items.Add(newDoc);
+                        MediSchedData.addDocToList(newDoc);
                     }
                 }
             }

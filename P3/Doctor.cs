@@ -35,6 +35,24 @@ namespace P3
         private int startBlock = 10; //placeholders, every block in 30 mins, starting at block zero
         private int endBlock = 44; //placeholders
 
+        //the real constructor
+        public Doctor(string docName, string days, string hours)
+        {
+            this.ID = 0; //actually unused but i dont really care to remove everything referencing this
+            this.Name = docName;
+            this.Days = days;
+            this.Hours = hours;
+
+            parseHours(hours);
+        }
+
+        //turns hours as a string into start block and end block
+        private void parseHours(string hoursText)
+        {
+            this.startBlock = 1; //placeholder
+            this.endBlock = 47; //placeholder
+        }
+
 
         //gets the first block the doctor works in on a day
         public int getStartBlock()
@@ -51,15 +69,35 @@ namespace P3
         //returns whether on not the doctor works on this day of the week
         public bool worksOn(int dayOfWeek)
         {
-            //placeholder
+            bool worksOnThisDay = false;
+
             if (dayOfWeek == 0 || dayOfWeek == 6) //sunday or saturday -- from our research
             {
-                return false;
+                worksOnThisDay = false;
             }
             else
             {
-                return true;
+                switch(dayOfWeek)
+                {
+                    case 1: //monday
+                        worksOnThisDay = this.Days.Contains("M");
+                        break;
+                    case 2: //tuesday
+                        worksOnThisDay = this.Days.Contains("T");
+                        break;
+                    case 3: //wednesday
+                        worksOnThisDay = this.Days.Contains("W");
+                        break;
+                    case 4: //thursday
+                        worksOnThisDay = this.Days.Contains("R");
+                        break;
+                    case 5: //friday
+                        worksOnThisDay = this.Days.Contains("F");
+                        break;
+                }
             }
+
+            return worksOnThisDay;
         }
 
        /* public static ObservableCollection<Doctor> getDoctor()
