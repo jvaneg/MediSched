@@ -118,7 +118,7 @@ namespace P3
             {
                 if (Int32.TryParse(frontMinutes, out i))
                 {
-                    if (Int32.Parse(frontMinutes) < 30)
+                    if (Int32.Parse(frontMinutes) <= 30)
                     {
                         startVal += 1;
                     }
