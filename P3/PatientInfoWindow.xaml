@@ -167,7 +167,6 @@
 
 
         </TabControl>
-        <Button x:Name="backupButton" Click="BackupButton_Click" Content="Backup" HorizontalAlignment="Left" Height="35" Margin="546,644,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
         <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="612" TextAlignment="Center" FontSize="16"/>
     </Grid>
 </Window>

@@ -19,95 +19,60 @@ namespace P3
     /// </summary>
     public partial class PatientsWindow : Window
     {
+        private ObservableCollection<Patient> patientList { get; set; } //dont understand how binding works but if this is gone it stops working
+
         public PatientsWindow()
         {
+            patientList = new ObservableCollection<Patient>();
+
             InitializeComponent();
-            this.Loaded += Window_Loaded;
-        }
 
-        //stuff for the actual search that is currently nonfunctional lmao
-        ObservableCollection<Patient> patientList = new ObservableCollection<Patient>();
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            patientList.Add(new Patient(1)); //placeholder
-            patientList.Add(new Patient(2)); //placeholder
-            patientList.Add(new Patient(3)); //placeholder
+            this.PatientList.SelectionChanged += Patient_Selected;
 
-            /*
-            patientList.Add(new Patient() { PatientNo = 1001, PatientName = "Mahesh" });
-            patientList.Add(new Patient() { PatientNo = 1002, PatientName = "Amit" });
-            patientList.Add(new Patient() { PatientNo = 1003, PatientName = "Vaibhav" });
-            patientList.Add(new Patient() { PatientNo = 1004, PatientName = "Ashwin" });
-            patientList.Add(new Patient() { PatientNo = 1005, PatientName = "Prashant" });
-            patientList.Add(new Patient() { PatientNo = 1006, PatientName = "Vinit" });
-            patientList.Add(new Patient() { PatientNo = 1007, PatientName = "Abhijit" });
-            patientList.Add(new Patient() { PatientNo = 1008, PatientName = "Pankaj" });
-            patientList.Add(new Patient() { PatientNo = 1009, PatientName = "Kaustubh" });
-            patientList.Add(new Patient() { PatientNo = 1010, PatientName = "Mohan" });
-            */
-
-
-            lstPatientData.ItemsSource = patientList;
+            loadPatients();
 
         }
 
-        private void txtNameToSearch_TextChanged(object sender,TextChangedEventArgs e)
+        //loads patients into the box
+        private void loadPatients()
         {
-            /*
-             *    string txtOrig = txtNameToSearch.Text;
-               string upper = txtOrig.ToUpper();
-               string lower = txtOrig.ToLower();
+            this.PatientList.Items.Clear();
 
-               var patientFiltered = from Patient in patientList let ename = Patient.PatientName
-                                 where ename.StartsWith(lower) || ename.StartsWith(upper) || ename.Contains(txtOrig)
-                                 select Patient;
+            foreach (Patient patient in MediSchedData.getPatientList())
+            {
+                this.PatientList.Items.Add(patient);
+            }
+        }
 
-               lstPatientData.ItemsSource = patientFiltered;
+        //searches patients
+        private void searchText(object sender, TextChangedEventArgs e)
+        {
+            string searchText = txtNameToSearch.Text;
 
-           */
-            string txtOrig = txtNameToSearch.Text;
-            string upper = txtOrig.ToUpper();
-            string lower = txtOrig.ToLower();
+            this.PatientList.Items.Clear();
 
-
-            List<Patient> filteredPatients = this.patientList.Where(p => p.PatientName.Contains(txtOrig)).ToList();
-
-            Console.WriteLine(filteredPatients);
-
-            var patientFiltered = from Patient in patientList
-                                  let pname = Patient.PatientName
-                                  where
-                                  pname.StartsWith(lower)
-                                  || pname.StartsWith(upper)
-                                  || pname.Contains(txtOrig)
-                                  select Patient;
-
-            lstPatientData.ItemsSource = patientFiltered;
-
+            foreach (Patient patient in MediSchedData.getPatientList())
+            {
+                if (patient.PatientName.ToLower().Contains(searchText.ToLower()))
+                {
+                    this.PatientList.Items.Add(patient);
+                }
+            }
         }
 
 
         //select a patient from the list
-        //currently generates a placeholder patient
         private void Patient_Selected(object sender, RoutedEventArgs e)
         {
             //somehow get the patient object from the selected item
-            Patient selectedPatient = new Patient(1); //placeholder
-            PatientInfo patientinfo = new PatientInfo(selectedPatient);
-            patientinfo.Owner = this.Owner;
-            this.Close();
-            patientinfo.Show();
-        }
-
-        private void GetIndex0(object sender, RoutedEventArgs e)
-        {
-            /*
-            ListBoxItem lbi = (ListBoxItem)
-                (lstPatientData.ItemContainerGenerator.ContainerFromIndex(0));
-            Item.Content = "The contents of the item at index 0 are: " + 
-                (lbi.Content.ToString()) + ".";
-            */
-            
+            Patient selectedPatient = ((sender as ListBox).SelectedItem as Patient); //placeholder
+            if (selectedPatient != null)
+            {
+                PatientInfo patientinfo = new PatientInfo(selectedPatient);
+                patientinfo.Owner = this.Owner;
+                this.Close();
+                patientinfo.Show();
+            }
         }
 
         //click new patient
@@ -118,5 +83,6 @@ namespace P3
             this.Close();
             patientWindow.Show();
         }
+
     }
 }

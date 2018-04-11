@@ -9,25 +9,11 @@
     <Canvas x:Name="patientsCanvas" Margin="0,0,0,1" Width="352" Height="352">
         <Button x:Name="BackUp" Content="Backup" Height="26" Canvas.Left="40" Style="{DynamicResource mediButtonStyle}" Canvas.Top="316" Width="68" Cursor="Hand"/>
         <Button x:Name="NewPatient" Content="New patient" Height="26" Canvas.Left="227" Style="{DynamicResource mediButtonStyle}" Canvas.Top="316" Width="86" Cursor="Hand" Click="NewPatient_Click"/>
-
-
-
-        <ListBox Height="210" HorizontalAlignment="Left" Name="lstPatientData" VerticalAlignment="Top" Width="254" Canvas.Left="40" Canvas.Top="75">
-            <!-- <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding PatientName}"></TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            -->
-        </ListBox>
+        
         <TextBlock Height="17" HorizontalAlignment="Center" Name="SearchName" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="79" Canvas.Left="40" Canvas.Top="34" />
-        <TextBox Height="17" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged" VerticalAlignment="Top" Width="189" Canvas.Left="124" Canvas.Top="34" />
+        <TextBox Height="17" HorizontalAlignment="Left" Name="txtNameToSearch" TextChanged="searchText"  VerticalAlignment="Top" Width="189" Canvas.Left="124" Canvas.Top="34" />
         <ScrollViewer x:Name="searchScroller" Height="210" Canvas.Left="40" Canvas.Top="75" Width="273">
-            <ListBox x:Name="PatientList" Width="256" Background="White" BorderBrush="#FFABADB3">
-
-                <ListBoxItem x:Name="PatientA" Selected="Patient_Selected" Content="ListBox Item #1" />
-                <ListBoxItem x:Name="PatientB" Selected="Patient_Selected" Content="ListBox Item #2" />
-                <ListBoxItem x:Name="PatientC" Selected="Patient_Selected" Content="ListBox Item #3" />
+            <ListBox x:Name="PatientList" Width="256" Background="White" BorderBrush="#FFABADB3" ItemsSource ="{Binding patientList}" DisplayMemberPath="PatientName">
             </ListBox>
         </ScrollViewer>
 

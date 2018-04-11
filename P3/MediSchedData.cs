@@ -18,9 +18,9 @@ namespace P3
         public static void setUpFakeDb()
         {
             //generate sample doctors
-            docList.Add(new Doctor("Dr van Egmond", "MTWF", "1:00AM-2:30PM"));
-            docList.Add(new Doctor("Dr Niu", "MWF", "1:00AM-2:20PM"));
-            docList.Add(new Doctor("Dr Dhillon", "MWRF", "1:00AM-2:30PM"));
+            docList.Add(new Doctor("Dr van Egmond", "MTWF", "3:00AM-11:00PM"));
+            docList.Add(new Doctor("Dr Niu", "MWF", "3:00AM-11:00PM"));
+            docList.Add(new Doctor("Dr Dhillon", "MWRF", "3:00AM-11:00PM"));
 
             //generate sample patients
             addPatientToList(new Patient(1)); //preset patients
@@ -56,6 +56,11 @@ namespace P3
         public static List<Doctor> getDocList()
         {
             return docList;
+        }
+
+        public static List<Patient> getPatientList()
+        {
+            return patientList;
         }
 
         //public static void addDocToList(string docName, string workingdays, string workingTime)
@@ -157,6 +162,7 @@ namespace P3
         public static void addPatientToList(Patient newPatient)
         {
             patientList.Add(newPatient);
+            patientList.Sort((x, y) => x.PatientName.CompareTo(y.PatientName));
             dbChanged(null, null);
         }
 
