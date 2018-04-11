@@ -34,7 +34,7 @@
             <ComboBoxItem Content="AM"></ComboBoxItem>
             <ComboBoxItem Content="PM"></ComboBoxItem>
         </ComboBox>
-        <ComboBox Margin="346,82,0,217" x:Name="amPmComboBox2" SelectedValuePath="Content" HorizontalAlignment="Left" Height="26" Width="55" SelectedIndex="0">
+        <ComboBox Margin="346,81,0,217" x:Name="amPmComboBox2" SelectedValuePath="Content" HorizontalAlignment="Left" Width="55" SelectedIndex="0">
             <ComboBoxItem Content="AM"/>
             <ComboBoxItem Content="PM"/>
         </ComboBox>
