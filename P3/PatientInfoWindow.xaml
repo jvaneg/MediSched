@@ -152,29 +152,21 @@
             </TabItem>
             <TabItem x:Name="historyTab" Header="History">
                 <ScrollViewer x:Name="historyScroll" Margin="-2,26.98,-1.958,-1.991">
-                    <ListBox x:Name="historyList" FontSize="14" Width="591.875" BorderBrush="{x:Null}">
-                        <ListBoxItem Content="10 Dec 2017 - Appointment Type 2" Selected="appt_Selected" />
-                        <ListBoxItem Content="5 Jan 2018 - Appointment Type 3" Selected="appt_Selected"/>
-                        <ListBoxItem Content="8 Feb 2018 - Appointment Type 1" Selected="appt_Selected"/>
-                        <ListBoxItem Content="26 Feb 2018 - Appointment Type 4" Selected="appt_Selected"/>
+                    <ListBox x:Name="historyList" FontSize="14" Width="591.875" BorderBrush="{x:Null}" ItemsSource ="{Binding History}" DisplayMemberPath="DateAndType">
+               
                     </ListBox>
                 </ScrollViewer>
             </TabItem>
             <TabItem x:Name="futureTab" Header="Future">
                 <ScrollViewer x:Name="futureScroll" Margin="-2,26.98,-1.958,-1.991">
-                    <ListBox x:Name="futureList" FontSize="14" Width="591.875" BorderBrush="{x:Null}">
-                        <ListBoxItem Content="9 Apr 2019 - Appointment Type 2" Selected="appt_Selected" />
-                        <ListBoxItem Content="2 Jan 2020 - Appointment Type 3" Selected="appt_Selected"/>
-                        <ListBoxItem Content="7 Feb 2020 - Appointment Type 1" Selected="appt_Selected"/>
-                        <ListBoxItem Content="25 Feb 2021 - Appointment Type 4" Selected="appt_Selected"/>
-                        <ListBoxItem Content="17 Aug 2021 - Appointment Type 4" Selected="appt_Selected"/>
+                    <ListBox x:Name="futureList" FontSize="14" Width="591.875" BorderBrush="{x:Null}" ItemsSource ="{Binding History}" DisplayMemberPath="DateAndType">
+           
                     </ListBox>
                 </ScrollViewer>
             </TabItem>
 
 
         </TabControl>
-        <Button x:Name="backupButton" Click="BackupButton_Click" Content="Backup" HorizontalAlignment="Left" Height="35" Margin="546,644,0,0" Style="{DynamicResource mediButtonStyle}" VerticalAlignment="Top" Width="105" Cursor="Hand"/>
         <TextBlock x:Name="displayPatientname" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="Cool Joey" VerticalAlignment="Top" Width="612" TextAlignment="Center" FontSize="16"/>
     </Grid>
 </Window>

@@ -38,6 +38,7 @@ namespace P3
             loadMonthCal(potentialLength, currentMonth, currentYear);
 
             this.typeComboBox.SelectedIndex = 0; //sets default selection
+            this.apptType = this.typeComboBox.SelectedValue.ToString();
             this.durationComboBox.SelectedIndex = 0; //sets default selection
         }
 
@@ -54,7 +55,7 @@ namespace P3
         //select appointment - currently these are stubs
         private void cmbType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if(this.typeComboBox.SelectedValue != null)
+            if (this.typeComboBox.SelectedValue != null)
                 this.apptType = this.typeComboBox.SelectedValue.ToString();
         }
 

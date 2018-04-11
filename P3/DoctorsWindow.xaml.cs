@@ -24,27 +24,25 @@ namespace P3
     {
         //DataTable dt = new DataTable();
 
+        //initially loading data fromt he big boy fake database
         public DoctorsWindow()
         {
             InitializeComponent();
 
             //load data
-            List<Doctor> ls;
-            if((ls = MediSchedData.getDocList()).Count > 0)
+            List<Doctor> ls = MediSchedData.getDocList();
+            if(ls.Count > 0)
             {
-
                 for (int i = 0; i < ls.Count; i++)
                 {
-                    docListGrid.Items.Add(new Doctor() {ID = ls[i].ID, Name = ls[i].Name, Days = ls[i].Days, Hours = ls[i].Hours });
+                    //docListGrid.Items.Add(new Doctor() {ID = ls[i].ID, Name = ls[i].Name, Days = ls[i].Days, Hours = ls[i].Hours });
+                    docListGrid.Items.Add(ls[i]);
                 }
             }
-
-            //docListGrid.Items.Add(new Doctor() { Name = "Arshe D", Days = "MTWR", Hours = "8:00-20:30" });
-            //docListGrid.Items.Add(new Doctor() { Name = "Philli P", Days = "W", Hours = "1:00-10:00" });
         }
 
        
-
+        //when the user clicks the add doctor button +
         private void addDoctorButton_Click(object sender, RoutedEventArgs e)
          {
 
@@ -53,6 +51,7 @@ namespace P3
              newDocWindow.Show();
          }
 
+        //when the user clicks the edit doctor button
         private void editDoctorButton_Click(object sender, RoutedEventArgs e)
         {
             if (docListGrid.SelectedItem != null)
@@ -65,11 +64,12 @@ namespace P3
             }
         }
 
+        //when the user clicks the delete doctor button
         private void deleteDoctorButton_Click(object sender, RoutedEventArgs e)
         {
             if (docListGrid.SelectedItem != null)
             {
-                MediSchedData.deleteDoc((docListGrid.SelectedItem as Doctor).ID);
+                MediSchedData.deleteDoc((docListGrid.SelectedItem as Doctor));
                 docListGrid.Items.Remove(docListGrid.SelectedItem);
             }
         }

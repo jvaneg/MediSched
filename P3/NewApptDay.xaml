@@ -158,5 +158,16 @@
         </ScrollViewer>
         <Button x:Name="backButton" Content="Back" HorizontalAlignment="Left" Height="80.295" Margin="98.5,68.584,0,0"  VerticalAlignment="Top" Width="147.959"
             Style="{DynamicResource apptButtonStyle}" Click="backButton_Click"/>
+        <TextBlock x:Name="statusBlock" HorizontalAlignment="Left" Height="20.615" Margin="1564.845,111.514,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Top" Width="89.245" FontSize="16"/>
+        <Rectangle Fill="#FFE55039" HorizontalAlignment="Left" Height="14.96" Margin="1549.036,148.043,0,0" VerticalAlignment="Top" Width="11.476"/>
+        <Rectangle Fill="#FFF6B93B" HorizontalAlignment="Left" Height="14.96" Margin="1549.036,168.003,0,0" VerticalAlignment="Top" Width="11.476"/>
+        <Rectangle Fill="#FF78E08F" HorizontalAlignment="Left" Height="14.96" Margin="1549.036,187.963,0,0" VerticalAlignment="Top" Width="11.476"/>
+        <Rectangle Fill="#FF60A3BC" HorizontalAlignment="Left" Height="14.96" Margin="1549.036,207.923,0,0" VerticalAlignment="Top" Width="11.476"/>
+        <Rectangle Fill="#FF4A69BD" HorizontalAlignment="Left" Height="14.96" Margin="1549.036,227.883,0,0" VerticalAlignment="Top" Width="11.476"/>
+        <TextBlock HorizontalAlignment="Left" Height="18.46" Margin="1565.512,205.36,0,0" TextWrapping="Wrap" Text="Seen" VerticalAlignment="Top" Width="77.923" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Height="19.96" Margin="1564.845,185.4,0,0" TextWrapping="Wrap" Text="Being Seen" VerticalAlignment="Top" Width="77.923" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Height="18.835" Margin="1564.845,165.731,0,0" TextWrapping="Wrap" Text="Waiting" VerticalAlignment="Top" Width="77.923" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Height="19.96" Margin="1564.845,145.771,0,0" TextWrapping="Wrap" Text="Not Arrived" VerticalAlignment="Top" Width="77.923" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Height="16.46" Margin="1565.512,225.207,0,0" TextWrapping="Wrap" Text="Billed" VerticalAlignment="Top" Width="77.923" FontSize="14"/>
     </Grid>
 </Window>

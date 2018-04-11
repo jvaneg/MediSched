@@ -30,11 +30,11 @@
         <TextBox x:Name="endTBlock1" HorizontalAlignment="Left" Height="26" Margin="256,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
         <TextBox x:Name="endTBlock2" HorizontalAlignment="Left" Height="26" Margin="300,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
         <TextBlock x:Name="colon2" Text=":" HorizontalAlignment="Left" FontSize="14" TextAlignment="Center" Height="26" Margin="294,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="6"/>
-        <ComboBox Margin="153,81,0,217" Name="amPmComboBox1" HorizontalAlignment="Left" Height="26" Width="55" SelectedIndex="0">
+        <ComboBox Margin="153,81,0,217" Name="amPmComboBox1" SelectedValuePath="Content" HorizontalAlignment="Left" Height="26" Width="55" SelectedIndex="0">
             <ComboBoxItem Content="AM"></ComboBoxItem>
             <ComboBoxItem Content="PM"></ComboBoxItem>
         </ComboBox>
-        <ComboBox Margin="346,82,0,217" x:Name="amPmComboBox2" HorizontalAlignment="Left" Height="26" Width="55" SelectedIndex="0">
+        <ComboBox Margin="346,81,0,217" x:Name="amPmComboBox2" SelectedValuePath="Content" HorizontalAlignment="Left" Width="55" SelectedIndex="0">
             <ComboBoxItem Content="AM"/>
             <ComboBoxItem Content="PM"/>
         </ComboBox>

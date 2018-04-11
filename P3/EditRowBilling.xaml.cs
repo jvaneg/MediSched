@@ -44,7 +44,6 @@ namespace P3
                 parentWindow.descriptCostDataGrid.Items.Refresh();
 
                 this.Close();
-
             }
             else
             {

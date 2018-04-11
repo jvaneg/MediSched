@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
@@ -40,13 +41,31 @@ namespace P3
             docNameBlock.Text = name;
             this.workingDays = days;
             this.isEdit = editOrAdd;
+            string[] amPmSplitter = new string[] { "AM", "PM" };
+            
             if (hours.Length != 0)
             {
                 startTBlock1.Text = hours.Split('-')[0].Split(':')[0];
-                startTBlock2.Text = hours.Split('-')[0].Split(':')[1];
+                startTBlock2.Text = hours.Split('-')[0].Split(':')[1].Split(amPmSplitter, StringSplitOptions.RemoveEmptyEntries)[0];
+                if(hours.Split('-')[0].Contains("AM"))
+                {
+                    this.amPmComboBox1.SelectedIndex = 0;
+                }
+                else
+                {
+                    this.amPmComboBox1.SelectedIndex = 1;
+                }
 
                 endTBlock1.Text = hours.Split('-')[1].Split(':')[0];
-                endTBlock2.Text = hours.Split('-')[1].Split(':')[1];
+                endTBlock2.Text = hours.Split('-')[1].Split(':')[1].Split(amPmSplitter, StringSplitOptions.RemoveEmptyEntries)[0];
+                if (hours.Split('-')[1].Contains("AM"))
+                {
+                    this.amPmComboBox2.SelectedIndex = 0;
+                }
+                else
+                {
+                    this.amPmComboBox2.SelectedIndex = 1;
+                }
             }
             
 
@@ -72,6 +91,9 @@ namespace P3
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
             DoctorsWindow parentDoc = (DoctorsWindow)this.Owner;
+            string cbox1Val = "";
+            string cbox2Val = "";
+
             if (parentDoc != null)
             {
                 Doctor rowToBeUpdated = (Doctor)parentDoc.docListGrid.SelectedItem;
@@ -170,15 +192,22 @@ namespace P3
                     //if row is selected and edit button is clicked
                     if (rowToBeUpdated != null && isEdit == true)
                     {
+                        cbox1Val = amPmComboBox1.Text;
+                        cbox2Val = amPmComboBox2.Text;
+
                         rowToBeUpdated.Name = docNameBlock.Text;
-                        rowToBeUpdated.Hours = startTBlock1.Text + ':' + startTBlock2.Text  + dash + endTBlock1.Text + ':' + endTBlock2.Text;
+                        rowToBeUpdated.Hours = startTBlock1.Text + ':' + startTBlock2.Text + cbox1Val + dash + endTBlock1.Text + ':' + endTBlock2.Text + cbox2Val;
                         rowToBeUpdated.Days = this.workingDays;
 
-                        MediSchedData.updateDocInfo(rowToBeUpdated.ID, rowToBeUpdated.Name, rowToBeUpdated.Hours, rowToBeUpdated.Days);
+                        //MediSchedData.updateDocInfo(rowToBeUpdated.ID, rowToBeUpdated.Name, rowToBeUpdated.Hours, rowToBeUpdated.Days);
+                        MediSchedData.updateDoc(rowToBeUpdated);
                         parentDoc.docListGrid.Items.Refresh();
                     }
                     else if (isEdit == false)   //otherwise they clicked the add new doctor button
                     {
+                        cbox1Val = amPmComboBox1.Text;
+                        cbox2Val = amPmComboBox2.Text;
+
                         List<Doctor> docLs = MediSchedData.getDocList();
                         int lastID = 0;
 
@@ -187,8 +216,9 @@ namespace P3
                             lastID = docLs[docLs.Count - 1].ID;
                         }
 
-                        parentDoc.docListGrid.Items.Add(new Doctor() { Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text) });
-                        MediSchedData.addDocToList(new Doctor() {ID = (lastID + 1), Name = docNameBlock.Text, Days = this.workingDays, Hours = (startTBlock1.Text + ':' + startTBlock2.Text + dash + endTBlock1.Text + ':' + endTBlock2.Text) });
+                        Doctor newDoc = new Doctor(docNameBlock.Text, this.workingDays, (startTBlock1.Text + ':' + startTBlock2.Text + cbox1Val + dash + endTBlock1.Text + ':' + endTBlock2.Text + cbox2Val));
+                        parentDoc.docListGrid.Items.Add(newDoc);
+                        MediSchedData.addDocToList(newDoc);
                     }
                 }
             }

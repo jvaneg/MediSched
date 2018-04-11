@@ -39,6 +39,7 @@ namespace P3
             loadDaySchedules();
         }
 
+        //click new appointment button
         private void newApptButton_Click(object sender, RoutedEventArgs e)
         {
             NewApptWindow newApptWindow = new NewApptWindow();
@@ -46,27 +47,15 @@ namespace P3
             newApptWindow.Show();
         }
 
+        //click the patients button
         private void patientsButton_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {  
                 PatientsWindow patientsWindow = new PatientsWindow();
                 patientsWindow.Owner = this;
                 patientsWindow.Show();
-            
-
-           /* 
-            * PatientInfo patientinfo = new PatientInfo();
-            patientinfo.Show();
-            */
         }
 
-        private void sampleApptButton_Click(object sender, RoutedEventArgs e)
-        {
-            ApptWindow apptWindow = new ApptWindow();
-            apptWindow.Owner = this;
-            apptWindow.Show();
-        }
-
+        //click on the view calendar button
         private void calendarButton_Click(object sender, RoutedEventArgs e)
         {
             CalendarMonthWindow calMonth = new CalendarMonthWindow();
@@ -74,6 +63,7 @@ namespace P3
             calMonth.Show();
         }
 
+        //click on the doctors button
         private void doctorsButton_Click(object sender, RoutedEventArgs e)
         {
             

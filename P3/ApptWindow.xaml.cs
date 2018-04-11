@@ -27,6 +27,7 @@ namespace P3
         
         //old constructor that is now depricated
         //i think history/future currently uses this but that should be changed
+        /*
         public ApptWindow()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace P3
             this.notArrivedRadio.IsChecked = true; //default radio button selection
             apptStatus = "Not Arrived";
         }
+        */
 
         //initializes given a block that was clicked, and the appointment object that block contained
         //use this constructor if one of the coloured blocks was clicked to open this
@@ -52,6 +54,8 @@ namespace P3
             this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
 
             this.billingButton.Click += BillingButton_Click;
+
+            MediSchedData.dbChanged += handleDbChange;
         }
 
         //initializes given only the appointment object that block contained
@@ -66,6 +70,21 @@ namespace P3
             this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
 
             this.billingButton.Click += BillingButton_Click;
+
+            MediSchedData.dbChanged += handleDbChange;
+        }
+
+        //handles the database changing
+        private void handleDbChange(object sender, EventArgs e)
+        {
+            if (this.apptRepresenting != null)
+            {
+                loadAppointment(this.apptRepresenting);
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         //loads an appointment object's data to the window
@@ -73,9 +92,15 @@ namespace P3
         private void loadAppointment(Appointment sourceAppt)
         {
             this.apptRepresenting = sourceAppt;
+
+            int startBlock = this.apptRepresenting.getStartBlock();
+            int blockDuration = this.apptRepresenting.getApptBlockLength();
+
+            this.apptTime.Text = this.apptRepresenting.apptBlockFormatting(startBlock) + " - " + this.apptRepresenting.apptBlockFormatting(startBlock + blockDuration);
             this.apptType.Text = this.apptRepresenting.getApptType();
             this.pnameButton.Content = this.apptRepresenting.getPatientName();
             this.apptStatus = this.apptRepresenting.getApptStatus();
+            this.noteText.Text = this.apptRepresenting.getNotes();
             switch (this.apptStatus)
             {
                 case "Not Arrived":
@@ -96,9 +121,10 @@ namespace P3
             }
         }
 
+        //opens the billing for this appointment
         private void BillingButton_Click(object sender, RoutedEventArgs e)
         {
-            BillingWindow billingWindow = new BillingWindow();
+            BillingWindow billingWindow = new BillingWindow(this.apptRepresenting.getPatientName(), this.apptRepresenting.getApptType(), this.apptRepresenting);
             billingWindow.Owner = this;
             billingWindow.Show();
         }
@@ -111,7 +137,7 @@ namespace P3
             this.addNotesButton.Content = "View Notes";
         }
 
-        //Shows and hides the notes section
+        //Shows and saves/hides the notes section
         private void addNotesButton_Click(object sender, RoutedEventArgs e)
         {
             if (!notesShown)
@@ -127,13 +153,16 @@ namespace P3
                 this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
                 this.addNotesButton.Content = "View Notes";
                 notesShown = false;
+
+                //save the notes
+                this.apptRepresenting.setNotes(this.noteText.Text);
             }
         }
 
         //event for when you click on the patient's name
         private void pnameButton_Click(object sender, RoutedEventArgs e)
         {
-            PatientInfo patientInfoWindow = new PatientInfo();
+            PatientInfo patientInfoWindow = new PatientInfo(this.apptRepresenting.getPatient());
             patientInfoWindow.Owner = this;
             patientInfoWindow.Show();
         }
@@ -143,6 +172,7 @@ namespace P3
         {
             //delete the appointment
             this.Close();
+            MediSchedData.deleteAppointment(this.apptRepresenting);
         }
 
         //event for changing the status of the appointment
