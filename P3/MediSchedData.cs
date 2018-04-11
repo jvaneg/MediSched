@@ -124,6 +124,7 @@ namespace P3
                 }
             }
             */
+            docToEdit.parseHours(docToEdit.Hours);
             dbChanged(null, null);
         }
 

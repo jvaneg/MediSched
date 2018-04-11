@@ -60,7 +60,7 @@ namespace P3
         {
             this.patient = assignedPatient;
 
-            if(preset == 0)
+            if (preset == 0)
             {
                 this.apptType = "Flu Shot";
                 this.apptStatus = "Billed";
@@ -70,7 +70,7 @@ namespace P3
                 this.notes = "He sick";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
-            else if(preset == 1)
+            else if (preset == 1)
             {
                 this.apptType = "Flu Shot";
                 this.apptStatus = "Billed";
@@ -80,7 +80,7 @@ namespace P3
                 this.notes = "He very sick";
                 this.DateAndType = apptDate.ToString("d MMM yyyy") + " - " + apptType;
             }
-            else if( preset == 2)
+            else if (preset == 2)
             {
                 this.apptType = "Routine Checkup";
                 this.apptStatus = "Seen";
@@ -238,10 +238,11 @@ namespace P3
         {
             string finishedFormat = "";
 
-            if(blockNum % 2 == 0)
+            if (blockNum % 2 == 0)
             {
                 finishedFormat += "00";
-            } else
+            }
+            else
             {
                 finishedFormat += "30";
             }
@@ -331,12 +332,15 @@ namespace P3
                 case 47:
                     finishedFormat = "11:" + finishedFormat;
                     break;
+                default:
+                    break;
             }
 
-            if(blockNum > 23)
+            if (blockNum > 23)
             {
                 finishedFormat += " PM";
-            } else
+            }
+            else
             {
                 finishedFormat += " AM";
             }
@@ -345,6 +349,5 @@ namespace P3
 
             return finishedFormat;
         }
-
     }
 }
