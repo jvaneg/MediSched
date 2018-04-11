@@ -119,7 +119,7 @@ namespace P3
         //opens the billing for this appointment
         private void BillingButton_Click(object sender, RoutedEventArgs e)
         {
-            BillingWindow billingWindow = new BillingWindow(this.apptRepresenting.getPatientName(), this.apptRepresenting.getApptType());
+            BillingWindow billingWindow = new BillingWindow(this.apptRepresenting.getPatientName(), this.apptRepresenting.getApptType(), this.apptRepresenting);
             billingWindow.Owner = this;
             billingWindow.Show();
         }

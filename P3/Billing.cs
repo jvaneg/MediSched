@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace P3
 {
-    class Billing
+    public class Billing
     {
         public string Description { get; set; }
         public string Cost { get; set; }
-
+       
     }
 }

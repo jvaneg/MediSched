@@ -17,6 +17,9 @@ namespace P3
         private DateTime apptDate = DateTime.Now; //only used for the patient history future stuff
         private string notes = "";
 
+        private List<Billing> billingInfoList = new List<Billing>();
+
+
         //used with binding to show the text in the history/future listboxes
         public string DateAndType
         {
@@ -201,5 +204,31 @@ namespace P3
             this.notes = notes;
             MediSchedData.forceRefresh();
         }
+
+        // Getter to get the billing information.
+        public List<Billing> getbillingInfoList()
+        {
+            return billingInfoList;
+        }
+
+        // Adds billing information to appointment backend
+        public void addBillingInfoList(Billing bInfo)
+        {
+            billingInfoList.Add(bInfo);
+        }
+
+        // Deleted billing information from appointment backend
+        public void deleteBillingRow(Billing deletedRow)
+        {
+            billingInfoList.Remove(deletedRow);
+        }
+
+        // Updates billing information from appointment backend
+        public void updateBillingRow(Billing rowToBeUpdated)
+        {
+            billingInfoList[billingInfoList.IndexOf(rowToBeUpdated)].Description = rowToBeUpdated.Description;
+            billingInfoList[billingInfoList.IndexOf(rowToBeUpdated)].Cost = rowToBeUpdated.Cost;
+        }
+
     }
 }

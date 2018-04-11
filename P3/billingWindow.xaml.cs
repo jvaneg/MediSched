@@ -23,14 +23,24 @@ namespace P3
     /// </summary>
     public partial class BillingWindow : Window
     {
+        private Appointment aptBilling;
 
-
-
-        public BillingWindow(string patientName, string apptType)
+        public BillingWindow(string patientName, string apptType, Appointment billingInfo)
         {
             InitializeComponent();
 
             this.patientInformationTextbox.Text = "Patient: " + patientName + "\r\nAppointment Type: " + apptType;
+            aptBilling = billingInfo;
+
+            List<Billing> ls = aptBilling.getbillingInfoList();
+            if(ls.Count > 0)
+            {
+                for(int i=0; i < ls.Count; i++)
+                {
+                    descriptCostDataGrid.Items.Add(ls[i]);
+                }
+            }
+
 
             this.addToTableButton.Click += AddToTableButton_Click;
             this.printButton.Click += PrintButton_Click;
@@ -41,10 +51,15 @@ namespace P3
         private void AddToTableButton_Click(object sender, RoutedEventArgs e)
         {
 
+
             decimal d;
             if (decimal.TryParse(itemCostTextBox.Text, out d))
             {
-                descriptCostDataGrid.Items.Add(new Billing(){ Description = itemDescriptionTextBox.Text, Cost = itemCostTextBox.Text });
+                Billing billingObj = new Billing() { Description = itemDescriptionTextBox.Text, Cost = itemCostTextBox.Text };
+                descriptCostDataGrid.Items.Add(billingObj);
+
+                aptBilling.addBillingInfoList(billingObj);
+
             }
             else
             {
@@ -69,19 +84,16 @@ namespace P3
         {
             if (descriptCostDataGrid.SelectedItem != null)
             {
-                descriptCostDataGrid.Items.Remove((Billing)descriptCostDataGrid.SelectedItem);
+                Billing deletedObj = (Billing) descriptCostDataGrid.SelectedItem;
+
+                aptBilling.deleteBillingRow(deletedObj);
+
+                descriptCostDataGrid.Items.Remove(deletedObj);
             }
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-
-            List<Billing> savedBilling = new List<Billing>();
-
-            foreach(DataRowView dr in descriptCostDataGrid.ItemsSource)
-            {
-                
-            }
 
             this.Close();
         }
