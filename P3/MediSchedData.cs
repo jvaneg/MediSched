@@ -53,11 +53,13 @@ namespace P3
         //triggers when the db changes
         public static event EventHandler dbChanged = delegate { };
 
+        //returns this list of doctors
         public static List<Doctor> getDocList()
         {
             return docList;
         }
 
+        //returns the list of patients
         public static List<Patient> getPatientList()
         {
             return patientList;

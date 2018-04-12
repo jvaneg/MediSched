@@ -24,6 +24,10 @@ namespace P3
 
         public CalendarDayWindow(int day, int month, int year)
         {
+            CalendarDayWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            CalendarDayWindow.newWindowOpened(this, null);
+
             InitializeComponent();
 
             this.time = new DateTime(year, month, day);
@@ -42,7 +46,24 @@ namespace P3
         }
 
 
-        //when the window closes
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as CalendarDayWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             //do my stuff before closing
@@ -51,8 +72,15 @@ namespace P3
             else
                 this.Owner.Show();
 
+            CalendarDayWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+            MediSchedData.dbChanged -= handleDbChange;
+
             base.OnClosing(e);
         }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         //when you press the back button
         private void backButton_Click(object sender, RoutedEventArgs e)

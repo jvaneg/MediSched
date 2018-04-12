@@ -28,6 +28,10 @@ namespace P3
             this.patient = selectedPatient;
             History = new ObservableCollection<Appointment>();
 
+            MainWindow.mainClosed += handleMainClose;
+            PatientInfo.newWindowOpened += handleNewWindow;
+            newWindowOpened(this, null);
+
             InitializeComponent();
 
             this.historyList.SelectionChanged += appt_Selected;
@@ -77,6 +81,36 @@ namespace P3
 
             loadPatientData();
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as PatientInfo) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            PatientInfo.newWindowOpened -= handleNewWindow;
+            MediSchedData.dbChanged -= handleDbChange;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         //reloads the page when the db changes
         private void handleDbChange(object sender, EventArgs e)
@@ -322,7 +356,6 @@ namespace P3
 
 
         //selected an appointment from the past/future tabs
-        //TODO contains placeholder
         private void appt_Selected(object sender, RoutedEventArgs e)
         {
             //get the appointment from the list somehow
@@ -330,7 +363,7 @@ namespace P3
             if (apptSelected != null)
             {
                 ApptWindow apptWindow = new ApptWindow(apptSelected);
-                apptWindow.Owner = this;
+                //apptWindow.Owner = this; //TODO idk if i should do this owner stuff
                 apptWindow.Show();
             }
         }

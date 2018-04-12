@@ -26,6 +26,10 @@ namespace P3
         {
             patientList = new ObservableCollection<Patient>();
 
+            NewApptWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            NewApptWindow.newWindowOpened(this, null);
+
             InitializeComponent();
 
             this.PatientList.SelectionChanged += Patient_Selected;
@@ -60,12 +64,40 @@ namespace P3
             }
         }
 
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as NewApptWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            NewApptWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
 
         private void NewPatient_Click(object sender, RoutedEventArgs e)
         {
             NewPatientsWindow patientWindow = new NewPatientsWindow(true);
-            patientWindow.Owner = this.Owner;
+            //patientWindow.Owner = this.Owner; //TODO not sure if i should do this owner stuff
             patientWindow.Show();
             this.Close();
         }
@@ -78,7 +110,7 @@ namespace P3
             if (selectedPatient != null)
             {
                 NewApptMonth apptMonthWindow = new NewApptMonth(selectedPatient);
-                apptMonthWindow.Owner = this.Owner;
+                //apptMonthWindow.Owner = this.Owner; //TODO not sure if i should do this owner stuff
                 apptMonthWindow.Show();
                 this.Close();
             }

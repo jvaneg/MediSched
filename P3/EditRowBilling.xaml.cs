@@ -22,14 +22,51 @@ namespace P3
 
         public EditRowBilling()
         {
+            EditRowBilling.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            EditRowBilling.newWindowOpened(this, null);
+
             InitializeComponent();            
         }
 
         public EditRowBilling(string description, string cost)
         {
+            EditRowBilling.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            EditRowBilling.newWindowOpened(this, null);
+
             InitializeComponent();
             this.editButton.Click += EditButton_Click;
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as EditRowBilling) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            EditRowBilling.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {

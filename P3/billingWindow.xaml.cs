@@ -29,6 +29,10 @@ namespace P3
         {
             InitializeComponent();
 
+            BillingWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            newWindowOpened(this, null);
+
             this.patientInformationTextbox.Text = "Patient: " + patientName + "\r\nAppointment Type: " + apptType;
             aptBilling = billingInfo;
 
@@ -102,5 +106,34 @@ namespace P3
         {
             MessageBox.Show("Sent to printer");
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new billing window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as BillingWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            BillingWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
     }
 }

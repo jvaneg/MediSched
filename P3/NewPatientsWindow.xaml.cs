@@ -24,9 +24,42 @@ namespace P3
         //initialize new patient window depending on if its from a new appointment window
         public NewPatientsWindow(bool fromAppointment)
         {
+            NewPatientsWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            NewPatientsWindow.newWindowOpened(this, null);
+
             InitializeComponent();
             this.fromAppointment = fromAppointment;
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as NewPatientsWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            NewPatientsWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         //press ok on new patient window
         private void OkButtonStyle(object sender, RoutedEventArgs e)
@@ -44,18 +77,6 @@ namespace P3
                 nameBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
             }
 
-            
-            /*if (string.IsNullOrEmpty(ageBlock.Text.Trim()))
-            {
-                canClose = false;
-                ageBlock.BorderBrush = new SolidColorBrush(Colors.Red);
-            }
-            else
-            {
-                ageBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
-            }
-            */
-
             if (canClose)
             {
                 //create patient from form data
@@ -64,9 +85,6 @@ namespace P3
                                                  this.billPostalBox.Text);
 
                 MediSchedData.addPatientToList(newPatient);
-
-
-
 
 
                 if (fromAppointment)

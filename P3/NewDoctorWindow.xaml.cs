@@ -24,6 +24,10 @@ namespace P3
 
         public NewDoctorWindow(bool editOrAdd)
         {
+            NewDoctorWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            NewDoctorWindow.newWindowOpened(this, null);
+
             InitializeComponent();
             this.workingDays = "";
             docNameBlock.Text = "";
@@ -37,6 +41,10 @@ namespace P3
 
         public NewDoctorWindow(string name, string days, string hours, bool editOrAdd)
         {
+            NewDoctorWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            NewDoctorWindow.newWindowOpened(this, null);
+
             InitializeComponent();
             docNameBlock.Text = name;
             this.workingDays = days;
@@ -86,7 +94,36 @@ namespace P3
 
         }
 
-        
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as NewDoctorWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            NewDoctorWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
+
+
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {

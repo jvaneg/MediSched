@@ -43,32 +43,31 @@ namespace P3
         private void newApptButton_Click(object sender, RoutedEventArgs e)
         {
             NewApptWindow newApptWindow = new NewApptWindow();
-            newApptWindow.Owner = this;
+            //newApptWindow.Owner = this; //TODO idk if i should remove this
             newApptWindow.Show();
         }
 
         //click the patients button
         private void patientsButton_Click(object sender, RoutedEventArgs e)
         {  
-                PatientsWindow patientsWindow = new PatientsWindow();
-                patientsWindow.Owner = this;
-                patientsWindow.Show();
+            PatientsWindow patientsWindow = new PatientsWindow();
+            //patientsWindow.Owner = this; //TODO idk if i should remove this
+            patientsWindow.Show();
         }
 
         //click on the view calendar button
         private void calendarButton_Click(object sender, RoutedEventArgs e)
         {
             CalendarMonthWindow calMonth = new CalendarMonthWindow();
-            calMonth.Owner = this;
+            //calMonth.Owner = this; //TODO idk if i should remove this
             calMonth.Show();
         }
 
         //click on the doctors button
         private void doctorsButton_Click(object sender, RoutedEventArgs e)
         {
-            
             DoctorsWindow docWindow =  new DoctorsWindow();
-            docWindow.Owner = this;
+            //docWindow.Owner = this; //TODO idk if i should remove this
             docWindow.Show();
         }
 
@@ -92,6 +91,18 @@ namespace P3
                 }
             }
         }
+
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            mainClosed(null, null);
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        public static EventHandler mainClosed = delegate { };
 
     }
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Patient Search" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize">
     <Canvas x:Name="patientsCanvas" Margin="0,0,0,1" Width="352" Height="352">
-        <Button x:Name="BackUp" Content="Backup" Height="26" Canvas.Left="40" Style="{DynamicResource mediButtonStyle}" Canvas.Top="316" Width="68" Cursor="Hand"/>
+        <Button x:Name="BackUp" Content="Backup" Height="26" Canvas.Left="40" Style="{DynamicResource mediButtonStyle}" Canvas.Top="316" Width="68" Cursor="Hand" Click="BackUp_Click"/>
         <Button x:Name="NewPatient" Content="New patient" Height="26" Canvas.Left="227" Style="{DynamicResource mediButtonStyle}" Canvas.Top="316" Width="86" Cursor="Hand" Click="NewPatient_Click"/>
         
         <TextBlock Height="17" HorizontalAlignment="Center" Name="SearchName" Text="Search Name" TextAlignment ="Center" VerticalAlignment="Top" Width="79" Canvas.Left="40" Canvas.Top="34" />

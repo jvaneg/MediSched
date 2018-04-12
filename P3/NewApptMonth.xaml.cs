@@ -31,6 +31,10 @@ namespace P3
         //create the new month
         public NewApptMonth(Patient selectedPatient)
         {
+            NewApptMonth.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            NewApptMonth.newWindowOpened(this, null);
+
             InitializeComponent();
 
             this.targetPatient = selectedPatient;
@@ -41,6 +45,35 @@ namespace P3
             this.apptType = this.typeComboBox.SelectedValue.ToString();
             this.durationComboBox.SelectedIndex = 0; //sets default selection
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as NewApptMonth) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            NewApptMonth.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         //clicking on a day
         private void DayBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

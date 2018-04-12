@@ -25,6 +25,10 @@ namespace P3
         {
             patientList = new ObservableCollection<Patient>();
 
+            PatientsWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            PatientsWindow.newWindowOpened(this, null);
+
             InitializeComponent();
 
             this.PatientList.SelectionChanged += Patient_Selected;
@@ -32,6 +36,35 @@ namespace P3
             loadPatients();
 
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as PatientsWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            PatientsWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         //loads patients into the box
         private void loadPatients()
@@ -69,7 +102,7 @@ namespace P3
             if (selectedPatient != null)
             {
                 PatientInfo patientinfo = new PatientInfo(selectedPatient);
-                patientinfo.Owner = this.Owner;
+                //patientinfo.Owner = this.Owner; //TODO idk if i should remove this
                 this.Close();
                 patientinfo.Show();
             }
@@ -79,10 +112,15 @@ namespace P3
         private void NewPatient_Click(object sender, RoutedEventArgs e)
         {
             NewPatientsWindow patientWindow = new NewPatientsWindow(false);
-            patientWindow.Owner = this.Owner;
+            //patientWindow.Owner = this.Owner; //TODO idk if i should remove this
             this.Close();
             patientWindow.Show();
         }
 
+        //click the backup button
+        private void BackUp_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Patients backed up!");
+        }
     }
 }

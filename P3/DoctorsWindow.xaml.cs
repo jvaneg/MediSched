@@ -27,6 +27,10 @@ namespace P3
         //initially loading data fromt he big boy fake database
         public DoctorsWindow()
         {
+            DoctorsWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            DoctorsWindow.newWindowOpened(this, null);
+
             InitializeComponent();
 
             //load data
@@ -41,7 +45,36 @@ namespace P3
             }
         }
 
-       
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as DoctorsWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            DoctorsWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
+
+
         //when the user clicks the add doctor button +
         private void addDoctorButton_Click(object sender, RoutedEventArgs e)
          {

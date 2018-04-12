@@ -29,6 +29,10 @@ namespace P3
         //creates a new day
         public NewApptDay(int day, int month, int year, int potentialLength, string apptType, Patient targetPatient)
         {
+            NewApptDay.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            NewApptDay.newWindowOpened(this, null);
+
             InitializeComponent();
 
             this.potentialLength = potentialLength;
@@ -49,6 +53,42 @@ namespace P3
             loadDaySchedules();
         }
 
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as NewApptDay) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            //do my stuff before closing
+            if (!this.backButtoned)
+                this.Owner.Close();
+            else
+                this.Owner.Show();
+
+            NewApptDay.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+            MediSchedData.dbChanged -= handleDbChange;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
+
         //loads the day schedules
         private void loadDaySchedules()
         {
@@ -67,17 +107,6 @@ namespace P3
             }
         }
 
-        //special close logic
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
-        {
-            //do my stuff before closing
-            if (!this.backButtoned)
-                this.Owner.Close();
-            else
-                this.Owner.Show();
-
-            base.OnClosing(e);
-        }
 
         //press the back button
         private void backButton_Click(object sender, RoutedEventArgs e)

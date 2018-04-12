@@ -25,10 +25,43 @@ namespace P3
 
         public CalendarMonthWindow()
         {
+            CalendarMonthWindow.newWindowOpened += handleNewWindow;
+            MainWindow.mainClosed += handleMainClose;
+            CalendarMonthWindow.newWindowOpened(this, null);
+
             InitializeComponent();
 
             loadMonthCal(currentMonth, currentYear);
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as CalendarMonthWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            CalendarMonthWindow.newWindowOpened -= handleNewWindow;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         //clicking on a day in the calendar
         private void DayBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

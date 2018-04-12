@@ -24,22 +24,6 @@ namespace P3
         private string apptStatus = null; //the status as a string (should be an enum but aint got time for that shit)
 
         private Appointment apptRepresenting = null; //the appointment this app window is showing
-        
-        //old constructor that is now depricated
-        //i think history/future currently uses this but that should be changed
-        /*
-        public ApptWindow()
-        {
-            InitializeComponent();
-            this.apptGrid.Height = 195;
-            this.deleteButton.Margin = new Thickness(251.976, 158, 0, 0);
-
-            this.billingButton.Click += BillingButton_Click;
-
-            this.notArrivedRadio.IsChecked = true; //default radio button selection
-            apptStatus = "Not Arrived";
-        }
-        */
 
         //initializes given a block that was clicked, and the appointment object that block contained
         //use this constructor if one of the coloured blocks was clicked to open this
@@ -47,6 +31,10 @@ namespace P3
         {
             InitializeComponent();
             this.sourceApptBlock = sourceApptBlock;
+
+            MainWindow.mainClosed += handleMainClose;
+            ApptWindow.newWindowOpened += handleNewWindow;
+            newWindowOpened(this, null);
 
             loadAppointment(sourceAppt);
 
@@ -64,6 +52,10 @@ namespace P3
         {
             InitializeComponent();
 
+            MainWindow.mainClosed += handleMainClose;
+            ApptWindow.newWindowOpened += handleNewWindow;
+            newWindowOpened(this, null);
+
             loadAppointment(sourceAppt);
 
             this.apptGrid.Height = 195;
@@ -73,6 +65,36 @@ namespace P3
 
             MediSchedData.dbChanged += handleDbChange;
         }
+
+        //handles when the main window closes, closes this window
+        private void handleMainClose(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //handles a new appt window being opened
+        //if a new window of this type opens, closes the others
+        private void handleNewWindow(object sender, EventArgs e)
+        {
+            if ((sender as ApptWindow) != this)
+            {
+                //save maybe
+                this.Close();
+            }
+        }
+
+        //special close logic
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            ApptWindow.newWindowOpened -= handleNewWindow;
+            MediSchedData.dbChanged -= handleDbChange;
+            MainWindow.mainClosed -= handleMainClose;
+
+            base.OnClosing(e);
+        }
+
+        //event for when new window of this type is opened
+        private static EventHandler newWindowOpened = delegate { };
 
         //handles the database changing
         private void handleDbChange(object sender, EventArgs e)
@@ -163,7 +185,7 @@ namespace P3
         private void pnameButton_Click(object sender, RoutedEventArgs e)
         {
             PatientInfo patientInfoWindow = new PatientInfo(this.apptRepresenting.getPatient());
-            patientInfoWindow.Owner = this;
+            //patientInfoWindow.Owner = this; //TODO fix this owner mess
             patientInfoWindow.Show();
         }
 

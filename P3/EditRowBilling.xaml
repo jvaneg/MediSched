@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P3"
         mc:Ignorable="d"
-        Title="Edit Row" Height="140" Width="450" ResizeMode="CanMinimize">
+        Title="Edit Row" Height="140" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner">
     <Grid>
         <TextBlock Name="editDescriptionLabel" HorizontalAlignment="Left" Height="46.38" Margin="28.952,10,0,0" TextWrapping="Wrap" Text="Edit Description" VerticalAlignment="Top" Width="182.265" FontSize="24"/>
         <TextBlock Name="editCostLabel" HorizontalAlignment="Left" Height="46.38" Margin="231.812,10,0,0" TextWrapping="Wrap" Text="Edit Cost" VerticalAlignment="Top" Width="202.86" FontSize="24"/>
