@@ -341,9 +341,25 @@ namespace P3
         //pressed the save personal info button after editing
         private void savePersButton_Click(object sender, RoutedEventArgs e)
         {
-            savePersonal();
-            this.editPersButton.Visibility = Visibility.Visible;
-            this.savePersButton.Visibility = Visibility.Hidden;
+            bool canClose = true;
+            //maybe prevent from adding patient with no name
+
+            if (string.IsNullOrEmpty(nameBox.Text.Trim()))
+            {
+                canClose = false;
+                nameBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                nameBox.BorderBrush = new SolidColorBrush(Colors.Gray);
+            }
+
+            if (canClose)
+            {
+                savePersonal();
+                this.editPersButton.Visibility = Visibility.Visible;
+                this.savePersButton.Visibility = Visibility.Hidden;
+            }
         }
 
         //pressed the save billing info button after editing
