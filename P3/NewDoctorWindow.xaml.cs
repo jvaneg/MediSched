@@ -74,6 +74,7 @@ namespace P3
                 {
                     this.amPmComboBox2.SelectedIndex = 1;
                 }
+
             }
             
 
@@ -130,6 +131,8 @@ namespace P3
             DoctorsWindow parentDoc = (DoctorsWindow)this.Owner;
             string cbox1Val = "";
             string cbox2Val = "";
+
+            canAdd = true;
 
             if (parentDoc != null)
             {
@@ -196,8 +199,13 @@ namespace P3
                     docNameBlock.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
-                if (string.IsNullOrEmpty(startTBlock1.Text.Trim()) || string.IsNullOrEmpty(startTBlock2.Text.Trim()) ||
+                //check if name or time is empty
+                /*
+                 * if (string.IsNullOrEmpty(startTBlock1.Text.Trim()) || string.IsNullOrEmpty(startTBlock2.Text.Trim()) ||
                     !Regex.IsMatch(startTBlock1.Text, @"^[0-9]*$") || !Regex.IsMatch(startTBlock2.Text, @"^[0-9]*$"))
+                    */
+                if (string.IsNullOrEmpty(startTBlock1.Text.Trim()) || string.IsNullOrEmpty(startTBlock2.Text.Trim()) ||
+                !Regex.IsMatch(startTBlock1.Text, @"^[0-9]*$") || !Regex.IsMatch(startTBlock2.Text, @"^\d{2}$"))
                 {
                     canAdd = false;
                     startTBlock1.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -210,7 +218,7 @@ namespace P3
                 }
 
                 if (string.IsNullOrEmpty(endTBlock1.Text.Trim()) || string.IsNullOrEmpty(endTBlock2.Text.Trim()) ||
-                    !Regex.IsMatch(endTBlock1.Text, @"^[0-9:]*$") || !Regex.IsMatch(endTBlock2.Text, @"^[0-9:]*$"))
+                    !Regex.IsMatch(endTBlock1.Text, @"^[0-9]*$") || !Regex.IsMatch(endTBlock2.Text, @"^\d{2}$"))
                 {
                     canAdd = false;
                     endTBlock1.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -221,10 +229,35 @@ namespace P3
                     endTBlock1.BorderBrush = new SolidColorBrush(Colors.Gray);
                     endTBlock2.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
+                
+                //check for valid time
+                if(canAdd)
+                {
+                    if ((this.amPmComboBox1.SelectedIndex == 1 && this.amPmComboBox2.SelectedIndex == 0) || (this.amPmComboBox1.SelectedIndex == this.amPmComboBox2.SelectedIndex)  && 
+                        (Int32.Parse(startTBlock1.Text) > Int32.Parse(endTBlock1.Text) ||(Int32.Parse(startTBlock2.Text) > Int32.Parse(endTBlock2.Text)) && 
+                        Int32.Parse(startTBlock1.Text) > 12 || Int32.Parse(endTBlock1.Text) > 12 || Int32.Parse(startTBlock2.Text) > 59 || Int32.Parse(endTBlock2.Text) > 59))
+                    {
+                        canAdd = false;
+
+                        startTBlock1.BorderBrush = new SolidColorBrush(Colors.Red);
+                        startTBlock2.BorderBrush = new SolidColorBrush(Colors.Red);
+                        endTBlock1.BorderBrush = new SolidColorBrush(Colors.Red);
+                        endTBlock2.BorderBrush = new SolidColorBrush(Colors.Red);
+                    }
+                    else
+                    {
+                        startTBlock1.BorderBrush = new SolidColorBrush(Colors.Gray);
+                        startTBlock2.BorderBrush = new SolidColorBrush(Colors.Gray);
+                        endTBlock1.BorderBrush = new SolidColorBrush(Colors.Gray);
+                        endTBlock2.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    }
+                }
+                
 
                 if (canAdd)
                 {
-                    canAdd = true;
+
+                    //canAdd = true;
                     
                     //if row is selected and edit button is clicked
                     if (rowToBeUpdated != null && isEdit == true)

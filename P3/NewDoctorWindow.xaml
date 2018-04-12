@@ -16,7 +16,7 @@
         <TextBlock x:Name="toStr"  Text="to" HorizontalAlignment="Left" FontSize="14" TextAlignment="Center" Height="25.951" Margin="113.822,81.275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="19.845"/>
         -->
         <TextBlock x:Name="hoursStr" FontSize="14" HorizontalAlignment="Left" TextAlignment="Center" Height="25.951" Margin="5.534,81.275,0,0" TextWrapping="Wrap" Text="Hours:" VerticalAlignment="Top" Width="55.609"/>
-        <TextBox x:Name="startTBlock1" HorizontalAlignment="Left" Height="26" Margin="62,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
+        <TextBox x:Name="startTBlock1" MaxLength="2" HorizontalAlignment="Left" Height="26" Margin="62,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
         <TextBlock x:Name="toStr"  Text="to" HorizontalAlignment="Left" FontSize="14" TextAlignment="Center" Height="26" Margin="221,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27"/>
         <TextBlock x:Name="daysStr" Text="Days:" TextAlignment="Center" FontSize="14" Margin="10,156,445,0" RenderTransformOrigin="1,0" Height="28" VerticalAlignment="Top"/>
         <CheckBox x:Name="mondayBox" Content="Monday" FontSize="14" Margin="61,159,161,0" Height="20" VerticalAlignment="Top" />
@@ -25,10 +25,10 @@
         <CheckBox x:Name="thursdayBox" Content="Thursday" FontSize="14" Margin="61,229,161,0" Height="18" VerticalAlignment="Top" />
         <CheckBox x:Name="fridayBox" Content="Friday" FontSize="14" Margin="61,251,180,0" Height="19" VerticalAlignment="Top" />
         <Button x:Name="okButton" Click="okButton_Click" Content="OK" Canvas.Left="238.528" HorizontalAlignment="Center" Canvas.Top="291.848" Width="51" Style="{DynamicResource mediButtonStyle}" Margin="121,289,128,-6" Height="22" VerticalAlignment="Top"/>
-        <TextBox x:Name="startTBlock2" HorizontalAlignment="Left" Height="26" Margin="105,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
+        <TextBox x:Name="startTBlock2" MaxLength="2" HorizontalAlignment="Left" Height="26" Margin="105,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
         <TextBlock x:Name="colon1" Text=":" HorizontalAlignment="Left" FontSize="14" TextAlignment="Center" Height="26" Margin="100,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="5"/>
-        <TextBox x:Name="endTBlock1" HorizontalAlignment="Left" Height="26" Margin="256,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
-        <TextBox x:Name="endTBlock2" HorizontalAlignment="Left" Height="26" Margin="300,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
+        <TextBox x:Name="endTBlock1" MaxLength="2" HorizontalAlignment="Left" Height="26" Margin="256,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
+        <TextBox x:Name="endTBlock2" MaxLength="2" HorizontalAlignment="Left" Height="26" Margin="300,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14"/>
         <TextBlock x:Name="colon2" Text=":" HorizontalAlignment="Left" FontSize="14" TextAlignment="Center" Height="26" Margin="294,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="6"/>
         <ComboBox Margin="153,81,0,217" Name="amPmComboBox1" SelectedValuePath="Content" HorizontalAlignment="Left" Height="26" Width="55" SelectedIndex="0">
             <ComboBoxItem Content="AM"></ComboBoxItem>
