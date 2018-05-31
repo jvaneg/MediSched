@@ -9,7 +9,7 @@ MediSched was written in C# using the WPF framework.
 
 ### Project Video
 
-[![MediSched Demo](https://i.imgur.com/Fn2MxWF.png)](https://youtu.be/OdPw2xZOJhU)
+[![MediSched Demo](https://i.imgur.com/Fn2MxWF.png)](https://youtu.be/0gZuJtG4wn8)
 
 ### Features
 
